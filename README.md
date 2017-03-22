@@ -28,7 +28,7 @@ Você pode baixar manualmente seguindo os comandos :
 
 depois você precisa tornar executável os scripts:
 
-chmod +x esvaziar.sh tocar.sh teste.sh
+~$ chmod +x esvaziar.sh tocar.sh teste.sh
 
 
 
