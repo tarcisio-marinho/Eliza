@@ -1,5 +1,5 @@
 #!/bin/bash
-if cd /home/tarcisio/Área\ de\ Trabalho/Musicas/$1 == true
+if cd /home/$USER/Área\ de\ Trabalho/Musicas/$1 == true
 then 
 	echo "Digite a música: "
 	read entrada
