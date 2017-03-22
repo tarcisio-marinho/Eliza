@@ -10,6 +10,7 @@ from datetime import datetime
 from datetime import date
 import random
 import re
+import requisicao
 
 sobre_eliza='''
 Opa! Sou eliza uma assistente pessoal para o linux!
@@ -21,6 +22,7 @@ comandos='''
 Olá, sou Eliza, uma assistente pessoal para linux!
 Os comandos basicos são:
 
+[+] cotacao (moeda) - mostra a cotação da moeda atualmente
 [+] criar diretorio (nome_do_diretorio) - cria diretorio
 [+] criar arquivo (nome_do_arquivo) - cria arquivo
 [+] dia - mostra o dia atual
@@ -32,6 +34,12 @@ Os comandos basicos são:
 
 '''
 
+nascimento_dia=17
+nascimento_mes=3
+nascimento_ano=2017
+
+
+
 versao='Versão 1.0'
 
 #API'S
@@ -40,7 +48,6 @@ versao='Versão 1.0'
 #
 #tocar(musica)
 #ler(livro)
-#criar(arquivo)
 #youtube(nome_video)
 #busca(google_nome)
 #esvaziar_lixeira()
@@ -58,6 +65,8 @@ versao='Versão 1.0'
 # voce é muito util para mim
 # obrigado $USER
 
+# abrir calculadora
+
 def identifica(frase):
     #Funcoes primarias
     palavras=frase.split(' ')
@@ -70,6 +79,15 @@ def identifica(frase):
     elif(frase=='help' or frase=='ajuda' or frase=='tutorial' or frase=='list' or frase=='listar comandos' or frase=='listar'):
         print(comandos)
 
+    elif(frase=='obrigado' or frase=='você é muito inteligente' or frase=='boa eliza' or frase=='bom trabalho' or frase=='valeu'):
+        x=random.randrange(1,4)
+        if(x==1):
+            print('De nada, é um prazer te ajudar\n')
+        elif(x==2):
+            print('Que isso\n')
+        elif(x==3):
+            print('Obrigada\n')
+
     elif(frase=='version' or frase=='versao' or frase=='versão' or frase=='-v' or frase=='--version'):
         print(versao)
 
@@ -81,7 +99,7 @@ def identifica(frase):
         hora=now.hour
         minuto=now.minute
         segundo=now.second
-        print "São: %s:%s:%s" % (hora,minuto,segundo)
+        print('São: '+str(hora)+':'+str(minuto)+':'+str(segundo))
 
     elif(frase=='que dia é hoje' or frase=='dia' or frase=='que dia é hoje?' or frase=='que dia e hoje' or frase=='hoje é que dia?' or frase=='hoje e que dia'):
         now=datetime.now()
@@ -103,12 +121,12 @@ def identifica(frase):
             print('hoje é Sábado.')
         elif(hoje.weekday()==6):
             print('hoje é Domingo.')
-        print "dia: %s/%s/%s" % (dia, mes, ano)
+        print('Dia: '+str(dia)+'/'+str(mes)+'/'+str(ano))
 
     elif(frase=='quem e vc' or frase=='quem é vc' or frase=='quem é vc?' or frase=='quem e vc?' or frase=='quem é você?' or frase=='quem é voce?' or frase=='quem é você'):
         print(sobre_eliza)
 
-    elif(frase=='tudo bem?' or frase=='tudo bem'or frase=='oi' or frase=='ola' or frase=='olá' or frase=='oi tudo bem?' or frase=='iae' or frase=='oi tudo bem?'):
+    elif(frase=='oi eliza' or frase=='tudo bem?' or frase=='tudo bem'or frase=='oi' or frase=='ola' or frase=='olá' or frase=='oi tudo bem?' or frase=='iae' or frase=='oi tudo bem?'):
         x=random.randrange(1,5)
         if(x==1):
             print('Opa, tudo bem?\n')
@@ -162,6 +180,72 @@ def identifica(frase):
             os.system('touch '+nome_arquivo)
             print('Pronto!\n')
 
+    elif(palavras[0]=='remover'):
+        if(tam==3):
+            if(palavras[1]=='arquivo'):
+                os.system('rm '+palavras[2])
+                print('Pronto!\n')
+            elif(palavras[1]=='diretorio'):
+                os.system('rm -r '+palavras[2])
+                print('Pronto!\n')
+        elif(tam==1):
+            operacao=raw_input('Deseja remover arquivo ou diretorio? ')
+            if(operacao=='diretorio'):
+                nome_diretorio=raw_input('Digite o nome do diretorio: ')
+                os.system('rm -r '+nome_diretorio)
+                print('Pronto!\n')
+            elif(operacao=='arquivo'):
+                nome_arquivo=raw_input('Digite o nome do arquivo: ')
+                os.system('rm '+nome_arquivo)
+                print('Pronto!\n')
+            else:
+                print('Operação inválida\n')
+        elif(tam==2):
+            if(palavras[1]=='diretorio'):
+                nome_diretorio=raw_input('Digite o nome do diretorio: ')
+                os.system('rm -r '+nome_diretorio)
+                print('Pronto!\n')
+            elif(palavras[1]=='arquivo'):
+                nome_arquivo=raw_input('Digite o nome do arquivo: ')
+                os.system('rm '+nome_arquivo)
+                print('Pronto!\n')
+
+    elif(frase=='qual sua idade' or frase=='qual sua idade?' or frase=='quantos anos você tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos você tem?'):
+        now=datetime.now()
+        ano=now.year
+        mes=now.month
+        dia=now.day
+        atual_ano=ano-nascimento_ano
+        atual_mes=mes-nascimento_mes
+        atual_dia=dia-nascimento_dia
+        if(atual_ano!=0):
+            print(str(atual_ano)+' anos')
+        if(atual_mes!=0):
+            print(str(atual_mes)+' meses')
+        print(str(atual_dia)+' dias')
+
+    ## CONTINUAR COM CONFIGURACOES DO SISTEMA
+
+
+    elif(palavras[0]=='procurar'):
+        if(tam==3):
+            if(palavras[1]=='filme'):
+                requisicao.filmes(palavras[2])
+        if(tam>3):
+            nome_filme=palavras[2]+' '+palavras[3]
+            requisicao.filmes(nome_filme)
+
+
+    elif(palavras[0]=='cotacao'):
+        if(tam>1):
+            if(palavras[1]=='dolar'):
+                requisicao.cotacao('USD')
+            elif(palavras[1]=='euro'):
+                requisicao.cotacao('EUR')
+            elif(palavras[1]=='bitcoin' or palavras[1]=='btc'):
+                requisicao.cotacao('BTC')
+            else:
+                print('Moeda Indisponível ou não existe\n')
 
     else:
         x=random.randrange(1,5)
