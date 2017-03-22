@@ -218,6 +218,7 @@ def identifica(frase):
         atual_ano=ano-nascimento_ano
         atual_mes=mes-nascimento_mes
         atual_dia=dia-nascimento_dia
+        print('Eu tenho')
         if(atual_ano!=0):
             print(str(atual_ano)+' anos')
         if(atual_mes!=0):
@@ -225,10 +226,16 @@ def identifica(frase):
         print(str(atual_dia)+' dias')
 
 
-    #elif(frase=='tocar'):
-    #    artista=raw_input('Artista: ')
-    #    os.system('./tocar.sh '+ artista)
+    elif(frase=='tocar'):
+        artista=raw_input('Artista: ')
+        os.system('./tocar.sh '+ artista)
 
+    elif(frase=='esvaziar lixeira' or frase=='esvaziar'):
+        os.system('./esvaziar.sh')
+        print('Pronto!\n')
+
+    elif(frase=='calculadora'):
+        os.system('gnome-calculator')
 
 
 
