@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /home/tarcisio/.local/share/Trash/files
+cd /home/$USER/.local/share/Trash/files
 rm -rf *
