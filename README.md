@@ -13,6 +13,7 @@ pip install requests
 
 # execução
 chmod +x compilar.sh
+
 ./compilar.sh
 
 
