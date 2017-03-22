@@ -12,7 +12,8 @@ sudo apt-get install pip
 pip install requests
 
 # execução
-python main.py
+chmod +x compilar.sh
+./compilar.sh
 
 
 # digite help para obter ajuda
