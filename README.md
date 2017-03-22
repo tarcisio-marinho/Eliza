@@ -6,7 +6,7 @@ git clone https://github.com/tarcisio-marinho/Eliza.git
 
 # precisa ter instalado o pip
 
-sudo apt-get install pip
+sudo apt-get install python-pip
 
 # instalar biblioteca requests
 pip install requests
