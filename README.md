@@ -1,10 +1,14 @@
 # Eliza, uma simples assistente pessoal para linux 
 em desenvolvimento
 
-# download
+# Download
 git clone https://github.com/tarcisio-marinho/Eliza.git
 
-# 1 vez rodando
+# Execução normal
+
+~$ python main.py
+
+# Primeira vez rodando
 Para pular todos os passos abaixo, execute o arquivo compilador.sh:
 
 chmod +x compilar.sh
@@ -23,8 +27,9 @@ Você pode baixar manualmente seguindo os comandos :
 ~$ pip install requests
 
 depois você precisa tornar executável os scripts:
+
 chmod +x esvaziar.sh tocar.sh teste.sh
 
 
 
-# digite help para obter ajuda
+# Digite help para obter ajuda
