@@ -11,9 +11,9 @@ git clone https://github.com/tarcisio-marinho/Eliza.git
 # Primeira vez rodando
 Para pular todos os passos abaixo, execute o arquivo compilador.sh:
 
-chmod +x compilar.sh
+~$ chmod +x compilar.sh
 
-./compilar.sh
+~$ ./compilar.sh
 
 porém se desejar fazer manualmente, siga os passos abaixo:
 é necessário instalar o instalador de modulos do python, o pip para poder instalar a biblioteca requests.
