@@ -224,6 +224,14 @@ def identifica(frase):
             print(str(atual_mes)+' meses')
         print(str(atual_dia)+' dias')
 
+
+    #elif(frase=='tocar'):
+    #    artista=raw_input('Artista: ')
+    #    os.system('./tocar.sh '+ artista)
+
+
+
+
     ## CONTINUAR COM CONFIGURACOES DO SISTEMA
 
 
