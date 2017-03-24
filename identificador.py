@@ -11,6 +11,7 @@ from datetime import date
 import random
 import re
 import requisicao
+import search
 
 sobre_eliza='''
 Opa! Sou eliza uma assistente pessoal para o linux!
@@ -38,7 +39,7 @@ nascimento_dia=17
 nascimento_mes=3
 nascimento_ano=2017
 
-
+lista_perguntas=['qual','onde']
 
 versao='Versão 1.0'
 
@@ -261,6 +262,15 @@ def identifica(frase):
                 requisicao.cotacao('BTC')
             else:
                 print('Moeda Indisponível ou não existe\n')
+
+    elif(palavras[0]==lista_perguntas[0] or palavras[0]==lista_perguntas[1]):
+        if(palavras[0]==lista_perguntas[0]):
+            search.qual(frase)
+
+        else:
+            search.onde(frase)
+
+
 
     else:
         x=random.randrange(1,5)
