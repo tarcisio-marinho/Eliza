@@ -24,6 +24,8 @@ Você pode baixar manualmente seguindo os comandos :
 
 ~$ sudo apt-get install python-pip
 
+~$ sudo apt-get install espeak
+
 ~$ pip install requests
 
 depois você precisa tornar executável os scripts:
