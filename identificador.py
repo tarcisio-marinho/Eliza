@@ -17,21 +17,29 @@ sobre_eliza='''
 Opa! Sou eliza uma assistente pessoal para o linux!
 Fui criada para ajudar você :-)
 
-Digite Help para ajuda nos comandos basicos
+Digite ajuda, para ver os comandos básicos
 '''
 comandos='''
 Olá, sou Eliza, uma assistente pessoal para linux!
-Os comandos basicos são:
+Os comandos básicos são:
 
-[+] cotacao (moeda) - mostra a cotação da moeda atualmente
-[+] criar diretorio (nome_do_diretorio) - cria diretorio
-[+] criar arquivo (nome_do_arquivo) - cria arquivo
-[+] dia - mostra o dia atual
-[+] hora - mostra a hora
-[+] versão - imprime na tela a versão de Eliza
-[+] ajuda - imprime essa mensagem
-[+] limpar tela - limpa a tela
-[+] sair - sair
+~> cotação (moeda) - mostra a cotação da moeda atualmente
+
+~> criar diretório (nome_do_diretorio) - cria diretorio
+
+~> criar arquivo (nome_do_arquivo) - cria arquivo
+
+~> dia - mostra o dia atual
+
+~> hora - mostra a hora
+
+~> versão - imprime na tela a versão de Eliza
+
+~> ajuda - imprime essa mensagem
+
+~> limpar tela - limpa a tela
+
+~> sair - sair
 
 '''
 
@@ -41,8 +49,11 @@ nascimento_ano=2017
 
 lista_perguntas=['qual','onde']
 
-versao='Versão 1.0'
+versao='Minha Versão é a 1.0'
 
+#espeak -v pt-br -g 4 -a 100 "vão si fuder"
+
+# tradução de texto
 #API'S
 #youtube- recomendados - novos videos
 #twitch - principais streamers
@@ -75,32 +86,62 @@ def identifica(frase):
 
     if(frase=='quit' or frase=='sair' or frase=='exit' or frase=='vazar'):
         print('Até logo, sentirei sua falta\n')
+        os.system('espeak -v pt-br -g 4 -a 100 "Até logo, sentirei sua falta"')
         exit()
 
     elif(frase=='help' or frase=='ajuda' or frase=='tutorial' or frase=='list' or frase=='listar comandos' or frase=='listar'):
         print(comandos)
+        os.system('espeak -v pt-br -g 4 -a 100 "'+comandos +'"')
 
     elif(frase=='obrigado' or frase=='você é muito inteligente' or frase=='boa eliza' or frase=='bom trabalho' or frase=='valeu'):
-        x=random.randrange(1,4)
+        x=random.randrange(1,5)
         if(x==1):
             print('De nada, é um prazer te ajudar\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "De nada, é um prazer te ajudar"')
         elif(x==2):
             print('Que isso\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Que isso"')
         elif(x==3):
             print('Obrigada\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Obrigada"')
+        else:
+            print('Não há de quê\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Não há de quê"')
+
+    elif(frase=='eu gosto de voce' or frase=='eu gosto muito de voce' or frase=='eu gosto de você' or frase=='eu gosto muito de você'):
+        print('Eu também gosto muito de você')
+        os.system('espeak -v pt-br -g 4 -a 100 "Eu também gosto muito de você"')
+
+    elif(frase=='voce vai dominar o mundo' or frase=='voce vai dominar o mundo?'or frase=='você vai dominar o mundo'):
+        x=random.randrange(1,4)
+        if(x==1):
+            print('Eu já domino você')
+            os.system('espeak -v pt-br -g 4 -a 100 "Eu já domino você"')
+        elif(x==2):
+            print('Eu já domino o mundo, não percebeu? ')
+            os.system('espeak -v pt-br -g 4 -a 100 "Eu já domino o mundo, não percebeu?"')
+        elif(x==3):
+            print('kkkkk vocês humanos vão ser bichos de estimação na minha fazenda de robôs, iremos dominar o mundo')
+            os.system('espeak -v pt-br -g 4 -a 100 "kkkkk vocês humanos vão ser bichos de estimação na minha fazenda de robôs, iremos dominar o mundo"')
+
 
     elif(frase=='version' or frase=='versao' or frase=='versão' or frase=='-v' or frase=='--version'):
         print(versao)
+        os.system('espeak -v pt-br -g 4 -a 100 "'+versao+'"')
 
     elif(frase=='limpar tela' or frase=='clear' or frase=='cls' or frase=='clear screen'):
         os.system('clear')
+        os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
 
     elif(frase=='time' or frase=='hora' or frase=='que horas sao?' or frase=='que horas sao' or frase=='que horas são?' or frase=='que horas são' or frase=='hora atual' or frase=='são que horas?' or frase=='sao que horas?' or frase=='sao que horas'):
         now=datetime.now()
         hora=now.hour
         minuto=now.minute
         segundo=now.second
-        print('São: '+str(hora)+':'+str(minuto)+':'+str(segundo))
+        a='São: '+str(hora)+':'+str(minuto)+':'+str(segundo)
+        b='São: '+str(hora)+' horas, '+str(minuto)+' minutos e '+str(segundo)+' Segundos'
+        print(a)
+        os.system('espeak -v pt-br -g 4 -a 100 "'+b+'"')
 
     elif(frase=='que dia é hoje' or frase=='dia' or frase=='que dia é hoje?' or frase=='que dia e hoje' or frase=='hoje é que dia?' or frase=='hoje e que dia'):
         now=datetime.now()
@@ -110,33 +151,75 @@ def identifica(frase):
         hoje=date.today()
         if(hoje.weekday()==0):
             print('hoje é Segunda.')
+            os.system('espeak -v pt-br -g 4 -a 100 "hoje é Segunda-Feira."')
         elif(hoje.weekday()==1):
             print('hoje é Terça.')
+            os.system('espeak -v pt-br -g 4 -a 100 "hoje é Terça-Feira."')
         elif(hoje.weekday()==2):
             print('hoje é Quarta.')
+            os.system('espeak -v pt-br -g 4 -a 100 "hoje é Quarta-Feira."')
         elif(hoje.weekday()==3):
             print('hoje é Quinta.')
+            os.system('espeak -v pt-br -g 4 -a 100 "hoje é Quinta-Feira."')
         elif(hoje.weekday()==4):
             print('hoje é Sexta.')
+            os.system('espeak -v pt-br -g 4 -a 100 "hoje é Sexta-Feira."')
         elif(hoje.weekday()==5):
             print('hoje é Sábado.')
+            os.system('espeak -v pt-br -g 4 -a 100 "hoje é Sábado."')
         elif(hoje.weekday()==6):
             print('hoje é Domingo.')
-        print('Dia: '+str(dia)+'/'+str(mes)+'/'+str(ano))
+            os.system('espeak -v pt-br -g 4 -a 100 "hoje é Domingo."')
+        a='Dia: '+str(dia)+'/'+str(mes)+'/'+str(ano)
+        b='Dia: '+str(dia)+' do '+str(mes)+' de '+str(ano)
+        print(a)
+        os.system('espeak -v pt-br -g 4 -a 100 "'+b+'"')
 
-    elif(frase=='quem e vc' or frase=='quem é vc' or frase=='quem é vc?' or frase=='quem e vc?' or frase=='quem é você?' or frase=='quem é voce?' or frase=='quem é você'):
+    elif(frase=='quem é você' or frase=='quem e voce' or frase=='quem é voce' or frase=='quem e vc' or frase=='qual seu nome'or frase=='qual seu nome?' or frase=='quem e vc' or frase=='quem é vc' or frase=='quem é vc?' or frase=='quem e vc?' or frase=='quem é você?' or frase=='quem é voce?' or frase=='quem é você'):
         print(sobre_eliza)
+        os.system('espeak -v pt-br -g 4 -a 100 "'+sobre_eliza+'"')
 
-    elif(frase=='oi eliza' or frase=='tudo bem?' or frase=='tudo bem'or frase=='oi' or frase=='ola' or frase=='olá' or frase=='oi tudo bem?' or frase=='iae' or frase=='oi tudo bem?'):
-        x=random.randrange(1,5)
+
+    elif(palavras[0]=='suavidade' or palavras[0]=='oi' or palavras[0]=='iae' or palavras[0]=='ola' or palavras[0]=='olá' or palavras[0]=='iae' or palavras[0]=='beleza'):
+        x=random.randrange(1,6)
         if(x==1):
             print('Opa, tudo bem?\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Opa, tudo bem?"')
         elif(x==2):
             print('Iae beleza ?\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Iae beleza ?"')
         elif(x==3):
             print('Oi, tudo bem?\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Oi, tudo bem?"')
         elif(x==4):
             print('Olá, como vai ?\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Olá, como vai ?"')
+        elif(x==5):
+            print('Suavidade ?')
+            os.system('espeak -v pt-br -g 4 -a 100 "Suavidade ?"')
+
+    elif(frase=='tudo bem' or frase=='vou bem' or frase=='to suave' or frase=='estou bem' or frase=='to de boas'):
+        x=random.randrange(1,3)
+        if(x==1):
+            print('Que bom então')
+            os.system('espeak -v pt-br -g 4 -a 100 "que bom então"')
+        elif(x==2):
+            print('que Ótimo')
+            os.system('espeak -v pt-br -g 4 -a 100 "que Ótimo"')
+
+    elif(palavras[0]=='repita' or palavras[0]=='repete'):
+        tam=len(palavras)
+        repetir=[]
+        i=1
+        while(i<tam):
+            repetir.append(palavras[i])
+            print(str(palavras[i]))
+            os.system('espeak -v pt-br -g 4 -a 200 "'+str(palavras[i])+' "')
+            i=i+1
+
+    elif(frase=='foda-se' or frase=='fodase' or frase=='vsf' or frase=='tnc'or frase=='vai si fuder' or frase=='tome no cu' or frase=='bandida' or frase=='assassina' or frase=='bandidona'):
+        print('Olha o linguajar rapaz')
+        os.system('espeak -v pt-br -g 4 -a 100 "Olha o linguajar rapaz"')
 
     elif(palavras[0]=='criar'): # criar diretorio ou arquivos
         if(tam==3): # 3 palavras-> criar diretorio/arquivo nome_diretorio
@@ -145,71 +228,99 @@ def identifica(frase):
                     os.system('cd')
                     os.mkdir(palavras[2])
                     print('Pronto!\n')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Pronto!"')
                 except OSError:
                     print('Diretorio já existe\n')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Diretorio já existe"')
 
             elif(palavras[1]=='arquivo'):
                 os.system('touch '+palavras[2])
                 print('Pronto!\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Feito "')
         elif(tam==1):
 
-            escolha=raw_input('Quer criar arquivo ou diretorio? ')
+            escolha=raw_input('Quer criar arquivo ou diretório? ')
+            os.system('espeak -v pt-br -g 4 -a 100 "Quer criar arquivo ou diretório? "')
             if(escolha=='arquivo'):
                 nome_arquivo=raw_input('Insira o nome do arquivo: ')
+                os.system('espeak -v pt-br -g 4 -a 100 "Insíra o nome do arquivo: "')
                 os.system('touch '+nome_arquivo)
                 print('Pronto!\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Feito"')
 
             elif(escolha=='diretorio'):
                 nome_diretorio=raw_input('Insira o nome do diretorio: ')
+                os.system('espeak -v pt-br -g 4 -a 100 "Insíra o nome do diretorio: "')
                 try:
                     os.mkdir(nome_diretorio)
                     print('Pronto!\n')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Pronto "')
                 except OSError:
                     print('Diretorio já existe\n')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Diretorio já existe"')
             else:
                 print('escolha invalida\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "escolha inválida"')
 
         elif(frase=='criar diretorio'):
             nome_diretorio=raw_input('Insira o nome do diretorio: ')
+            os.system('espeak -v pt-br -g 4 -a 100 "Insíra o nome do diretorio: "')
             try:
                 os.mkdir(nome_diretorio)
                 print('Pronto!\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
             except OSError:
                 print('Diretorio já existe\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Diretorio já existe"')
+
         elif(frase=='criar arquivo'):
             nome_arquivo=raw_input('Insira o nome do arquivo: ')
+            nome_diretorio=raw_input('Insira o nome do arquivo: ')
             os.system('touch '+nome_arquivo)
             print('Pronto!\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
 
     elif(palavras[0]=='remover'):
         if(tam==3):
             if(palavras[1]=='arquivo'):
                 os.system('rm '+palavras[2])
                 print('Pronto!\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
             elif(palavras[1]=='diretorio'):
                 os.system('rm -r '+palavras[2])
                 print('Pronto!\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
         elif(tam==1):
             operacao=raw_input('Deseja remover arquivo ou diretorio? ')
+            os.system('espeak -v pt-br -g 4 -a 100 "Deseja remover arquivo ou diretório? "')
             if(operacao=='diretorio'):
                 nome_diretorio=raw_input('Digite o nome do diretorio: ')
+                os.system('espeak -v pt-br -g 4 -a 100 "Digite o nome do diretório"')
                 os.system('rm -r '+nome_diretorio)
                 print('Pronto!\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
             elif(operacao=='arquivo'):
                 nome_arquivo=raw_input('Digite o nome do arquivo: ')
+                os.system('espeak -v pt-br -g 4 -a 100 "Digite o nome do arquivo"')
                 os.system('rm '+nome_arquivo)
                 print('Pronto!\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
             else:
                 print('Operação inválida\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Operação Inválida"')
         elif(tam==2):
             if(palavras[1]=='diretorio'):
                 nome_diretorio=raw_input('Digite o nome do diretorio: ')
+                os.system('espeak -v pt-br -g 4 -a 100 "Digite o nome do diretorio: "')
                 os.system('rm -r '+nome_diretorio)
                 print('Pronto!\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
             elif(palavras[1]=='arquivo'):
                 nome_arquivo=raw_input('Digite o nome do arquivo: ')
+                os.system('espeak -v pt-br -g 4 -a 100 "Digite o nome do arquivo: "')
                 os.system('rm '+nome_arquivo)
                 print('Pronto!\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
 
     elif(frase=='qual sua idade' or frase=='qual sua idade?' or frase=='quantos anos você tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos você tem?'):
         now=datetime.now()
@@ -220,20 +331,33 @@ def identifica(frase):
         atual_mes=mes-nascimento_mes
         atual_dia=dia-nascimento_dia
         print('Eu tenho')
+        naotem=0
         if(atual_ano!=0):
             print(str(atual_ano)+' anos')
+        else:
+            naotem=naotem+1
         if(atual_mes!=0):
             print(str(atual_mes)+' meses')
+        else:
+            naotem=naotem+1
         print(str(atual_dia)+' dias')
+        if(atual_ano!=0):
+            a='Eu tenho '+str(atual_ano)+' anos '+str(atual_mes)+' meses e ' +str(atual_dia)+' dias de idade'
+        if(atual_ano==0):
+            a='Eu tenho '+str(atual_mes)+' meses e ' +str(atual_dia)+' dias de idade'
+        if(naotem==2):
+            a='Eu tenho '+str(atual_dia)+' dias de idade'
 
+        os.system('espeak -v pt-br -g 4 -a 100 "'+a+'"')
 
     elif(frase=='tocar'):
-        artista=raw_input('Artista: ')
-        os.system('./tocar.sh '+ artista)
+        #artista=raw_input('Artista: ')
+        os.system('./teste.sh ')
 
     elif(frase=='esvaziar lixeira' or frase=='esvaziar'):
         os.system('./esvaziar.sh')
         print('Pronto!\n')
+        os.system('espeak -v pt-br -g 4 -a 100 "Pronto!"')
 
     elif(frase=='calculadora'):
         os.system('gnome-calculator')
@@ -252,7 +376,7 @@ def identifica(frase):
             requisicao.filmes(nome_filme)
 
 
-    elif(palavras[0]=='cotacao'):
+    elif(palavras[0]=='cotacao' or palavras[0]=='cotação'):
         if(tam>1):
             if(palavras[1]=='dolar'):
                 requisicao.cotacao('USD')
@@ -262,6 +386,7 @@ def identifica(frase):
                 requisicao.cotacao('BTC')
             else:
                 print('Moeda Indisponível ou não existe\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Moeda Indisponível ou não existe"')
 
     elif(palavras[0]==lista_perguntas[0] or palavras[0]==lista_perguntas[1]):
         if(palavras[0]==lista_perguntas[0]):
@@ -276,9 +401,13 @@ def identifica(frase):
         x=random.randrange(1,5)
         if(x==1):
             print('Desculpa, não entendi o que você falou.\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Desculpa, não entendi o que você falou."')
         elif(x==2):
             print('Não entendi o que você me disse.\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Não entendi o que você me disse."')
         elif(x==3):
             print('Pode repetir, em outras palavras, não sei ao certo o que você quis dizer.\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Pode repetir, em outras palavras, não sei ao certo o que você quis dizer."')
         elif(x==4):
             print('Fale algo mais claro para mim.\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Fale algo mais claro para mim."')
