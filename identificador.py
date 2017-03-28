@@ -53,47 +53,51 @@ versao='Minha Versão é a 1.0'
 
 #espeak -v pt-br -g 4 -a 100 "vão si fuder"
 
+
+#agenda
+# salva compromissos
+# decora coisas
+
+
+
 # tradução de texto
 #API'S
 #youtube- recomendados - novos videos
 #twitch - principais streamers
 #
-#tocar(musica)
 #ler(livro)
 #youtube(nome_video)
 #busca(google_nome)
-#esvaziar_lixeira()
 #atividades(){
 #  print(atividades.txt)
 #}
 #ligarssh
-# que horas sao
-
 # o que é fecicidade, amor, sentimentos em geral
 #sentido da vida
 #voce é feliz ?
-
-# eu gosto muito de voce
-# voce é muito util para mim
-# obrigado $USER
-
-# abrir calculadora
 
 def identifica(frase):
     #Funcoes primarias
     palavras=frase.split(' ')
     tam=len(palavras)
 
-    if(frase=='quit' or frase=='sair' or frase=='exit' or frase=='vazar'):
-        print('Até logo, sentirei sua falta\n')
-        os.system('espeak -v pt-br -g 4 -a 100 "Até logo, sentirei sua falta"')
+    if(frase=='tchau' or frase=='adeus' or frase=='adeus eliza' or frase=='tchau eliza' or frase=='quit' or frase=='sair' or frase=='exit' or frase=='vazar'):
+        x=random.randrange(1,4)
+        if(x==1):
+            print('Até logo meu amigo\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Até logo meu amigo"')
+        elif(x==2):
+            print('Sentirei sua falta\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Sentirei sua falta"')
+        else:
+            print('Espero ter te ajudado, tchau\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Espero ter te ajudado, tchau"')
         exit()
-
     elif(frase=='help' or frase=='ajuda' or frase=='tutorial' or frase=='list' or frase=='listar comandos' or frase=='listar'):
         print(comandos)
         os.system('espeak -v pt-br -g 4 -a 100 "'+comandos +'"')
 
-    elif(frase=='obrigado' or frase=='você é muito inteligente' or frase=='boa eliza' or frase=='bom trabalho' or frase=='valeu'):
+    elif(frase=='obrigada' or frase=='obrigado' or frase=='você é muito inteligente' or frase=='boa eliza' or frase=='bom trabalho' or frase=='valeu'):
         x=random.randrange(1,5)
         if(x==1):
             print('De nada, é um prazer te ajudar\n')
@@ -102,8 +106,8 @@ def identifica(frase):
             print('Que isso\n')
             os.system('espeak -v pt-br -g 4 -a 100 "Que isso"')
         elif(x==3):
-            print('Obrigada\n')
-            os.system('espeak -v pt-br -g 4 -a 100 "Obrigada"')
+            print('Fico feliz em ajudar\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Fico feliz em ajudar"')
         else:
             print('Não há de quê\n')
             os.system('espeak -v pt-br -g 4 -a 100 "Não há de quê"')
@@ -131,7 +135,6 @@ def identifica(frase):
 
     elif(frase=='limpar tela' or frase=='clear' or frase=='cls' or frase=='clear screen'):
         os.system('clear')
-        os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
 
     elif(frase=='time' or frase=='hora' or frase=='que horas sao?' or frase=='que horas sao' or frase=='que horas são?' or frase=='que horas são' or frase=='hora atual' or frase=='são que horas?' or frase=='sao que horas?' or frase=='sao que horas'):
         now=datetime.now()
@@ -175,12 +178,12 @@ def identifica(frase):
         print(a)
         os.system('espeak -v pt-br -g 4 -a 100 "'+b+'"')
 
-    elif(frase=='quem é você' or frase=='quem e voce' or frase=='quem é voce' or frase=='quem e vc' or frase=='qual seu nome'or frase=='qual seu nome?' or frase=='quem e vc' or frase=='quem é vc' or frase=='quem é vc?' or frase=='quem e vc?' or frase=='quem é você?' or frase=='quem é voce?' or frase=='quem é você'):
+    elif(frase=='o que é você' or frase=='o que e vc' or frase=='o que e voce' or frase=='oq é você' or frase=='quem é você' or frase=='quem e voce' or frase=='quem é voce' or frase=='quem e vc' or frase=='qual seu nome'or frase=='qual seu nome?' or frase=='quem e vc' or frase=='quem é vc' or frase=='quem é vc?' or frase=='quem e vc?' or frase=='quem é você?' or frase=='quem é voce?' or frase=='quem é você'):
         print(sobre_eliza)
         os.system('espeak -v pt-br -g 4 -a 100 "'+sobre_eliza+'"')
 
 
-    elif(palavras[0]=='suavidade' or palavras[0]=='oi' or palavras[0]=='iae' or palavras[0]=='ola' or palavras[0]=='olá' or palavras[0]=='iae' or palavras[0]=='beleza'):
+    elif(palavras[0]=='suavidade' or palavras[0]=='oi' or palavras[0]=='iae' or palavras[0]=='ola' or palavras[0]=='olá' or palavras[0]=='iae'):
         x=random.randrange(1,6)
         if(x==1):
             print('Opa, tudo bem?\n')
@@ -198,7 +201,7 @@ def identifica(frase):
             print('Suavidade ?')
             os.system('espeak -v pt-br -g 4 -a 100 "Suavidade ?"')
 
-    elif(frase=='tudo bem' or frase=='vou bem' or frase=='to suave' or frase=='estou bem' or frase=='to de boas'):
+    elif(frase=='de boas' or frase=='tudo beleza' or frase=='beleza' or frase=='tudo bem' or frase=='vou bem' or frase=='to suave' or frase=='estou bem' or frase=='to de boas'):
         x=random.randrange(1,3)
         if(x==1):
             print('Que bom então')
