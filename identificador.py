@@ -23,24 +23,16 @@ comandos='''
 Olá, sou Eliza, uma assistente pessoal para linux!
 Os comandos básicos são:
 
-~> cotação (moeda) - mostra a cotação da moeda atualmente
-
-~> criar diretório (nome_do_diretorio) - cria diretorio
-
-~> criar arquivo (nome_do_arquivo) - cria arquivo
-
-~> dia - mostra o dia atual
-
-~> hora - mostra a hora
-
-~> versão - imprime na tela a versão de Eliza
-
-~> ajuda - imprime essa mensagem
-
-~> limpar tela - limpa a tela
-
-~> sair - sair
-
+~> procurar filme (nome do filme) - procura o filme na internet\n
+~> cotação (moeda) - mostra a cotação da moeda atualmente\n
+~> criar diretório (nome_do_diretorio) - cria o diretorio\n
+~> criar arquivo (nome_do_arquivo) - cria o arquivo\n
+~> dia - mostra o dia atual\n
+~> hora - mostra a hora\n
+~> calculadora - abre a calculadora\n
+~> ajuda - imprime essa mensagem\n
+~> limpar tela - limpa o console\n
+~> sair - sai do programa\n
 '''
 
 nascimento_dia=17
@@ -49,7 +41,7 @@ nascimento_ano=2017
 
 lista_perguntas=['qual','onde']
 
-versao='Minha Versão é a 1.0'
+versao='Minha Versão é a 0.1'
 
 #espeak -v pt-br -g 4 -a 100 "vão si fuder"
 
@@ -370,13 +362,27 @@ def identifica(frase):
     ## CONTINUAR COM CONFIGURACOES DO SISTEMA
 
 
+    #salvar arquivos anotacoes etc...
+    elif(palavras[0]=='agenda' or palavras[0]=='salvar'):
+        tam=len(palavras)
+
+
     elif(palavras[0]=='procurar'):
-        if(tam==3):
-            if(palavras[1]=='filme'):
+        if(palavras[1]=='filme'):
+            if(tam==3):
                 requisicao.filmes(palavras[2])
-        if(tam>3):
-            nome_filme=palavras[2]+' '+palavras[3]
-            requisicao.filmes(nome_filme)
+            if(tam==4):
+                nome_filme=palavras[2]+' '+palavras[3]
+                requisicao.filmes(nome_filme)
+            elif(tam==5):
+                nome_filme=palavras[2]+' '+palavras[3]+' '+palavras[4]
+                requisicao.filmes(nome_filme)
+            elif(tam==6):
+                nome_filme=palavras[2]+' '+palavras[3]+' '+palavras[4]+' '+palavras[5]
+                requisicao.filmes(nome_filme)
+        else: # pesquisas no google
+            print('ainda não disponivel')
+
 
 
     elif(palavras[0]=='cotacao' or palavras[0]=='cotação'):
