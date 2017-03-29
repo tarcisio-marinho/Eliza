@@ -66,8 +66,11 @@ versao='Minha Versão é a 0.1'
 #  print(atividades.txt)
 #}
 #ligarssh
+
+# que horas sao
+
 # o que é fecicidade, amor, sentimentos em geral
-#sentido da vida
+
 #voce é feliz ?
 
 def identifica(frase):
@@ -429,16 +432,18 @@ def identifica(frase):
 
 
     else:
-        x=random.randrange(1,5)
-        if(x==1):
-            print('Desculpa, não entendi o que você falou.\n')
-            os.system('espeak -v pt-br -g 4 -a 100 "Desculpa, não entendi o que você falou."')
-        elif(x==2):
-            print('Não entendi o que você me disse.\n')
-            os.system('espeak -v pt-br -g 4 -a 100 "Não entendi o que você me disse."')
-        elif(x==3):
-            print('Pode repetir, em outras palavras, não sei ao certo o que você quis dizer.\n')
-            os.system('espeak -v pt-br -g 4 -a 100 "Pode repetir, em outras palavras, não sei ao certo o que você quis dizer."')
-        elif(x==4):
-            print('Fale algo mais claro para mim.\n')
-            os.system('espeak -v pt-br -g 4 -a 100 "Fale algo mais claro para mim."')
+
+
+	## LÊ O ARQUIVO DE POSSIVEIS ERROS DE ENTENDIMENTO
+ 
+	## ARRUMAR - ELE SÓ ESTÁ FALANDO A SEGUNDA PALAVRA, APENAS AO SAIR QUE DIZ TODA FRASE        
+
+	arquivo = open('n_entendi.txt','r')	
+	mensagem = arquivo.readlines()
+	qtdLinhas = len(mensagem)		
+	x = random.randrange(0, qtdLinhas)
+	print(mensagem[x])
+	os.system('espeak -v pt-br -g 4 -a 100' + mensagem[x])
+	arquivo.close
+	
+
