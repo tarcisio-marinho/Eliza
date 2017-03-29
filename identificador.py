@@ -435,15 +435,13 @@ def identifica(frase):
 
 
 	## LÊ O ARQUIVO DE POSSIVEIS ERROS DE ENTENDIMENTO
- 
-	## ARRUMAR - ELE SÓ ESTÁ FALANDO A SEGUNDA PALAVRA, APENAS AO SAIR QUE DIZ TODA FRASE        
 
-	arquivo = open('n_entendi.txt','r')	
+	## ARRUMAR - ELE SÓ ESTÁ FALANDO A SEGUNDA PALAVRA, APENAS AO SAIR QUE DIZ TODA FRASE
+
+	arquivo = open('n_entendi.txt','r')
 	mensagem = arquivo.readlines()
-	qtdLinhas = len(mensagem)		
-	x = random.randrange(0, qtdLinhas)
+	qtdLinhas = len(mensagem)
+	x = random.randrange(0, qtdLinhas+1)
 	print(mensagem[x])
-	os.system('espeak -v pt-br -g 4 -a 100' + mensagem[x])
-	arquivo.close
-	
-
+	os.system('espeak -v pt-br -g 4 -a 100 "' + mensagem[x] + '"')
+	arquivo.close()
