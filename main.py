@@ -46,7 +46,6 @@ def menu():
 os.system('clear')
 print(banner)
 sair=None
-os.system('espeak -v pt-br -g 4 -a 100 "Olá, como posso te ajudar?"')
 try:
     menu()
 except KeyboardInterrupt:
