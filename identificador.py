@@ -64,16 +64,11 @@ versao='Minha Versão é a 0.1'
 #  print(atividades.txt)
 #}
 #ligarssh
-<<<<<<< HEAD
 
 # que horas sao
 
 # o que é fecicidade, amor, sentimentos em geral
 
-=======
-# o que é fecicidade, amor, sentimentos em geral
->>>>>>> d7da84a17da31a4bda1d1627d41a7c83339aab9f
-#sentido da vida
 #voce é feliz ?
 
 def identifica(frase):
