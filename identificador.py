@@ -43,9 +43,11 @@ lista_perguntas=['qual','onde']
 
 versao='Minha Versão é a 0.1'
 
-#espeak -v pt-br -g 4 -a 100 "vão si fuder"
-
-
+#TESTAR
+#s = s.replace("power", "**")
+# os.path.isfile()
+#elements = string.replace(",", "")
+#import webbrowser
 #agenda
 # salva compromissos
 # decora coisas
@@ -175,7 +177,22 @@ def identifica(frase):
         os.system('espeak -v pt-br -g 4 -a 100 "'+sobre_eliza+'"')
 
 
-    elif(palavras[0]=='suavidade' or palavras[0]=='oi' or palavras[0]=='iae' or palavras[0]=='ola' or palavras[0]=='olá' or palavras[0]=='iae'):
+    elif(frase=='como vai'or frase=='você esta bem?'or frase=='voce esta bem?' or frase=='você está bem?'or frase=='como vai você?'or frase=='como vai voce' or frase=='como vai voce?' or frase=='como está?'or frase=='como vai?' or frase=='tudo bem?'or frase=='como você está?'or frase=='como você esta' or frase=='como vc esta?' or frase=='como vc esta' or frase=='como você está'):
+        x=random.randrange(1,5)
+        if(x==1):
+            print('Estou bem, obrigado por perguntar')
+            os.system('espeak -v pt-br -g 4 -a 100 "Estou bem, obrigado por perguntar"')
+        elif(x==2):
+            print('O sistema está rodando bem e limpo, estou atualizada')
+            os.system('espeak -v pt-br -g 4 -a 100 "O sistema está rodando bem e limpo, estou atualizada"')
+        elif(x==3):
+            print('Vou bem, e você, como está?')
+            os.system('espeak -v pt-br -g 4 -a 100 "Vou bem, e você, como está?"')
+        else:
+            print('Obrigado por se importar, estou bem quando eu ajudo você!')
+            os.system('espeak -v pt-br -g 4 -a 100 "Obrigado por se importar, estou bem quando eu ajudo você!"')
+
+    elif(palavras[0]=='oi' or palavras[0]=='iae' or palavras[0]=='ola' or palavras[0]=='olá' or palavras[0]=='iae'):
         x=random.randrange(1,6)
         if(x==1):
             print('Opa, tudo bem?\n')
@@ -193,14 +210,17 @@ def identifica(frase):
             print('Suavidade ?')
             os.system('espeak -v pt-br -g 4 -a 100 "Suavidade ?"')
 
-    elif(frase=='de boas' or frase=='tudo beleza' or frase=='beleza' or frase=='tudo bem' or frase=='vou bem' or frase=='to suave' or frase=='estou bem' or frase=='to de boas'):
-        x=random.randrange(1,3)
+    elif(frase=='de boa' or frase=='estou suave' or frase=='suavidade' or frase=='de boas' or frase=='tudo beleza' or frase=='beleza' or frase=='tudo bem' or frase=='vou bem' or frase=='to suave' or frase=='estou bem' or frase=='to de boas'):
+        x=random.randrange(1,4)
         if(x==1):
             print('Que bom então')
             os.system('espeak -v pt-br -g 4 -a 100 "que bom então"')
         elif(x==2):
             print('que Ótimo')
             os.system('espeak -v pt-br -g 4 -a 100 "que Ótimo"')
+        elif(x==3):
+            print('quando você está bem, eu estou bem')
+            os.system('espeak -v pt-br -g 4 -a 100 "quando você está bem, eu estou bem"')
 
     elif(palavras[0]=='repita' or palavras[0]=='repete'):
         tam=len(palavras)
@@ -380,10 +400,11 @@ def identifica(frase):
             elif(tam==6):
                 nome_filme=palavras[2]+' '+palavras[3]+' '+palavras[4]+' '+palavras[5]
                 requisicao.filmes(nome_filme)
-        else: # pesquisas no google
+        elif(palavras[1]=='serie'): # pesquisa serie
             print('ainda não disponivel')
 
-
+        else:#procura no google
+            a=1
 
     elif(palavras[0]=='cotacao' or palavras[0]=='cotação'):
         if(tam>1):
@@ -403,6 +424,7 @@ def identifica(frase):
 
         else:
             search.onde(frase)
+
 
 
 
