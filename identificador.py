@@ -388,9 +388,6 @@ def identifica(frase):
 
 
     #salvar arquivos anotacoes etc...
-    elif(palavras[0]=='agenda' or palavras[0]=='salvar'):
-        tam=len(palavras)
-
 
     elif(palavras[0]=='procurar'):
         if(palavras[1]=='filme'):
@@ -431,7 +428,7 @@ def identifica(frase):
             onde(palavras)
 
     # ler arquivo agendar com -> abrir arquivo
-    elif(palavras[0]=='agendar'):
+    elif(palavras[0]=='agenda'):
         tam=len(palavras)
         if(tam==2):
             Agenda(palavras[1])
