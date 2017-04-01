@@ -10,8 +10,15 @@ import os
 #except:
 # ja tem entao
 # os.entrarpasta('agenda')
+pasta='agendados'
 
 def Agenda(nome_arquivo):
+    try: # tenta criar pasta
+        os.mkdir(pasta)
+        os.chdir(os.getcwd()+'/'+'agendados')
+    except OSError: # pasta ja existe
+        os.chdir(os.getcwd()+'/'+'agendados')
+
     if(nome_arquivo!=None):
         arquivo_novo=open(nome_arquivo,'w')
         arquivo_novo=open(nome_arquivo,'a')
@@ -20,7 +27,8 @@ def Agenda(nome_arquivo):
                 frase=raw_input()
                 arquivo_novo.write(frase+'\n')
         except KeyboardInterrupt:
-            os.system('espeak -v pt-br -g 4 -a 100 "arquivo foi salvo"')
+            print('arquivo foi salvo na pasta agendados')
+            os.system('espeak -v pt-br -g 4 -a 100 "arquivo foi salvo na pasta agendados"')
 
     else:
         arquivo=open('agenda.txt','a')
@@ -29,5 +37,5 @@ def Agenda(nome_arquivo):
                 frase=raw_input()
                 arquivo.write(frase+'\n')
         except KeyboardInterrupt:
-            print('Arquivo salvo como agenda.txt')
-            os.system('espeak -v pt-br -g 4 -a 100 "arquivo salvo como agenda.txt"')
+            print('Arquivo salvo como agenda.txt na pasta agendados')
+            os.system('espeak -v pt-br -g 4 -a 100 "arquivo salvo como agenda.txt na pasta agendados"')
