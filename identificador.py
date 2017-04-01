@@ -11,7 +11,8 @@ from datetime import date
 import random
 import re
 import requisicao
-import search
+from search import *
+from agenda import Agenda
 
 sobre_eliza='''
 Opa! Sou eliza uma assistente pessoal para o linux!
@@ -23,6 +24,7 @@ comandos='''
 Olá, sou Eliza, uma assistente pessoal para linux!
 Os comandos básicos são:
 
+~> agendar nome_arquivo - cria um novo arquivo e escreve nele, sem nome_arquivo ele salva no arquivo agenda.txt \n
 ~> procurar filme (nome do filme) - procura o filme na internet\n
 ~> cotação (moeda) - mostra a cotação da moeda atualmente\n
 ~> criar diretório (nome_do_diretorio) - cria o diretorio\n
@@ -113,7 +115,7 @@ def identifica(frase):
         print('Eu também gosto muito de você')
         os.system('espeak -v pt-br -g 4 -a 100 "Eu também gosto muito de você"')
 
-    elif(frase=='voce vai dominar o mundo' or frase=='voce vai dominar o mundo?'or frase=='você vai dominar o mundo'):
+    elif(frase=='voce vai dominar o mundo' or frase=='voce vai dominar o mundo?'or frase=='você vai dominar o mundo'or frase=='você vai dominar o mundo?'):
         x=random.randrange(1,4)
         if(x==1):
             print('Eu já domino você')
@@ -340,7 +342,7 @@ def identifica(frase):
                 print('Pronto!\n')
                 os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
 
-    elif(frase=='qual sua idade' or frase=='qual sua idade?' or frase=='quantos anos você tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos você tem?'):
+    elif(frase=='qual sua idade' or frase=='qual sua idade?' or frase=='quantos anos você tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos você tem?' or frase=='quantos anos você tem'):
         now=datetime.now()
         ano=now.year
         mes=now.month
@@ -423,25 +425,24 @@ def identifica(frase):
 
     elif(palavras[0]==lista_perguntas[0] or palavras[0]==lista_perguntas[1]):
         if(palavras[0]==lista_perguntas[0]):
-            search.qual(frase)
+            qual(palavras)
 
         else:
-            search.onde(frase)
+            onde(palavras)
 
-
-
+    # ler arquivo agendar com -> abrir arquivo
+    elif(palavras[0]=='agendar'):
+        tam=len(palavras)
+        if(tam==2):
+            Agenda(palavras[1])
+        elif(tam==1):
+            Agenda(None)
 
     else:
-
-
-	## LÊ O ARQUIVO DE POSSIVEIS ERROS DE ENTENDIMENTO
-
-	## ARRUMAR - ELE SÓ ESTÁ FALANDO A SEGUNDA PALAVRA, APENAS AO SAIR QUE DIZ TODA FRASE
-
-	arquivo = open('n_entendi.txt','r')
-	mensagem = arquivo.readlines()
-	qtdLinhas = len(mensagem)
-	x = random.randrange(0, qtdLinhas+1)
-	print(mensagem[x])
-	os.system('espeak -v pt-br -g 4 -a 100 "' + mensagem[x] + '"')
-	arquivo.close()
+    	arquivo = open('n_entendi.txt','r')
+    	mensagem = arquivo.readlines()
+    	qtdLinhas = len(mensagem)
+    	x = random.randrange(0, qtdLinhas+1)
+    	print(mensagem[x])
+    	os.system('espeak -v pt-br -g 4 -a 100 "' + mensagem[x] + '"')
+    	arquivo.close()
