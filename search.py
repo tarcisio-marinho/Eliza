@@ -76,7 +76,11 @@ def onde(palavras):
 					os.system('espeak -v pt-br -g 4 -a 100 "Erro na codificação, tente usar a sigla"')
 
 			elif(tam==5):
-				print(str(palavras[2])+' '+ str(palavras[3])+' ' + str(palavras[4])+ ', ' +str(nome))
-				os.system('espeak -v pt-br -g 4 -a 100 "'+str(palavras[2])+' '+str(palavras[3])+' '+palavras[4]+' ou '+nome+'"')
-				print(str(pais)+', '+str(sigla_pais))
-				os.system('espeak -v pt-br -g 4 -a 100 " fica no pais '+str(pais)+' e tem a sigla '+str(sigla_pais)+'"')
+				try:
+					print(str(palavras[2])+' '+ str(palavras[3])+' ' + str(palavras[4])+ ', ' +str(nome))
+					os.system('espeak -v pt-br -g 4 -a 100 "'+str(palavras[2])+' '+str(palavras[3])+' '+palavras[4]+' ou '+nome+'"')
+					print(str(pais)+', '+str(sigla_pais))
+					os.system('espeak -v pt-br -g 4 -a 100 " fica no pais '+str(pais)+' e tem a sigla '+str(sigla_pais)+'"')
+				except UnicodeDecodeError:
+					print('Erro na codificação, tente usar a sigla')
+					os.system('espeak -v pt-br -g 4 -a 100 "Erro na codificação, tente usar a sigla"')
