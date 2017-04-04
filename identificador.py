@@ -24,8 +24,8 @@ comandos='''
 Olá, sou Eliza, uma assistente pessoal para linux!
 Os comandos básicos são:
 
-~> onde fica nome_cidade - fala onde é cituada e país da cidade
-~> agenda nome_arquivo - cria um novo arquivo e escreve nele, sem nome_arquivo ele salva no arquivo agenda.txt \n
+~> onde fica nome_cidade - fala onde é cituada e país da cidade\n
+~> salvar nome_arquivo - cria um novo arquivo na pasta agendados e escreve nele, sem nome  ele salva no arquivo agenda.txt\n
 ~> procurar filme (nome do filme) - procura o filme na internet\n
 ~> cotação (moeda) - mostra a cotação da moeda atualmente\n
 ~> criar diretório (nome_do_diretorio) - cria o diretorio\n
@@ -447,9 +447,9 @@ def identifica(frase):
 
         os.system('espeak -v pt-br -g 4 -a 100 "'+a+'"')
 
-    elif(frase=='tocar'):
+    #elif(frase=='tocar'):
         #artista=raw_input('Artista: ')
-        os.system('./teste.sh ')
+    #    os.system('./teste.sh ')
 
     elif(frase=='esvaziar lixeira' or frase=='esvaziar'):
         os.system('./esvaziar.sh')
@@ -464,7 +464,6 @@ def identifica(frase):
     ## CONTINUAR COM CONFIGURACOES DO SISTEMA
 
 
-    #salvar arquivos anotacoes etc...
 
     elif(palavras[0]=='procurar'):
         if(palavras[1]=='filme'):
