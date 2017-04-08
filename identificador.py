@@ -10,9 +10,10 @@ from datetime import datetime
 from datetime import date
 import random
 import re
-import requisicao
-from search import *
-from agenda import Agenda
+
+from modulos.requisicao import *
+from modulos.search import *
+from modulos.agenda import *
 
 sobre_eliza='''
 Opa! Sou eliza uma assistente pessoal para o linux!
@@ -25,11 +26,14 @@ Olá, sou Eliza, uma assistente pessoal para linux!
 Os comandos básicos são:
 
 ~> onde fica nome_cidade - fala onde é cituada e país da cidade\n
-~> salvar nome_arquivo - cria um novo arquivo na pasta agendados e escreve nele, sem nome  ele salva no arquivo agenda.txt\n
+~> salvar nome_arquivo - cria um novo arquivo na pasta arquivos e escreve nele, sem nome  ele salva no arquivo agenda.txt, para parar de escrever use ctrl + c.\n
 ~> procurar filme (nome do filme) - procura o filme na internet\n
 ~> cotação (moeda) - mostra a cotação da moeda atualmente\n
 ~> criar diretório (nome_do_diretorio) - cria o diretorio\n
 ~> criar arquivo (nome_do_arquivo) - apenas cria o arquivo\n
+~> remover arquivo / diretorio - remove arquivo ou diretorio\n
+~> editar arquivo nome_arquivo - edita o arquivo existente ou cria um novo já para editar e salva na pasta arquivos.\n
+~> renomear arquivo / diretorio (nome) - renomeia o arquivo ou o diretorio\n
 ~> dia - mostra o dia atual\n
 ~> hora - mostra a hora\n
 ~> calculadora - abre a calculadora\n
@@ -49,7 +53,7 @@ nascimento_ano=2017
 
 lista_perguntas=['qual','onde']
 
-versao='Minha Versão é a 0.1'
+versao=0.2
 
 #TESTAR
 #s = s.replace("power", "**")
@@ -142,8 +146,8 @@ def identifica(frase):
 
 
     elif(frase=='version' or frase=='versao' or frase=='versão' or frase=='-v' or frase=='--version'):
-        print(versao)
-        os.system('espeak -v pt-br -g 4 -a 100 "'+versao+'"')
+        print('Minha versão é a '+str(versao))
+        os.system('espeak -v pt-br -g 4 -a 100 "Minha versão é a '+str(versao)+'"')
 
     elif(frase=='limpar tela' or frase=='clear' or frase=='cls' or frase=='clear screen'):
         os.system('clear')
@@ -238,8 +242,8 @@ def identifica(frase):
             os.system('espeak -v pt-br -g 4 -a 100 "Olá, como vai ?"')
 
         elif(x==5):
-            print('Suavidade ?')
-            os.system('espeak -v pt-br -g 4 -a 100 "Suavidade ?"')
+            print('Iae, Suavidade ?')
+            os.system('espeak -v pt-br -g 4 -a 100 "Iae, Suavidade ?"')
 
     elif(frase=='de boa' or frase=='estou suave' or frase=='suavidade' or frase=='de boas' or frase=='tudo beleza' or frase=='beleza' or frase=='tudo bem' or frase=='vou bem' or frase=='to suave' or frase=='estou bem' or frase=='to de boas'):
         x=random.randrange(1,4)
@@ -252,8 +256,15 @@ def identifica(frase):
             os.system('espeak -v pt-br -g 4 -a 100 "que Ótimo"')
 
         elif(x==3):
-            print('quando você está bem, eu estou bem')
-            os.system('espeak -v pt-br -g 4 -a 100 "quando você está bem, eu estou bem"')
+            print('que legal, quando você está bem, eu estou bem')
+            os.system('espeak -v pt-br -g 4 -a 100 "que legal, quando você está bem, eu estou bem"')
+    elif(frase=='que legal' or frase=='que massa'):
+        if(frase=='que massa'):
+            print('massa mesmo')
+            os.system('espeak -v pt-br -g 4 -a 100 "massa mesmo"')
+        else:
+            print('muito legal')
+            os.system('espeak -v pt-br -g 4 -a 100 "legal mesmo"')
 
     elif(palavras[0]=='repita' or palavras[0]=='repete' or palavras[0]=='repetir'):
         tam=len(palavras)
@@ -266,12 +277,19 @@ def identifica(frase):
             i=i+1
 
     elif(palavras[0]=='merda' or palavras[0]=='porra' or palavras[0]=='foda-se' or palavras[0]=='fodase' or palavras[0]=='vsf' or palavras[0]=='tnc'or frase[0]=='vai si fuder' or frase[0]=='tome no cu' or palavras[0]=='bandida'):
-        print('Olha o linguajar rapaz')
-        os.system('espeak -v pt-br -g 4 -a 100 "Olha o linguajar rapaz"')
-
+        x=random.randrange(1,4)
+        if(x==1):
+            print('Olha o linguajar rapaz')
+            os.system('espeak -v pt-br -g 4 -a 100 "Olha o linguajar rapaz"')
+        elif(x==2):
+            print('Melhore seu vocabulário')
+            os.system('espeak -v pt-br -g 4 -a 100 "Melhore seu vocabulário"')
+        elif(x==3):
+            print('Não gosto de palavrões')
+            os.system('espeak -v pt-br -g 4 -a 100 "Não gosto de palavrões"')
 
     elif(palavras[0]=='criar'): # criar diretorio ou arquivos
-        pasta='novos_arquivos'
+        pasta='arquivos'
 
         if(tam==3): # 3 palavras-> criar diretorio/arquivo nome_diretorio
             if(palavras[1]=='diretorio'):
@@ -291,16 +309,14 @@ def identifica(frase):
                     os.chdir(os.getcwd()+'/'+pasta)
 
                 os.system('touch '+palavras[2])
-                print('Pronto! Arquivo salvo na pasta novos_arquivos\n')
-                os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta novos_arquivos"')
+                print('Pronto! Arquivo salvo na pasta arquivos\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta arquivos"')
                 os.chdir(diretorio_atual)
 
         elif(tam==1):
             escolha=raw_input('Quer criar arquivo ou diretório? ')
-            os.system('espeak -v pt-br -g 4 -a 100 "Quer criar arquivo ou diretório? "')
             if(escolha=='arquivo'):
                 nome_arquivo=raw_input('Insira o nome do arquivo: ')
-                os.system('espeak -v pt-br -g 4 -a 100 "Insíra o nome do arquivo: "')
                 try:
                     os.mkdir(pasta)
                     os.chdir(os.getcwd()+'/'+pasta)
@@ -308,8 +324,8 @@ def identifica(frase):
                     os.chdir(os.getcwd()+'/'+pasta)
 
                 os.system('touch '+nome_arquivo)
-                print('Pronto! Arquivo salvo na pasta novos_arquivos\n')
-                os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta novos_arquivos"')
+                print('Pronto! Arquivo salvo na pasta arquivos\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta arquivos"')
                 os.chdir(diretorio_atual)
 
             elif(escolha=='diretorio'):
@@ -347,17 +363,17 @@ def identifica(frase):
                 os.chdir(os.getcwd()+'/'+pasta)
 
             os.system('touch '+nome_arquivo)
-            print('Pronto! Arquivo salvo na pasta novos_arquivos\n')
-            os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta novos_arquivos"')
+            print('Pronto! Arquivo salvo na pasta arquivos\n')
+            os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta arquivos"')
             os.chdir(diretorio_atual)
 
     elif(palavras[0]=='remover'):
         os.chdir(diretorio_atual)
-        pasta='novos_arquivos'
+        pasta='arquivos'
         if(tam==3):
             if(palavras[1]=='arquivo'):
                 try:
-                    os.chdir(os.getcwd()+'/'+'novos_arquivos')
+                    os.chdir(os.getcwd()+'/'+'arquivos')
                     os.system('rm '+palavras[2])
                     print('Pronto!\n')
                     os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
@@ -386,7 +402,7 @@ def identifica(frase):
                 nome_arquivo=raw_input('Digite o nome do arquivo: ')
                 os.system('espeak -v pt-br -g 4 -a 100 "Digite o nome do arquivo"')
                 try:
-                    os.chdir(os.getcwd()+'/'+'novos_arquivos')
+                    os.chdir(os.getcwd()+'/'+'arquivos')
                     os.system('rm '+nome_arquivo)
                     print('Pronto!\n')
                     os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
@@ -410,7 +426,7 @@ def identifica(frase):
                 nome_arquivo=raw_input('Digite o nome do arquivo: ')
                 os.system('espeak -v pt-br -g 4 -a 100 "Digite o nome do arquivo: "')
                 try:
-                    os.chdir(os.getcwd()+'/'+'novos_arquivos')
+                    os.chdir(os.getcwd()+'/'+'arquivos')
                     os.system('rm '+nome_arquivo)
                     print('Pronto!\n')
                     os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
@@ -418,6 +434,75 @@ def identifica(frase):
                     print('Arquivo não existe')
                     os.system('espeak -v pt-br -g 4 -a 100 "Arquivo não existe"')
 
+    elif(palavras[0]=='editar'):
+        tam=len(palavras)
+        if(tam==3):
+            if(palavras[1]=='arquivo'):
+                try:
+                    os.chdir(os.getcwd()+'/'+'arquivos')
+                except OSError:
+                    os.mkdir('arquivos')
+                    os.chdir(os.getcwd()+'/'+'arquivos')
+                os.system('gedit '+palavras[2])
+            else:
+                print('A penas possivel editar arquivos')
+                os.system('espeak -v pt-br -g 4 -a 100 "A penas possivel editar arquivos"')
+        elif(tam==2):
+            if(palavras[1]=='arquivo'):
+                nome_arquivo=raw_input('Insira o nome do arquivo: ')
+                try:
+                    os.chdir(os.getcwd()+'/'+'arquivos')
+                except OSError:
+                    os.mkdir('arquivos')
+                    os.chdir(os.getcwd()+'/'+'arquivos')
+                os.system('gedit '+nome_arquivo)
+            else:
+                print('A penas possivel editar arquivos')
+                os.system('espeak -v pt-br -g 4 -a 100 "A penas possivel editar arquivos"')
+        else:
+            print('Sintaxe incorreta, digite ajuda para ver a documentação')
+            os.system('espeak -v pt-br -g 4 -a 100 "Sintaxe incorreta, Digite ajuda para ver a documentação"')
+
+    elif(palavras[0]=='renomear'):
+        tam=len(palavras)
+        if(tam==3):
+            if(palavras[1]=='arquivo'):
+                try:
+                    os.chdir(os.getcwd()+'/'+'arquivos')
+                except OSError:
+                    print('Não tem nenhum arquivo salvo')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Não tem nenhum arquivo salvo"')
+
+                if(os.path.isfile(palavras[2])):
+                    novo_nome=raw_input('Insira o novo nome: ')
+                    os.rename(palavras[2],novo_nome)
+                    print('Pronto')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
+                else:
+                    print('Arquivo não existe')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Arquivo não existe"')
+
+            elif(palavras[1]=='diretorio'):
+                if(os.path.isdir(palavras[2])):
+                    if(palavras[2]=='modulos'):
+                        print('Não é permitido renomear diretorio modulos')
+                        os.system('espeak -v pt-br -g 4 -a 100 "Não é permitido renomear o diretorio modulos"')
+                    else:
+                        novo_nome=raw_input('Digite novo nome do diretorio: ')
+                        os.rename(palavras[2],novo_nome)
+                        print('Pronto')
+                        os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
+
+            else:
+                print('Só pode renomear um diretorio ou arquivo ')
+                os.system('espeak -v pt-br -g 4 -a 100 "Só pode renomear um diretorio ou arquivo "')
+
+        else:
+            print('Sintaxe incorreta, digite ajuda para ver a documentação')
+            os.system('espeak -v pt-br -g 4 -a 100 "Sintaxe incorreta, Digite ajuda para ver a documentação"')
+
+
+    #elif(frase=='entrar na pasta')
 
     elif(frase=='qual sua idade' or frase=='qual sua idade?' or frase=='quantos anos você tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos você tem?' or frase=='quantos anos você tem'):
         now=datetime.now()
@@ -464,20 +549,21 @@ def identifica(frase):
     ## CONTINUAR COM CONFIGURACOES DO SISTEMA
 
 
+    # QUEM É PROCURA NO WIKEPEDIA OU GOOGLE A pessoa
 
     elif(palavras[0]=='procurar'):
         if(palavras[1]=='filme'):
             if(tam==3):
-                requisicao.filmes(palavras[2])
+                filmes(palavras[2])
             if(tam==4):
                 nome_filme=palavras[2]+' '+palavras[3]
-                requisicao.filmes(nome_filme)
+                filmes(nome_filme)
             elif(tam==5):
                 nome_filme=palavras[2]+' '+palavras[3]+' '+palavras[4]
-                requisicao.filmes(nome_filme)
+                filmes(nome_filme)
             elif(tam==6):
                 nome_filme=palavras[2]+' '+palavras[3]+' '+palavras[4]+' '+palavras[5]
-                requisicao.filmes(nome_filme)
+                filmes(nome_filme)
         elif(palavras[1]=='serie'): # pesquisa serie
             print('ainda não disponivel')
 
@@ -487,11 +573,11 @@ def identifica(frase):
     elif(palavras[0]=='cotacao' or palavras[0]=='cotação'):
         if(tam>1):
             if(palavras[1]=='dolar'):
-                requisicao.cotacao('USD')
+                cotacao('USD')
             elif(palavras[1]=='euro'):
-                requisicao.cotacao('EUR')
+                cotacao('EUR')
             elif(palavras[1]=='bitcoin' or palavras[1]=='btc'):
-                requisicao.cotacao('BTC')
+                cotacao('BTC')
             else:
                 print('Moeda Indisponível ou não existe\n')
                 os.system('espeak -v pt-br -g 4 -a 100 "Moeda Indisponível ou não existe"')
