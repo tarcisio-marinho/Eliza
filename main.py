@@ -27,7 +27,7 @@ Bem vindo a Eliza, sua assistente pessoal
 Digite help para ver a documentação
 '''
 
-mensagem_eliza='\nComo posso ajudar?\n~> '
+mensagem_eliza='\nComo posso te ajudar '+os.getlogin()+'?\n~>'
 
 diretorio_atual=os.getcwd()
 

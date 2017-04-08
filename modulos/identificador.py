@@ -104,9 +104,14 @@ def identifica(frase):
             print('Espero ter te ajudado, tchau\n')
             os.system('espeak -v pt-br -g 4 -a 100 "Espero ter te ajudado, tchau"')
         exit()
+
     elif(frase=='help' or frase=='ajuda' or frase=='tutorial' or frase=='list' or frase=='listar comandos' or frase=='listar'):
         print(comandos)
         os.system('espeak -v pt-br -g 4 -a 100 "'+comandos +'"')
+
+    elif(frase=='quem sou eu?' or frase=='quem sou eu' or frase=='quem eu sou' or frase=='quem eu sou?'):
+        print('Você é '+ os.getlogin())
+        os.system('espeak -v pt-br -g 4 -a 100 "Você é o '+os.getlogin() +'"')
 
     elif(frase=='muito bem'or palavras[0]=='obrigada' or palavras[0]=='obrigado' or frase=='você é muito inteligente' or frase=='boa eliza' or frase=='bom trabalho' or palavras[0]=='valeu'):
         x=random.randrange(1,5)
