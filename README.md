@@ -2,7 +2,7 @@
 em desenvolvimento....
 
 # Download
-git clone https://github.com/tarcisio-marinho/Eliza.git
+~$ git clone https://github.com/tarcisio-marinho/Eliza.git
 
 # Execução normal
 
