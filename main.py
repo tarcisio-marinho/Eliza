@@ -10,7 +10,7 @@ import os
 from datetime import datetime
 from datetime import date
 import random
-import identificador
+from modulos.identificador import *
 
 
 
@@ -29,18 +29,20 @@ Digite help para ver a documentação
 
 mensagem_eliza='\nComo posso ajudar?\n~> '
 
-
+diretorio_atual=os.getcwd()
 
 
 
 def menu():
     while True:
         try:
+            os.chdir(diretorio_atual)
             frase=raw_input(mensagem_eliza)
         except NameError:
+            os.chdir(diretorio_atual)
             frase=input(mensagem_eliza)
         frase=frase.lower()
-        identificador.identifica(frase)
+        identifica(frase)
 
 # MAIN
 os.system('clear')
