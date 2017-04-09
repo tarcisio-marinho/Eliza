@@ -402,17 +402,34 @@ def identifica(frase):
                     os.system('espeak -v pt-br -g 4 -a 100 "Arquivo não existe"')
 
             elif(palavras[1]=='diretorio'):
-                os.system('rm -r '+palavras[2])
-                print('Pronto!\n')
-                os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
+                if(palavras[2]=='modulos' or palavras[2]=='teste' or palavras[2]=='arquivos'):
+                    print('Pastas protegidas, não podem ser apagadas')
+                    os.system('espeak -v pt-br -g 4 -a 100 "pastas protegidas, não podem ser apagadas"')
+                else:
+                    try:
+                        os.rmdir(palavras[2])
+                        print('removido!\n')
+                        os.system('espeak -v pt-br -g 4 -a 100 "removido"')
+                    except OSError:
+                        print('Diretorio não existe')
+                        os.system('espeak -v pt-br -g 4 -a 100 "Diretório não existe"')
+
 
         elif(tam==1):
             operacao=raw_input('Deseja remover arquivo ou diretorio? ')
             if(operacao=='diretorio'):
                 nome_diretorio=raw_input('Digite o nome do diretorio: ')
-                os.system('rm -r '+nome_diretorio)
-                print('Pronto!\n')
-                os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
+                if(nome_diretorio=='modulos' or nome_diretorio=='teste' or nome_diretorio=='arquivos'):
+                    print('Pastas protegidas, não podem ser apagadas')
+                    os.system('espeak -v pt-br -g 4 -a 100 "pastas protegidas, não podem ser apagadas"')
+                else:
+                    try:
+                        os.rmdir(nome_diretorio)
+                        print('removido!\n')
+                        os.system('espeak -v pt-br -g 4 -a 100 "removido"')
+                    except OSError:
+                        print('Diretorio não existe')
+                        os.system('espeak -v pt-br -g 4 -a 100 "Diretório não existe"')
 
             elif(operacao=='arquivo'):
                 nome_arquivo=raw_input('Digite o nome do arquivo: ')
@@ -432,9 +449,17 @@ def identifica(frase):
         elif(tam==2):
             if(palavras[1]=='diretorio'):
                 nome_diretorio=raw_input('Digite o nome do diretorio: ')
-                os.system('rm -r '+nome_diretorio)
-                print('Pronto!\n')
-                os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
+                if(nome_diretorio=='modulos' or nome_diretorio=='teste' or nome_diretorio=='arquivos'):
+                    print('Pastas protegidas, não podem ser apagadas')
+                    os.system('espeak -v pt-br -g 4 -a 100 "pastas protegidas, não podem ser apagadas"')
+                else:
+                    try:
+                        os.rmdir(nome_diretorio)
+                        print('removido!\n')
+                        os.system('espeak -v pt-br -g 4 -a 100 "removido"')
+                    except OSError:
+                        print('Diretorio não existe')
+                        os.system('espeak -v pt-br -g 4 -a 100 "Diretório não existe"')
 
             elif(palavras[1]=='arquivo'):
                 nome_arquivo=raw_input('Digite o nome do arquivo: ')
