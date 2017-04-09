@@ -57,14 +57,6 @@ versao=0.2
 
 sistema=os.uname()
 
-#TESTAR
-#s = s.replace("power", "**")
-# os.path.isfile()
-#elements = string.replace(",", "")
-#import webbrowser
-#agenda
-# salva compromissos
-# decora coisas
 
 
 
@@ -80,8 +72,6 @@ sistema=os.uname()
 #  print(atividades.txt)
 #}
 #ligarssh
-
-# que horas sao
 
 # o que é fecicidade, amor, sentimentos em geral
 
