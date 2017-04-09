@@ -315,10 +315,15 @@ def identifica(frase):
                 except OSError:
                     os.chdir(os.getcwd()+'/'+pasta)
 
-                os.system('touch '+palavras[2])
-                print('Pronto! Arquivo salvo na pasta arquivos\n')
-                os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta arquivos"')
-                os.chdir(diretorio_atual)
+                try:
+                    arquivo=open(palavras[2],'r')
+                    print('Já existe arquivo com esse nome')
+                    os.system('espeak -v pt-br -g 4 -a 100 "já existe arquivo com esse nome"')
+                except IOError:
+                    arquivo=open(palavras[2],'w')
+                    print('Pronto! Arquivo salvo na pasta arquivos\n')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta arquivos"')
+                    os.chdir(diretorio_atual)
 
         elif(tam==1):
             escolha=raw_input('Quer criar arquivo ou diretório? ')
@@ -330,14 +335,18 @@ def identifica(frase):
                 except OSError:
                     os.chdir(os.getcwd()+'/'+pasta)
 
-                os.system('touch '+nome_arquivo)
-                print('Pronto! Arquivo salvo na pasta arquivos\n')
-                os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta arquivos"')
-                os.chdir(diretorio_atual)
+                try:
+                    arquivo=open(nome_arquivo,'r')
+                    print('Já existe arquivo com esse nome')
+                    os.system('espeak -v pt-br -g 4 -a 100 "já existe arquivo com esse nome"')
+                except IOError:
+                    arquivo=open(nome_arquivo,'w')
+                    print('Pronto! Arquivo salvo na pasta arquivos\n')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta arquivos"')
+                    os.chdir(diretorio_atual)
 
             elif(escolha=='diretorio'):
                 nome_diretorio=raw_input('Insira o nome do diretorio: ')
-                os.system('espeak -v pt-br -g 4 -a 100 "Insíra o nome do diretorio: "')
                 try:
                     os.mkdir(nome_diretorio)
                     print('Pronto!\n')
@@ -352,7 +361,6 @@ def identifica(frase):
 
         elif(frase=='criar diretorio'):
             nome_diretorio=raw_input('Insira o nome do diretorio: ')
-            os.system('espeak -v pt-br -g 4 -a 100 "Insíra o nome do diretorio: "')
             try:
                 os.mkdir(nome_diretorio)
                 print('Pronto!\n')
@@ -369,25 +377,29 @@ def identifica(frase):
             except OSError:
                 os.chdir(os.getcwd()+'/'+pasta)
 
-            os.system('touch '+nome_arquivo)
-            print('Pronto! Arquivo salvo na pasta arquivos\n')
-            os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta arquivos"')
-            os.chdir(diretorio_atual)
+            try:
+                arquivo=open(nome_arquivo,'r')
+                print('Já existe arquivo com esse nome')
+                os.system('espeak -v pt-br -g 4 -a 100 "já existe arquivo com esse nome"')
+            except IOError:
+                arquivo=open(nome_arquivo,'w')
+                print('Pronto! Arquivo salvo na pasta arquivos\n')
+                os.system('espeak -v pt-br -g 4 -a 100 "Pronto! Arquivo salvo na pasta arquivos"')
+                os.chdir(diretorio_atual)
 
     elif(palavras[0]=='remover'):
         os.chdir(diretorio_atual)
         pasta='arquivos'
         if(tam==3):
             if(palavras[1]=='arquivo'):
-                try:
-                    os.chdir(os.getcwd()+'/'+'arquivos')
-                    os.system('rm '+palavras[2])
-                    print('Pronto!\n')
-                    os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
-                except OSError:
-                    print('Arquivo não existe')
+                os.chdir(os.getcwd()+'/'+'arquivos')
+                if(os.path.isfile(palavras[2])):
+                    os.remove(palavras[2])
+                    print('Removido')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Removido"')
+                else:
+                    print('arquivo não existe')
                     os.system('espeak -v pt-br -g 4 -a 100 "Arquivo não existe"')
-
 
             elif(palavras[1]=='diretorio'):
                 os.system('rm -r '+palavras[2])
@@ -396,25 +408,21 @@ def identifica(frase):
 
         elif(tam==1):
             operacao=raw_input('Deseja remover arquivo ou diretorio? ')
-            os.system('espeak -v pt-br -g 4 -a 100 "Deseja remover arquivo ou diretório? "')
-
             if(operacao=='diretorio'):
                 nome_diretorio=raw_input('Digite o nome do diretorio: ')
-                os.system('espeak -v pt-br -g 4 -a 100 "Digite o nome do diretório"')
                 os.system('rm -r '+nome_diretorio)
                 print('Pronto!\n')
                 os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
 
             elif(operacao=='arquivo'):
                 nome_arquivo=raw_input('Digite o nome do arquivo: ')
-                os.system('espeak -v pt-br -g 4 -a 100 "Digite o nome do arquivo"')
-                try:
-                    os.chdir(os.getcwd()+'/'+'arquivos')
-                    os.system('rm '+nome_arquivo)
-                    print('Pronto!\n')
-                    os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
-                except OSError:
-                    print('Arquivo não existe')
+                os.chdir(os.getcwd()+'/'+'arquivos')
+                if(os.path.isfile(nome_arquivo)):
+                    os.remove(nome_arquivo)
+                    print('Removido')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Removido"')
+                else:
+                    print('arquivo não existe')
                     os.system('espeak -v pt-br -g 4 -a 100 "Arquivo não existe"')
 
             else:
@@ -424,21 +432,19 @@ def identifica(frase):
         elif(tam==2):
             if(palavras[1]=='diretorio'):
                 nome_diretorio=raw_input('Digite o nome do diretorio: ')
-                os.system('espeak -v pt-br -g 4 -a 100 "Digite o nome do diretorio: "')
                 os.system('rm -r '+nome_diretorio)
                 print('Pronto!\n')
                 os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
 
             elif(palavras[1]=='arquivo'):
                 nome_arquivo=raw_input('Digite o nome do arquivo: ')
-                os.system('espeak -v pt-br -g 4 -a 100 "Digite o nome do arquivo: "')
-                try:
-                    os.chdir(os.getcwd()+'/'+'arquivos')
-                    os.system('rm '+nome_arquivo)
-                    print('Pronto!\n')
-                    os.system('espeak -v pt-br -g 4 -a 100 "Pronto"')
-                except OSError:
-                    print('Arquivo não existe')
+                os.chdir(os.getcwd()+'/'+'arquivos')
+                if(os.path.isfile(nome_arquivo)):
+                    os.remove(nome_arquivo)
+                    print('Removido')
+                    os.system('espeak -v pt-br -g 4 -a 100 "Removido"')
+                else:
+                    print('arquivo não existe')
                     os.system('espeak -v pt-br -g 4 -a 100 "Arquivo não existe"')
 
     elif(palavras[0]=='editar'):
