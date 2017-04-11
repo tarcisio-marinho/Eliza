@@ -565,7 +565,16 @@ def identifica(frase):
     #    os.system('./teste.sh ')
 
     elif(frase=='esvaziar lixeira' or frase=='esvaziar'):
-        os.system('./esvaziar.sh')
+        #os.system('./esvaziar.sh')
+        os.chdir(os.environ['HOME']+'/.local/share/Trash/files')
+        a=os.listdir(os.environ['HOME']+'/.local/share/Trash/files')
+        for elemento in a:
+            try:
+                print('removendo -> ' + str(elemento))
+                os.remove(elemento)
+            except OSError:
+                print('removendo -> ' + str(elemento))
+                os.system('rm -r '+ elemento)
         print('Pronto!\n')
         os.system('espeak -v pt-br -g 4 -a 100 "Pronto!"')
 
