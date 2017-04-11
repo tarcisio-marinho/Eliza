@@ -34,6 +34,7 @@ diretorio_atual=os.getcwd()
 
 
 def menu():
+    lista=[]
     while True:
         try:
             os.chdir(diretorio_atual)
@@ -42,7 +43,8 @@ def menu():
             os.chdir(diretorio_atual)
             frase=input(mensagem_eliza)
         frase=frase.lower()
-        identifica(frase)
+        lista.append(frase)
+        identifica(frase,lista)
 
 # MAIN
 os.system('clear')

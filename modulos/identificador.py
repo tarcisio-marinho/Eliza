@@ -77,7 +77,7 @@ sistema=os.uname()
 
 #voce é feliz ?
 
-def identifica(frase):
+def identifica(frase,lista):
     #Funcoes primarias
     palavras=frase.split(' ')
     tam=len(palavras)
@@ -581,12 +581,13 @@ def identifica(frase):
     elif(frase=='calculadora'):
         os.system('gnome-calculator')
 
+    elif(frase=='history' or frase=='historico' or frase=='histórico' or frase=='historico ' or frase=='histórico '):
+        print('Histórico: \n')
+        for comandos in lista:
+            print(str(comandos))
 
 
-    ## CONTINUAR COM CONFIGURACOES DO SISTEMA
 
-
-    # QUEM É PROCURA NO WIKEPEDIA OU GOOGLE A pessoa
 
     elif(palavras[0]=='procurar'):
         if(palavras[1]=='filme'):
