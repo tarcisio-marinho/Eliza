@@ -14,6 +14,7 @@ import re
 from modulos.requisicao import *
 from modulos.search import *
 from modulos.agenda import *
+from modulos.musica import *
 
 sobre_eliza='''
 Opa! Sou eliza uma assistente pessoal para o linux!
@@ -560,9 +561,10 @@ def identifica(frase,lista):
 
         os.system('espeak -v pt-br -g 4 -a 100 "'+a+'"')
 
-    #elif(frase=='tocar'):
-        #artista=raw_input('Artista: ')
-    #    os.system('./teste.sh ')
+    elif(palavras[0]=='tocar' or palavras[0]=='musica'):
+
+
+
 
     elif(frase=='esvaziar lixeira' or frase=='esvaziar'):
         #os.system('./esvaziar.sh')
