@@ -14,7 +14,7 @@ import re
 from modulos.requisicao import *
 from modulos.search import *
 from modulos.agenda import *
-from modulos.musica import *
+#from modulos.musica import *
 
 sobre_eliza='''
 Opa! Sou eliza uma assistente pessoal para o linux!
@@ -513,7 +513,7 @@ def identifica(frase,lista):
 
             elif(palavras[1]=='diretorio'):
                 if(os.path.isdir(palavras[2])):
-                    if(palavras[2]=='modulos'):
+                    if(palavras[2]=='modulos' or palavras[2]=='arquivos'):
                         print('Não é permitido renomear diretorio modulos')
                         os.system('espeak -v pt-br -g 4 -a 100 "Não é permitido renomear o diretorio modulos"')
                     else:
@@ -561,7 +561,7 @@ def identifica(frase,lista):
 
         os.system('espeak -v pt-br -g 4 -a 100 "'+a+'"')
 
-    elif(palavras[0]=='tocar' or palavras[0]=='musica'):
+#    elif(palavras[0]=='tocar' or palavras[0]=='musica'):
 
 
 
