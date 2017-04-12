@@ -39,11 +39,25 @@ def musica():
                 print('Numero fora da lista')
                 escolha=input('Escolha: ')
                 escolha=int(escolha)
-            print(dicionario[escolha])
-            if(os.path.isfile(dicionario[escolha])):
-                print('arquivo')
-            elif(os.path.isdir(dicionario[escolha])):
-                print('diretorio')
+            os.system('clear')
+            if(os.path.isfile(dicionario[escolha])): # arquivo - tocar musica
+                a=1
+            elif(os.path.isdir(dicionario[escolha])): # diretorio - escolher musica primeiro para depois tocar
+                dicionario2={}
+                os.chdir(os.getcwd()+'/'+dicionario[escolha])
+                musicas=os.listdir(os.getcwd())
+                tam=len(musicas)
+                i=0
+
+                while(i<tam):
+                    dicionario2[i]=musicas[i]
+                    if(os.path.isfile(musicas[i])):
+                        print(i,'File->', dicionario2[i])
+                    elif(os.path.isdir(musicas[i])):
+                        print(i,'Dir ->', dicionario2[i])
+                    i=i+1
+
+
 
         else:
             print('Não existe')
