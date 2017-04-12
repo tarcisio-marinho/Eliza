@@ -14,6 +14,7 @@ import re
 from modulos.requisicao import *
 from modulos.search import *
 from modulos.agenda import *
+from modulos.mapa import *
 #from modulos.musica import *
 
 sobre_eliza='''
@@ -588,7 +589,12 @@ def identifica(frase,lista):
         for comandos in lista:
             print(str(comandos))
 
-
+    elif(frase=='onde estou?'or frase=='onde estou' or frase=='qual minha localizacao' or frase=='qual minha localização?' or frase=='qual minha localização' or frase=='localização' or frase=='localizacao'):
+        minha_localizacao('estado')
+    elif(frase=='qual meu pais' or frase=='qual meu país?' or frase=='qual meu país' or frase=='qual meu pais?' or frase=='pais'):
+        minha_localizacao('pais')
+    elif(frase=='qual meu ip externo?' or frase=='qual meu ip' or frase=='ip' or frase=='qual meu ip?'):
+        minha_localizacao('ip')
 
 
     elif(palavras[0]=='procurar'):
