@@ -12,13 +12,16 @@ def minha_localizacao(frase):
         if(frase=='pais'):
             print('Você está no ')
             print(str(dicionario['country_name'])+', '+str(dicionario['country_code']))
+            os.system('espeak -v pt-br -g 4 -a 100 "Você está no '+str(dicionario['country_name'])+'"')
 
         elif(frase=='estado'):
             print('Você está em ')
             print(str(dicionario['city'])+'-'+str(dicionario['region_code'])+', '+dicionario['region_name'])
+            os.system('espeak -v pt-br -g 4 -a 100 "Você está em '+str(dicionario['city'])+'"')
 
         elif(frase=='ip'):
             print('Seu ip é: '+str(dicionario['ip']))
+            os.system('espeak -v pt-br -g 4 -a 100 "Seu ipê é"')
 
     except:
         print('Erro de conexão')
