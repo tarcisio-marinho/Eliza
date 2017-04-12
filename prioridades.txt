@@ -1,8 +1,0 @@
-musica
-pasta -> .config
-guarda informações da pasta onde localiza as musicas
-
-//////
-excluir lixeira
-
-não permitir excluir/renomear pastas protegidas - modulos, arquivos, testar
