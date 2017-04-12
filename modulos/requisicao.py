@@ -48,7 +48,7 @@ def cotacao(moeda):
         a=cotacao['valores'][moeda]['valor']
         b=str(a)
         b=b.split('.')
-        print(a)
+        print('R$ '+ str(a))
         os.system('espeak -v pt-br -g 4 -a 100 " O valor do '+nome_moeda+' é '+b[0]+'reais e '+b[1]+' centavos"')
     except:
         print('Erro na conexão\n')

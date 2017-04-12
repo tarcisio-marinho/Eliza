@@ -23,13 +23,17 @@ Fui criada para ajudar você :-)
 
 Digite ajuda, para ver os comandos básicos
 '''
-comandos='''
+ajuda='''
 Olá, sou Eliza, uma assistente pessoal para linux!
 Os comandos básicos são:
 
 ~> onde fica nome_cidade - fala onde é cituada e país da cidade\n
 ~> salvar nome_arquivo - cria um novo arquivo na pasta arquivos e escreve nele, sem nome  ele salva no arquivo agenda.txt, para parar de escrever use ctrl + c.\n
 ~> procurar filme (nome do filme) - procura o filme na internet\n
+~> clima (cidade) -> mostra o clima e temperatura na cidade\n
+~> ip - mostra seu ip externo (se conectado a internet)\n
+~> localização - mostra onde você está\n
+~> cidade - mostra sua cidade\n
 ~> cotação (moeda) - mostra a cotação da moeda atualmente\n
 ~> criar diretório (nome_do_diretorio) - cria o diretorio\n
 ~> criar arquivo (nome_do_arquivo) - apenas cria o arquivo\n
@@ -104,8 +108,8 @@ def identifica(frase,lista):
         os.system('espeak -v pt-br -g 4 -a 100 "Seu sistema operacional é um '+ sistema[0]+'"')
 
     elif(frase=='help' or frase=='ajuda' or frase=='tutorial' or frase=='list' or frase=='listar comandos' or frase=='listar'):
-        print(comandos)
-        os.system('espeak -v pt-br -g 4 -a 100 "'+comandos +'"')
+        print(ajuda)
+        os.system('espeak -v pt-br -g 4 -a 100 "'+ajuda +'"')
 
     elif(frase=='muito bem'or palavras[0]=='obrigada' or palavras[0]=='obrigado' or frase=='você é muito inteligente' or frase=='boa eliza' or frase=='bom trabalho' or palavras[0]=='valeu'):
         x=random.randrange(1,5)
@@ -595,6 +599,16 @@ def identifica(frase,lista):
         minha_localizacao('pais')
     elif(frase=='qual meu ip externo?' or frase=='qual meu ip' or frase=='ip' or frase=='qual meu ip?'):
         minha_localizacao('ip')
+
+    elif(palavras[0]=='clima'):
+        tam=len(palavras)
+        if(tam==2):
+            cidade=palavras[1]
+        elif(tam==3):
+            cidade=palavras[1]+' '+palavras[2]
+        elif(tam==4):
+            cidade=palavras[1]+' '+palavras[2]+' '+palavras[3]
+        clima(cidade)
 
 
     elif(palavras[0]=='procurar'):
