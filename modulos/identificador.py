@@ -15,7 +15,7 @@ from modulos.requisicao import *
 from modulos.search import *
 from modulos.agenda import *
 from modulos.mapa import *
-#from modulos.musica import *
+#from modulos.musica import *    - tocar musica [ja toca a musica só de falar o nome]- escolher musica - escolhe a pasta dps a musica 
 
 sobre_eliza='''
 Opa! Sou eliza uma assistente pessoal para o linux!
