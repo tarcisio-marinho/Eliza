@@ -16,6 +16,21 @@ from modulos.search import *
 from modulos.agenda import *
 from modulos.mapa import *
 #from modulos.musica import *    - tocar musica [ja toca a musica só de falar o nome]- escolher musica - escolhe a pasta dps a musica 
+# onde fica sp
+
+#Não, estou triste, zangado, nervoso
+
+#Compromissos - dia , hora, descrição,
+#Dicionário
+
+#Erro
+
+#equests is using, and change it, using the r.encoding property:
+
+#>>> r.encoding'utf-8'>>> r.encoding = 'ISO-8859-1'
+
+#If you change the encoding, Requests will use the new value of r.encodingwhenever you call r.text.
+
 
 sobre_eliza='''
 Opa! Sou eliza uma assistente pessoal para o linux!
