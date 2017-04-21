@@ -15,7 +15,8 @@ from modulos.requisicao import *
 from modulos.search import *
 from modulos.agenda import *
 from modulos.mapa import *
-#from modulos.musica import *    - tocar musica [ja toca a musica só de falar o nome]- escolher musica - escolhe a pasta dps a musica 
+from modulos.musica import *
+
 # onde fica sp
 
 #Não, estou triste, zangado, nervoso
@@ -46,6 +47,7 @@ Os comandos básicos são:
 ~> salvar nome_arquivo - cria um novo arquivo na pasta arquivos e escreve nele, sem nome  ele salva no arquivo agenda.txt, para parar de escrever use ctrl + c.\n
 ~> procurar filme (nome do filme) - procura o filme na internet\n
 ~> clima (cidade) -> mostra o clima e temperatura na cidade\n
+~> tocar - toca musica, OBS: Escolha o diretorio onde estão salvas suas musicas\n
 ~> ip - mostra seu ip externo (se conectado a internet)\n
 ~> localização - mostra onde você está\n
 ~> cidade - mostra sua cidade\n
@@ -97,6 +99,8 @@ sistema=os.uname()
 # o que é fecicidade, amor, sentimentos em geral
 
 #voce é feliz ?
+
+# atualizar o sistema -> sudo apt-get update && sudo apt-get upgrade
 
 def identifica(frase,lista):
     #Funcoes primarias
@@ -550,6 +554,9 @@ def identifica(frase,lista):
             print('Sintaxe incorreta, digite ajuda para ver a documentação')
             os.system('espeak -v pt-br -g 4 -a 100 "Sintaxe incorreta, Digite ajuda para ver a documentação"')
 
+
+    elif(palavras[0]=='tocar'):
+        tocar()
 
     #elif(frase=='entrar na pasta')
 
