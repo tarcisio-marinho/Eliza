@@ -7,7 +7,7 @@ from socket import *
 def conexao():
     # servidor
     meuIP='127.0.0.1'
-    porta=6061
+    porta=6062
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.bind((meuIP, porta))
@@ -16,7 +16,11 @@ def conexao():
     while True:
     	conexao,endereco=socket_obj.accept()
     	print('servidor conectado por', endereco)
-        arq=open('conectados.txt','w') #
+        try:
+            arq=open('conectados.txt','a')
+        except:
+            arq=open('conectados.txt','w') # cria arquivo
+
         arq.write(str(endereco)+'\n') # escreve no arquivo dos hosts conectados
     	# recebe dados enviados pelo cliente
     	while True:

@@ -4,7 +4,7 @@
 from socket import *
 
 serverHost='127.0.0.1'
-porta=6061
+porta=6062
 
 socket_obj = socket(AF_INET, SOCK_STREAM)
 socket_obj.connect((serverHost, porta))
