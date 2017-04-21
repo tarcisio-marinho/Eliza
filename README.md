@@ -1,6 +1,11 @@
 # Eliza, uma simples assistente pessoal para linux 
 em desenvolvimento....
 
+# testado:
+- ubuntu
+- kali linux
+- deepin linux
+
 # Download
 ~$ git clone https://github.com/tarcisio-marinho/Eliza.git
 
