@@ -1,16 +1,16 @@
 # Eliza, uma simples assistente pessoal para linux 
 em desenvolvimento....
 
-# testado:
+# Testado:
 - ubuntu
 - kali linux
 - deepin linux
+- python 2.7
 
 # Download
 ~$ git clone https://github.com/tarcisio-marinho/Eliza.git
 
 # Execução normal
-
 ~$ python main.py
 
 # Primeira vez rodando
