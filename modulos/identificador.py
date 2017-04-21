@@ -17,7 +17,6 @@ from modulos.agenda import *
 from modulos.mapa import *
 from modulos.musica import *
 
-# onde fica sp
 
 #Não, estou triste, zangado, nervoso
 
@@ -25,8 +24,8 @@ from modulos.musica import *
 #Dicionário
 
 #Erro
-
-#equests is using, and change it, using the r.encoding property:
+# onde fica sp
+# requests is using, and change it, using the r.encoding property:
 
 #>>> r.encoding'utf-8'>>> r.encoding = 'ISO-8859-1'
 
@@ -76,7 +75,7 @@ nascimento_ano=2017
 
 lista_perguntas=['qual','onde']
 
-versao=0.2
+versao=0.3
 
 sistema=os.uname()
 
@@ -123,7 +122,7 @@ def identifica(frase,lista):
         exit()
 
     elif(frase=='qual meu sistema' or frase=='qual meu sistema?'or frase=='qual meu sistema operacional?' or frase=='qual meu sistema operacional' or frase=='sistema' or frase=='system'):
-        print('Seu sistema operacional é um '+ sistema[0])
+        print('Seu sistema operacional é um '+ sistema[0] +', '+ sistema[2])
         os.system('espeak -v pt-br -g 4 -a 100 "Seu sistema operacional é um '+ sistema[0]+'"')
 
     elif(frase=='help' or frase=='ajuda' or frase=='tutorial' or frase=='list' or frase=='listar comandos' or frase=='listar'):

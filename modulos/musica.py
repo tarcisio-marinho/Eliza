@@ -4,22 +4,27 @@
 # github.com/tarcisio-marinho
 import os
 def tocar():
-    dicionario={}
+    dicionario={} # cria um dicionario para salvar as pastas e musicas digitadas pelo usuario
     retorno=''
     i=0
     try:
-        arquivo_config=open('.config.txt','r')
+        arquivo_config=open('.config.txt','r') # tenta ler o arquivo para ver se já foi escolhido o diretorio
         retorno=arquivo_config.readline()
 
     except IOError:
-        arquivo_config=open('.config.txt','w')
+        arquivo_config=open('.config.txt','w') # nao conseguiu ler -> cria arquivo vazio onde será as pastas das musicas
 
     if(retorno==''):
         pasta=raw_input('Onde está salvo suas músicas?\nEx: -> Desktop/Musicas/ ou /Musicas/ ou /Music/\n~$ ')
         caminho=os.environ['HOME'] +'/'+ pasta+'/'
-        resp=os.path.isdir(caminho)
+        resp=os.path.isdir(caminho) # checa se o diretorio existe
 
         if(resp==True): # existe
+
+        # abre o arquivo .config.txt para salvar o local das musicas
+        # e percorre todos os arquivos dentro do diretorio e salva no dicionario
+        # escolhe a musica dentro do dicionario
+
             arquivo_config=open('.config.txt','a')
             arquivo_config.write(caminho)
             print('Existe')
@@ -81,9 +86,9 @@ def tocar():
 
 
         else:
-            print('Não existe')
+            print('Diretório não existe')
 
-    else: # ja esta salvo e ele so escolhe a musica
+    else: # ja esta salvo no arquivo .config.txt, e ele so escolhe a musica
         arquivo_config=open('.config.txt','r')
         caminho=arquivo_config.readline()
         os.chdir(caminho)
