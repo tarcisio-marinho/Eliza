@@ -26,7 +26,6 @@ def tocar():
         # escolhe a musica dentro do dicionario
 
             arquivo_config=open('.config.txt','a')
-            arquivo_config.write(caminho)
             print('Existe')
             os.chdir(caminho)
             arquivos=os.listdir(os.getcwd())
@@ -52,6 +51,7 @@ def tocar():
             if(os.path.isfile(dicionario[escolha])): # arquivo - tocar musica
                 musica=dicionario[escolha].replace(" ", "\ ").replace(" (", " \("). replace(")", "\)")
                 os.system('xdg-open '+musica)
+                arquivo_config.write(caminho)
                 os.system('sleep 1')
 
             elif(os.path.isdir(dicionario[escolha])): # diretorio - escolher musica primeiro para depois tocar
@@ -81,6 +81,7 @@ def tocar():
                 print(dicionario2[escolha])
                 musica=dicionario2[escolha].replace(" ", "\ ").replace(" (", " \("). replace(")", "\)")
                 os.system('xdg-open '+musica)
+                arquivo_config.write(caminho)
                 os.system('sleep 1')
 
 

@@ -16,6 +16,7 @@ from modulos.search import *
 from modulos.agenda import *
 from modulos.mapa import *
 from modulos.musica import *
+from modulos.ajuda import *
 
 
 #Não, estou triste, zangado, nervoso
@@ -38,32 +39,6 @@ Fui criada para ajudar você :-)
 
 Digite ajuda, para ver os comandos básicos
 '''
-ajuda='''
-Olá, sou Eliza, uma assistente pessoal para linux!
-Os comandos básicos são:
-
-~> onde fica nome_cidade - fala onde é cituada e país da cidade\n
-~> salvar nome_arquivo - cria um novo arquivo na pasta arquivos e escreve nele, sem nome  ele salva no arquivo agenda.txt, para parar de escrever use ctrl + c.\n
-~> procurar filme (nome do filme) - procura o filme na internet\n
-~> clima (cidade) -> mostra o clima e temperatura na cidade\n
-~> tocar - toca musica, OBS: Escolha o diretorio onde estão salvas suas musicas\n
-~> ip - mostra seu ip externo (se conectado a internet)\n
-~> localização - mostra onde você está\n
-~> cidade - mostra sua cidade\n
-~> cotação (moeda) - mostra a cotação da moeda atualmente\n
-~> criar diretório (nome_do_diretorio) - cria o diretorio\n
-~> criar arquivo (nome_do_arquivo) - apenas cria o arquivo\n
-~> remover arquivo / diretorio - remove arquivo ou diretorio\n
-~> editar arquivo nome_arquivo - edita o arquivo existente ou cria um novo já para editar e salva na pasta arquivos.\n
-~> renomear arquivo / diretorio (nome) - renomeia o arquivo ou o diretorio\n
-~> dia - mostra o dia atual\n
-~> hora - mostra a hora\n
-~> calculadora - abre a calculadora\n
-~> ajuda - imprime essa mensagem\n
-~> esvaziar - limpa a lixeira\n
-~> limpar tela - limpa o console\n
-~> sair - sai do programa\n
-'''
 
 
 diretorio_atual=os.getcwd()
@@ -74,6 +49,7 @@ nascimento_mes=3
 nascimento_ano=2017
 
 lista_perguntas=['qual','onde']
+lista_de_comandos=['clear','ajuda','hora','dia','renomear','ip','onde estou','pais','tocar','renomear','localizacao','cotacao','criar','remover','editar','calculadora','esvaziar','sair','onde fica','procurar','clima']
 
 versao=0.3
 
@@ -106,7 +82,20 @@ def identifica(frase,lista):
     palavras=frase.split(' ')
     tam=len(palavras)
 
-    if(frase=='tchau' or frase=='adeus' or frase=='adeus eliza' or frase=='tchau eliza' or frase=='quit' or frase=='sair' or frase=='exit' or frase=='vazar'):
+    if(palavras[0]=='ajuda'):
+        tam=len(palavras)
+        if(tam==1):
+            ajudar('',lista_de_comandos)
+        elif(tam==2):
+            ajudar(palavras[1],lista_de_comandos)
+        elif(tam==3):
+            comando=palavras[1]+' '+palavras[2]
+            ajudar(comando,lista_de_comandos)
+        elif(tam==4):
+            comando=palavras[1]+' '+palavras[2]+' '+palavras[3]
+            ajudar(comando,lista_de_comandos)
+
+    elif(frase=='tchau' or frase=='adeus' or frase=='adeus eliza' or frase=='tchau eliza' or frase=='quit' or frase=='sair' or frase=='exit' or frase=='vazar'):
         x=random.randrange(1,4)
         if(x==1):
             print('Até logo meu amigo\n')
@@ -124,10 +113,6 @@ def identifica(frase,lista):
     elif(frase=='qual meu sistema' or frase=='qual meu sistema?'or frase=='qual meu sistema operacional?' or frase=='qual meu sistema operacional' or frase=='sistema' or frase=='system'):
         print('Seu sistema operacional é um '+ sistema[0] +', '+ sistema[2])
         os.system('espeak -v pt-br -g 4 -a 100 "Seu sistema operacional é um '+ sistema[0]+'"')
-
-    elif(frase=='help' or frase=='ajuda' or frase=='tutorial' or frase=='list' or frase=='listar comandos' or frase=='listar'):
-        print(ajuda)
-        os.system('espeak -v pt-br -g 4 -a 100 "'+ajuda +'"')
 
     elif(frase=='muito bem'or palavras[0]=='obrigada' or palavras[0]=='obrigado' or frase=='você é muito inteligente' or frase=='boa eliza' or frase=='bom trabalho' or palavras[0]=='valeu'):
         x=random.randrange(1,5)
@@ -495,7 +480,7 @@ def identifica(frase,lista):
                 except OSError:
                     os.mkdir('arquivos')
                     os.chdir(os.getcwd()+'/'+'arquivos')
-                os.system('gedit '+palavras[2])
+                os.system('xdg-open '+palavras[2])
             else:
                 print('A penas possivel editar arquivos')
                 os.system('espeak -v pt-br -g 4 -a 100 "A penas possivel editar arquivos"')
