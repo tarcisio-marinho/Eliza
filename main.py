@@ -34,7 +34,16 @@ diretorio_atual=os.getcwd()
 
 
 def menu():
+    inicio=1
     lista=[]
+    if(inicio==1):
+        inicio=0
+        print('checando todas as dependências\n')
+        os.system('./compilar.sh')
+
+
+
+
     while True:
         try:
             os.chdir(diretorio_atual)
