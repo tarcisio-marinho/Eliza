@@ -282,17 +282,6 @@ def identifica(frase,lista):
             os.system('espeak -v pt-br -g 4 -a 200 "'+str(palavras[i])+' "')
             i=i+1
 
-    elif(palavras[0]=='merda' or palavras[0]=='porra' or palavras[0]=='foda-se' or palavras[0]=='fodase' or palavras[0]=='vsf' or palavras[0]=='tnc'or frase[0]=='vai si fuder' or frase[0]=='tome no cu' or palavras[0]=='bandida'):
-        x=random.randrange(1,4)
-        if(x==1):
-            print('Olha o linguajar rapaz')
-            os.system('espeak -v pt-br -g 4 -a 100 "Olha o linguajar rapaz"')
-        elif(x==2):
-            print('Melhore seu vocabulário')
-            os.system('espeak -v pt-br -g 4 -a 100 "Melhore seu vocabulário"')
-        elif(x==3):
-            print('Não gosto de palavrões')
-            os.system('espeak -v pt-br -g 4 -a 100 "Não gosto de palavrões"')
 
     elif(palavras[0]=='criar'): # criar diretorio ou arquivos
         pasta='arquivos'
