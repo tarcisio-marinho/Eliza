@@ -37,9 +37,17 @@ def menu():
     inicio=1
     lista=[]
     if(inicio==1):
+        try:
+            arquivo=open('.inicio.txt','r')
+            resp=arquivo.readline()
+        except:
+            arquivo=open('.inicio.txt','w')
+            arquivo=open('.inicio.txt','a')
+            print('checando todas as dependências\n')
+            os.system('./compilar.sh')
+            arquivo.write('atualizado')
+            os.system('clear')
         inicio=0
-        print('checando todas as dependências\n')
-        os.system('./compilar.sh')
 
 
 
