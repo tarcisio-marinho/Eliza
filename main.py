@@ -34,48 +34,44 @@ diretorio_atual=os.getcwd()
 
 
 def menu():
-    inicio=1
-    lista=[]
-    if(inicio==1):
-        try:
-            arquivo=open('.inicio.txt','r')
-            resp=arquivo.readline()
-        except:
-            arquivo=open('.inicio.txt','w')
-            arquivo=open('.inicio.txt','a')
-            print('checando todas as dependências\n')
-            os.system('./compilar.sh')
-            arquivo.write('atualizado')
-            os.system('clear')
-        inicio=0
-
-
-
-
-    while True:
-        try:
-            os.chdir(diretorio_atual)
-            frase=raw_input(mensagem_eliza)
-        except NameError:
-            os.chdir(diretorio_atual)
-            frase=input(mensagem_eliza)
-        frase=frase.lower()
-        lista.append(frase)
-        identifica(frase,lista)
-
-# MAIN
-os.system('clear')
-print(banner)
-sair=None
-try:
-    menu()
-except KeyboardInterrupt:
     try:
-        sair=raw_input('\nDeseja sair ? ')
-    except NameError:
-        sair=input('\nDeseja sair ? ')
+        inicio=1
+        lista=[]
+        if(inicio==1):
+            try:
+                arquivo=open('.inicio.txt','r')
+                resp=arquivo.readline()
+            except:
+                arquivo=open('.inicio.txt','w')
+                arquivo=open('.inicio.txt','a')
+                print('checando todas as dependências\n')
+                os.system('./compilar.sh')
+                arquivo.write('atualizado')
+                os.system('clear')
+            inicio=0
+
+
+
+
+        while True:
+            try:
+                os.chdir(diretorio_atual)
+                frase=raw_input(mensagem_eliza)
+            except NameError:
+                os.chdir(diretorio_atual)
+                frase=input(mensagem_eliza)
+            frase=frase.lower()
+            lista.append(frase)
+            identifica(frase,lista)
+    except KeyboardInterrupt:
+        sair=raw_input('Deseja sair? ')
         if(sair=='sim' or sair=='1' or sair=='quit' or sair=='s' or sair=='exit'):
             print('Saindo...')
             exit()
         else:
             menu()
+
+# MAIN
+os.system('clear')
+print(banner)
+menu()
