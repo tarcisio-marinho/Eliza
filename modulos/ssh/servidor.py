@@ -6,9 +6,10 @@ import os
 from socket import *
 from RSA.gera_chaves import *
 from RSA.descriptografa import *
+
 def conexao():
     # servidor
-    meuIP='127.0.0.1'
+    meuIP='192.168.15.107'
     porta=6062
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
@@ -50,7 +51,7 @@ def conexao():
            print(novo_recebido)
            descriptografado=descifra(novo_recebido,n)
            print(str(descriptografado))
-           
+
 
     	conexao.close()
 conexao()
