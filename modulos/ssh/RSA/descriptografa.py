@@ -5,7 +5,11 @@
 
 from gera_chaves import *
 
-def descifra(cifra,n,d):
+def descifra(cifra,n):
+    arquivo2=open('chave_privada.txt','r')
+    d=arquivo2.readline()
+    d=int(d)
+
     lista=[]
     i=0
     tamanho=len(cifra)

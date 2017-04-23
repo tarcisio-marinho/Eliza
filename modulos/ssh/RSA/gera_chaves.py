@@ -85,5 +85,3 @@ def gerador():
     arquivo=open('chave_privada.txt','w')
     arquivo=open('chave_privada.txt','a')
     arquivo.write(str(d)+'\n')
-
-gerador()

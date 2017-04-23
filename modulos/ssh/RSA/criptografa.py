@@ -31,12 +31,8 @@ n=arquivo1.readline()
 n=int(n)
 e=arquivo1.readline()
 e=int(e)
-arquivo2=open('chave_privada.txt','r')
-d=arquivo2.readline()
-d=int(d)
-
 texto_puro=raw_input('insira o texto: ')
 resp=cipher(texto_puro,e,n)
 
-texto=descifra(resp,n,d)
+texto=descifra(resp,n)
 print(texto)
