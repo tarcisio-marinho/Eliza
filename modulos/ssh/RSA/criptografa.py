@@ -14,7 +14,7 @@ def mod(a,b):
         c=a%b
         return c
 
-def cipher(words,e,n):
+def cipher(words,n,e):
     tam=len(words)
     i=0
     lista=[]

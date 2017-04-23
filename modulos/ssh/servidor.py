@@ -13,6 +13,7 @@ def conexao():
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.bind((meuIP, porta))
+    socket_obj.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1) # se der ctrl + c, ele para de escutar na porta
     socket_obj.listen(1) # escuta apenas 1 cliente
 
     while True:
@@ -48,7 +49,8 @@ def conexao():
                novo_recebido.append(caracter) # adiciona na nova lista
            print(novo_recebido)
            descriptografado=descifra(novo_recebido,n)
-    	   conexao.send(b'texto original: %s')  %(descriptografado)
+           print(str(descriptografado))
+           
 
     	conexao.close()
 conexao()

@@ -25,8 +25,6 @@ while True:
     mensagem=b'%s' %(string) # enviou para o servidor em forma de string o texto
     socket_obj.send(mensagem)
 
-    data = socket_obj.recv(1024)
-    print(data)
 
     #a = raw_input('Voce: ')
     #mensagem = b'%s' % (a)
