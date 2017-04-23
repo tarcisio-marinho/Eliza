@@ -9,7 +9,7 @@ from RSA.descriptografa import *
 def conexao():
     # servidor
     meuIP='127.0.0.1'
-    porta=6063
+    porta=6061
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.bind((meuIP, porta))
@@ -38,13 +38,16 @@ def conexao():
         #arq.write(str(endereco)+'\n') # escreve no arquivo dos hosts conectados
     	# recebe dados enviados pelo cliente
     	while True:
-    	   recebido = conexao.recv(1024)
+           novo_recebido=[]
+    	   recebido = conexao.recv(1024) # recebe o que o cliente mandou
            print(recebido)
-           recebido.replace(' ','')
-           recebido=recebido.split(',')
-           print(recebido[0])
-           print(type(recebido[0]))
-           descriptografado=descifra(recebido,n)
+           recebido=recebido.split(',') # separa em uma lista
+
+           for caracter in recebido: # remove o L, que tem no fim dos caracteres
+               caracter=caracter.replace('L','')
+               novo_recebido.append(caracter) # adiciona na nova lista
+           print(novo_recebido)
+           descriptografado=descifra(novo_recebido,n)
     	   conexao.send(b'texto original: ' + descriptografado)
 
     	conexao.close()

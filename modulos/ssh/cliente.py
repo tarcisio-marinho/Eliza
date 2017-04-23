@@ -5,7 +5,7 @@ from socket import *
 from RSA.criptografa import *
 
 serverHost='127.0.0.1'
-porta=6063
+porta=6061
 
 socket_obj = socket(AF_INET, SOCK_STREAM)
 socket_obj.connect((serverHost, porta))
