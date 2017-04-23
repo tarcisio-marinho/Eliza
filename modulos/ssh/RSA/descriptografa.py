@@ -3,8 +3,10 @@
 # by Tarcisio marinho
 # github.com/tarcisio-marinho
 
+#CODIGO SERVIDOR
 from gera_chaves import *
 
+# TEM ACESSO A GERAÇÃO DAS CHAVES
 def descifra(cifra,n):
     arquivo2=open('chave_privada.txt','r')
     d=arquivo2.readline()
