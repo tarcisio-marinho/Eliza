@@ -5,7 +5,7 @@ from socket import *
 from RSA.criptografa import *
 
 serverHost='127.0.0.1'
-porta=6061
+porta=6062
 
 socket_obj = socket(AF_INET, SOCK_STREAM)
 socket_obj.connect((serverHost, porta))
@@ -24,6 +24,9 @@ while True:
     string=string.replace('[',' ').replace(']',' ').replace(' ','')
     mensagem=b'%s' %(string) # enviou para o servidor em forma de string o texto
     socket_obj.send(mensagem)
+
+    data = socket_obj.recv(1024)
+    print(data)
 
     #a = raw_input('Voce: ')
     #mensagem = b'%s' % (a)

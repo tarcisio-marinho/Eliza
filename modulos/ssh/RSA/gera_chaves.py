@@ -44,7 +44,7 @@ def generate_E(num): # recives totient of N as a parameter
 
 def generate_prime(): # generate the prime number - p e q
     while True: # 2**2048 is the RSA standart keys
-        x=random.randrange(1,100) # define the range of the primes
+        x=random.randrange(1,10) # define the range of the primes
         if(prime(x)==True):
             return x
 

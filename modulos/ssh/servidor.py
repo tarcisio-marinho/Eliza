@@ -9,7 +9,7 @@ from RSA.descriptografa import *
 def conexao():
     # servidor
     meuIP='127.0.0.1'
-    porta=6061
+    porta=6062
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.bind((meuIP, porta))
@@ -48,7 +48,7 @@ def conexao():
                novo_recebido.append(caracter) # adiciona na nova lista
            print(novo_recebido)
            descriptografado=descifra(novo_recebido,n)
-    	   conexao.send(b'texto original: ' + descriptografado)
+    	   conexao.send(b'texto original: %s')  %(descriptografado)
 
     	conexao.close()
 conexao()
