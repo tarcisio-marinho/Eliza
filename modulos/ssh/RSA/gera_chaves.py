@@ -3,6 +3,8 @@
 # by Tarcisio marinho
 # github.com/tarcisio-marinho
 
+# roda apenas 1 vez para achar as chaves
+
 import random
 
 def totient(number): # compute the totient of a prime number
@@ -24,8 +26,6 @@ def prime(number): # check if the number is prime
         return True
     else:
         return False
-
-
 
 def generate_E(num): # recives totient of N as a parameter
     def mdc(n1,n2): # compute the mdc of the totient of N and E
@@ -55,18 +55,6 @@ def mod(a,b): # mod function
         c=a%b
         return c
 
-def cipher(words,e,n): # get the words and compute the cipher
-    tam=len(words)
-    i=0
-    lista=[]
-    while(i<tam):
-        letter=words[i]
-        k=ord(letter)
-        k=k**e
-        d=mod(k,n)
-        lista.append(d)
-        i=i+1
-    return lista
 
 def private_key(toti,e):
     d=0
@@ -74,33 +62,28 @@ def private_key(toti,e):
         d=d+1
     return d
 
-def descifra(cifra,n,d):
-    lista=[]
-    i=0
-    tamanho=len(cifra)
-    # texto=cifra ^ d mod n
-    while i<tamanho:
-        result=cifra[i]**d
-        texto=mod(result,n)
-        letra=chr(texto)
-        lista.append(letra)
-        i=i+1
-    print(lista)
+def gerador():
+    # chave publica
+    p=generate_prime() # generates random P
+    q=generate_prime() # generates random Q
+    n=p*q # compute N
+    y=totient(p) # compute the totient of P
+    x=totient(q) # compute the totient of Q
+    totient_de_N=x*y # compute the totient of N
+    e=generate_E(totient_de_N) # generate E
+    public_key=[n,e]
+
+    arquivo=open('chave_publica.txt','w')
+    arquivo=open('chave_publica.txt','a')
+    arquivo.write(str(n)+'\n')
+    arquivo.write(str(e)+'\n')
 
 
-## MAIN
-text=raw_input('Insert the text that u want to cryptograph: ')
-p=generate_prime() # generates random P
-q=generate_prime() # generates random Q
-n=p*q # compute N
-y=totient(p) # compute the totient of P
-x=totient(q) # compute the totient of Q
-totient_de_N=x*y # compute the totient of N
-e=generate_E(totient_de_N) # generate E
-public_key=[n,e]
-print('Your public key is '+str(public_key))
-text_cipher=cipher(text,e,n)
-print(text_cipher)
-d=private_key(totient_de_N,e)
-print('Your private key is '+str(d))
-descifra(text_cipher,n,d)
+    # chave privada
+    d=private_key(totient_de_N,e)
+
+    arquivo=open('chave_privada.txt','w')
+    arquivo=open('chave_privada.txt','a')
+    arquivo.write(str(d)+'\n')
+
+gerador()

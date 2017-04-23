@@ -1,0 +1,19 @@
+#!/bin/bash/env python
+# coding=UTF-8
+# by Tarcisio marinho
+# github.com/tarcisio-marinho
+
+from gera_chaves import *
+
+def descifra(cifra,n,d):
+    lista=[]
+    i=0
+    tamanho=len(cifra)
+    # texto=cifra ^ d mod n
+    while i<tamanho:
+        result=cifra[i]**d
+        texto=mod(result,n)
+        letra=chr(texto)
+        lista.append(letra)
+        i=i+1
+    return lista
