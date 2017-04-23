@@ -17,6 +17,7 @@ def descifra(cifra,n):
     tamanho=len(cifra)
     # texto=cifra ^ d mod n
     while i<tamanho:
+        cifra[i]=int(cifra[i])
         result=cifra[i]**d
         texto=mod(result,n)
         letra=chr(texto)

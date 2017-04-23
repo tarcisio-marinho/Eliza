@@ -9,7 +9,7 @@ from RSA.descriptografa import *
 def conexao():
     # servidor
     meuIP='127.0.0.1'
-    porta=6069
+    porta=6063
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.bind((meuIP, porta))
@@ -37,12 +37,15 @@ def conexao():
 
         #arq.write(str(endereco)+'\n') # escreve no arquivo dos hosts conectados
     	# recebe dados enviados pelo cliente
-    	#while True:
-    	recebido = conexao.recv(1024)
-        print(type(recebido))
-        print(recebido)
-        #descriptografado=descifra(recebido,n)
-    	#conexao.send(b'texto original: ' + descriptografado)
+    	while True:
+    	   recebido = conexao.recv(1024)
+           print(recebido)
+           recebido.replace(' ','')
+           recebido=recebido.split(',')
+           print(recebido[0])
+           print(type(recebido[0]))
+           descriptografado=descifra(recebido,n)
+    	   conexao.send(b'texto original: ' + descriptografado)
 
     	conexao.close()
 conexao()
