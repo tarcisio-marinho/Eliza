@@ -7,7 +7,7 @@ from RSA.criptografa import *
 
 def conecta():
     serverHost='192.168.3.199'
-    porta=6062
+    porta=6064
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.connect((serverHost, porta))
@@ -21,8 +21,7 @@ def conecta():
 
     while True:
         if(a==0): # primeira mensagem a ser enviada para testar
-            criptografado=cipher('o',int(chave_publica[0]),int(chave_publica[1]))
-            print(criptografado) # envia o 'o' para o servidor para testar criptografia
+            criptografado=cipher('o',int(chave_publica[0]),int(chave_publica[1])) # envia o 'o' para o servidor para testar criptografia
             string=str(criptografado)
             string=string.replace('[',' ').replace(']',' ').replace(' ','')
             mensagem=b'%s' %(string) # enviou para o servidor em forma de string o texto

@@ -10,7 +10,7 @@ from RSA.descriptografa import *
 def conexao():
     # servidor
     meuIP='192.168.3.199' # ip estatico - corrigir
-    porta=6062
+    porta=6064
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.bind((meuIP, porta))
@@ -31,7 +31,7 @@ def conexao():
         print(n,e)
         conexao.send(b'' + str(n) +','+ str(e))
 
-
+# CLIENTE VAI MANDAR O 'O', SE FOR DIFERENTE DE O, O SERVIDOR FECHA E MANDA PRO CLIENTE FECHAR
 
         try:
             arq=open('conectados.txt','a')
@@ -56,6 +56,7 @@ def conexao():
            #teste
            char = str(descriptografado[0])
            print(char)
+           print(char[0])
            # validações
            #if():
                #conexao.close()
