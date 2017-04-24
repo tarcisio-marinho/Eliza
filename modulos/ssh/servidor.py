@@ -30,25 +30,24 @@ def conexao():
         print(n,e)
         conexao.send(b'' + str(n) +','+ str(e))
 
-        # enviou as chaves publicas
 
-        #try:
-        #    arq=open('conectados.txt','a')
-        #except:
-        #    arq=open('conectados.txt','w') # cria arquivo
 
-        #arq.write(str(endereco)+'\n') # escreve no arquivo dos hosts conectados
-    	# recebe dados enviados pelo cliente
+        try:
+            arq=open('conectados.txt','a')
+        except:
+            arq=open('conectados.txt','w') # cria arquivo
+
+        arq.write(str(endereco)+'\n') # escreve no arquivo dos hosts conectados
+
+        # recebe dados enviados pelo cliente
     	while True:
            novo_recebido=[]
     	   recebido = conexao.recv(1024) # recebe o que o cliente mandou
-           print(recebido)
            recebido=recebido.split(',') # separa em uma lista
 
            for caracter in recebido: # remove o L, que tem no fim dos caracteres
                caracter=caracter.replace('L','')
                novo_recebido.append(caracter) # adiciona na nova lista
-           print(novo_recebido)
            descriptografado=descifra(novo_recebido,n)
            print(str(descriptografado))
 
