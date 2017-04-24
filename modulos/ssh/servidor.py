@@ -9,13 +9,14 @@ from RSA.descriptografa import *
 
 def conexao():
     # servidor
-    meuIP='127.0.0.1'
-    porta=6063
+    meuIP='192.168.3.199' # ip estatico - corrigir
+    porta=6062
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.bind((meuIP, porta))
     socket_obj.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1) # se der ctrl + c, ele para de escutar na porta
     socket_obj.listen(1) # escuta apenas 1 cliente
+    print('Servidor rodando')
 
     while True:
     	conexao,endereco=socket_obj.accept()
@@ -50,7 +51,14 @@ def conexao():
                novo_recebido.append(caracter) # adiciona na nova lista
            descriptografado=descifra(novo_recebido,n)
            print(str(descriptografado))
+           conexao.send('ok') # mandou ok, significa que o comando do cliente foi recebido
 
+           #teste
+           char = str(descriptografado[0])
+           print(char)
+           # validações
+           #if():
+               #conexao.close()
 
     	conexao.close()
 conexao()
