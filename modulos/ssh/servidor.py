@@ -32,7 +32,7 @@ def conexao():
         conexao.send(b'' + str(n) +','+ str(e))
 
 # CLIENTE VAI MANDAR O 'O', SE FOR DIFERENTE DE O, O SERVIDOR FECHA E MANDA PRO CLIENTE FECHAR
-
+# ANTES DE ENVIAR A CRIPTOGRAFIA PRO CLIENT3, TESTAR SE A CRIPTOGRAFIA FUNCIONA 
         try:
             arq=open('conectados.txt','a')
         except:
