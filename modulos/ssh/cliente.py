@@ -6,15 +6,12 @@ from socket import *
 from RSA.criptografa import *
 
 def conecta():
-    serverHost='192.168.15.107'
-    
-    porta=6062
+    serverHost='127.0.0.1'
+    porta=6063
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
-    try:
-        socket_obj.connect((serverHost, porta))
-    except socket.error:
-        print('Servidor offline\n')
+    socket_obj.connect((serverHost, porta))
+
 
     # chave publica
     data = socket_obj.recv(1024) # recebeu do servidor a chave publica

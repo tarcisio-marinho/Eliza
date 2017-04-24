@@ -9,8 +9,8 @@ from RSA.descriptografa import *
 
 def conexao():
     # servidor
-    meuIP='192.168.15.107'
-    porta=6062
+    meuIP='127.0.0.1'
+    porta=6063
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.bind((meuIP, porta))
