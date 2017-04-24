@@ -7,6 +7,7 @@ from RSA.criptografa import *
 
 def conecta():
     serverHost='192.168.15.107'
+    
     porta=6062
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
