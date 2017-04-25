@@ -19,8 +19,7 @@ def conexao():
     #print('Servidor rodando')
 '''
     while True:
-        palavra_teste='o'
-        print(type(palavra_teste))
+        palavra_teste='oi'
         gerador()
         arquivo1=open('chave_publica.txt','r')
         n=arquivo1.readline()
@@ -33,12 +32,12 @@ def conexao():
         print(descriptografado)
         novo=str(descriptografado)
         print(novo)
-        print(type(novo))
+        novo=novo.replace(']','').replace('[','').replace("'","").replace(',','').replace(' ','')
+        print(novo)
         if(novo==palavra_teste):
             print('igual')
         else:
             print('DIFERENTE')
-        os.system('sleep 2')
 
 conexao()
 '''
