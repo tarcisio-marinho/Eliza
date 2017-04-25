@@ -64,14 +64,24 @@ def menu():
             lista.append(frase)
             identifica(frase,lista)
     except KeyboardInterrupt:
-        sair=raw_input('Deseja sair? ')
-        if(sair=='sim' or sair=='1' or sair=='quit' or sair=='s' or sair=='exit'):
-            print('Saindo...')
-            exit()
-        else:
-            menu()
+        while True:
+            try:
+                sair=raw_input('Deseja sair? ')
+                if(sair=='sim' or sair=='1' or sair=='quit' or sair=='s' or sair=='exit'):
+                    print('Saindo...')
+                    exit()
+                else:
+                    menu()
+            except:
+                sair=raw_input('Sim ou não?')
+                if(sair=='sim' or sair=='1' or sair=='quit' or sair=='s' or sair=='exit'):
+                    print('Saindo...')
+                    exit()
+                else:
+                    menu()
 
 # MAIN
-os.system('clear')
-print(banner)
-menu()
+if __name__=="__main__":
+    os.system('clear')
+    print(banner)
+    menu()
