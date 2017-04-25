@@ -3,6 +3,8 @@
 # by Tarcisio marinho
 # github.com/tarcisio-marinho
 import os
+import datetime
+import time
 from socket import *
 from RSA.gera_chaves import *
 from RSA.descriptografa import *
@@ -20,7 +22,8 @@ def conexao():
 
     while True:
     	conexao,endereco=socket_obj.accept()
-    	print('servidor conectado por', endereco)
+        hora=datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S') # hora de conexão -> unix timestamp
+    	print('servidor conectado por', endereco,hora)
         print('gerando as chaves... ')
         while True: # TESTE PARA GERAR CHAVES CORRETAS
             try:
@@ -48,14 +51,14 @@ def conexao():
         n=int(n)
         e=arquivo1.readline()
         e=int(e)
-        conexao.send(b'' + str(n) +','+ str(e))
+        conexao.send(b'' + str(n) +','+ str(e)) # envia pro cliente a chave publica
 
         try: # tenta abrir e escrever os clientes que foram conectados
             arq=open('conectados.txt','a')
         except:
             arq=open('conectados.txt','w') # cria arquivo
 
-        arq.write(str(endereco)+'\n') # escreve no arquivo dos hosts conectados
+        arq.write(str(endereco)+' - '+str(hora)+'\n') # escreve no arquivo dos hosts conectados
 
         # recebe dados enviados pelo cliente
     	while True:
@@ -67,7 +70,8 @@ def conexao():
                caracter=caracter.replace('L','')
                novo_recebido.append(caracter) # adiciona na nova lista
            descriptografado=descifra(novo_recebido,n)
-           print(str(descriptografado))
+           descriptografado=str(descriptografado).replace(']','').replace('[','').replace("'","").replace(',','')
+           print(descriptografado) # arrumar -> espaços ---  d e  b o a
            conexao.send('ok') # mandou ok, significa que o comando do cliente foi recebido
 
 
