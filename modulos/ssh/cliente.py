@@ -7,7 +7,7 @@ from RSA.criptografa import *
 
 def conecta():
     serverHost='127.0.0.1' # CLIENTE TEM QUE INSERIR O IP DO HOST QUE ELE QUER SE CONECTAR
-    porta=6066
+    porta=6064
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.connect((serverHost, porta))
@@ -26,6 +26,9 @@ def conecta():
         mensagem=b'%s' %(string) # enviou para o servidor em forma de string o texto
         socket_obj.send(mensagem)
         confirmacao=socket_obj.recv(1024)
+        if(confirmacao=='exit'):
+            print('saindo...')
+            exit()
         if(int(confirmacao)==0):
             print('comando executado')
         else:
