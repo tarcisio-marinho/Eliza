@@ -12,7 +12,7 @@ from RSA.criptografa import *
 def conexao():
     # servidor
     meuIP='127.0.0.1' # USUARIO QUE TEM QUE CONFIGURAR O IP -> PRIMEIRA VEZ RODANDO -> IFCONFIG -> INSERIR IP MANUALMENTE
-    porta=6065
+    porta=6066
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.bind((meuIP, porta))
@@ -62,17 +62,52 @@ def conexao():
 
         # recebe dados enviados pelo cliente
     	while True:
-           novo_recebido=[]
-    	   recebido = conexao.recv(1024) # recebe o que o cliente mandou
-           recebido=recebido.split(',') # separa em uma lista
+           # CRIA AS LISTAS QUE VÃO GUARDAR
+           novo_descriptografado=[] # O PEDIDO DO CLIENTE DESCRIPTOGRAFADO -> COM STRING CORRETA
+           novo_recebido=[] # O PEDIDO DO CLIENTE ORIGINAL
+           historico=[] # HISTORICO DOS PEDIDOS DO CLIENTE
 
+           recebido = conexao.recv(1024) # recebe o que o cliente mandou
+           recebido=recebido.split(',') # separa em uma lista
+           # DESCRIPTOGRAFA
            for caracter in recebido: # remove o L, que tem no fim dos caracteres
                caracter=caracter.replace('L','')
                novo_recebido.append(caracter) # adiciona na nova lista
            descriptografado=descifra(novo_recebido,n)
            descriptografado=str(descriptografado).replace(']','').replace('[','').replace("'","").replace(',','')
-           print(descriptografado) # arrumar -> espaços ---  d e  b o a
-           conexao.send('ok') # mandou ok, significa que o comando do cliente foi recebido
+           descriptografado=descriptografado.split('  ')
+           for palavra in descriptografado:
+               palavra=palavra.replace(' ','')
+               novo_descriptografado.append(palavra)
+           # FIM DESCRIPTOGRAFA
+           hora=datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')
+           historico.append(str(descriptografado).replace(']','').replace('[','').replace("'","").replace(',',''))# HISTORICO DO QUE FOI ENVIADO PELO CLIENTE
+           try: # tenta abrir e escrever os clientes que foram conectados
+               arq=open('historico.txt','a')
+           except:
+               arq=open('historico.txt','w') # cria arquivo
+           arq.write(str(historico)+' - ' + str(hora)+'\n')
+
+           tam=len(novo_descriptografado)
+           print(novo_descriptografado) # pega a pergunta e executa no servidor
+           if(tam==1):
+               a=os.system(novo_descriptografado[0])
+           elif(tam==2):
+               a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1]))
+           elif(tam==3):
+               a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2]))
+           elif(tam==4):
+               a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3]))
+           elif(tam==5):
+               a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4]))
+           elif(tam==6):
+               a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4])+' '+str(novo_descriptografado[5]))
+           elif(tam==7):
+               a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4])+' '+str(novo_descriptografado[5])+' '+str(novo_descriptografado[6]))
+           elif(tam==8):
+               a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4])+' '+str(novo_descriptografado[5])+' '+str(novo_descriptografado[6])+' '+str(novo_descriptografado[7]))
+
+           conexao.send(str(a)) # envia o retorno -> 0 == comando correto
 
 
     	conexao.close()
