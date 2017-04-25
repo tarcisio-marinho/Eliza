@@ -39,4 +39,4 @@ depois você precisa tornar executável os scripts:
 
 
 
-# Digite help para obter ajuda
+# Digite ajuda para obter ajuda
