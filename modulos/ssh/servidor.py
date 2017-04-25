@@ -5,18 +5,17 @@
 import os
 import datetime
 import time
-from socket import *
+import socket
 from RSA.gera_chaves import *
 from RSA.descriptografa import *
 from RSA.criptografa import *
-def conexao():
+def conexao(meuIP):
     # servidor
-    meuIP='127.0.0.1' # USUARIO QUE TEM QUE CONFIGURAR O IP -> PRIMEIRA VEZ RODANDO -> IFCONFIG -> INSERIR IP MANUALMENTE
     porta=6064
 
-    socket_obj = socket(AF_INET, SOCK_STREAM)
+    socket_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    socket_obj.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) # se der ctrl + c, ele para de escutar na porta
     socket_obj.bind((meuIP, porta))
-    socket_obj.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1) # se der ctrl + c, ele para de escutar na porta
     socket_obj.listen(1) # escuta apenas 1 cliente
     print('Servidor rodando')
 
@@ -116,4 +115,5 @@ def conexao():
 
 
     	conexao.close()
-conexao()
+meuIP='127.0.0.1' # USUARIO QUE TEM QUE CONFIGURAR O IP -> PRIMEIRA VEZ RODANDO -> IFCONFIG -> INSERIR IP MANUALMENTE
+conexao(meuIP)
