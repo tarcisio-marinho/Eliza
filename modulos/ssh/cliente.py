@@ -6,8 +6,8 @@ from socket import *
 from RSA.criptografa import *
 
 def conecta():
-    serverHost='192.168.3.199'
-    porta=6064
+    serverHost='127.0.0.1' # CLIENTE TEM QUE INSERIR O IP DO HOST QUE ELE QUER SE CONECTAR
+    porta=6065
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.connect((serverHost, porta))
