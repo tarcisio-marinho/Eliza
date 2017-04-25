@@ -6,18 +6,42 @@ import os
 from socket import *
 from RSA.gera_chaves import *
 from RSA.descriptografa import *
-
+from RSA.criptografa import *
 def conexao():
     # servidor
-    meuIP='192.168.3.199' # ip estatico - corrigir
+    '''meuIP='192.168.3.199' # ip estatico - corrigir
     porta=6064
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.bind((meuIP, porta))
     socket_obj.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1) # se der ctrl + c, ele para de escutar na porta
     socket_obj.listen(1) # escuta apenas 1 cliente
-    print('Servidor rodando')
+    #print('Servidor rodando')
+'''
+    while True:
+        palavra_teste='o'
+        print(type(palavra_teste))
+        gerador()
+        arquivo1=open('chave_publica.txt','r')
+        n=arquivo1.readline()
+        n=int(n)
+        e=arquivo1.readline()
+        e=int(e)
+        print(n,e)
+        criptografado=cipher(palavra_teste,n,e)
+        descriptografado=descifra(criptografado,n)
+        print(descriptografado)
+        novo=str(descriptografado)
+        print(novo)
+        print(type(novo))
+        if(novo==palavra_teste):
+            print('igual')
+        else:
+            print('DIFERENTE')
+        os.system('sleep 2')
 
+conexao()
+'''
     while True:
     	conexao,endereco=socket_obj.accept()
     	print('servidor conectado por', endereco)
@@ -32,7 +56,7 @@ def conexao():
         conexao.send(b'' + str(n) +','+ str(e))
 
 # CLIENTE VAI MANDAR O 'O', SE FOR DIFERENTE DE O, O SERVIDOR FECHA E MANDA PRO CLIENTE FECHAR
-# ANTES DE ENVIAR A CRIPTOGRAFIA PRO CLIENT3, TESTAR SE A CRIPTOGRAFIA FUNCIONA 
+# ANTES DE ENVIAR A CRIPTOGRAFIA PRO CLIENT3, TESTAR SE A CRIPTOGRAFIA FUNCIONA
         try:
             arq=open('conectados.txt','a')
         except:
@@ -63,3 +87,4 @@ def conexao():
 
     	conexao.close()
 conexao()
+'''
