@@ -43,6 +43,8 @@ def tocar():
                 try:
                     escolha=int(raw_input('Escolha: '))
                     break
+                except KeyboardInterrupt:
+                    return
                 except:
                     print('Apenas números\n')
 
@@ -52,6 +54,8 @@ def tocar():
                     try:
                         escolha=int(raw_input('Escolha: '))
                         break
+                    except KeyboardInterrupt:
+                        return
                     except:
                         print('Apenas números\n')
 
@@ -84,6 +88,8 @@ def tocar():
                     try:
                         escolha=int(raw_input('Escolha: '))
                         break
+                    except KeyboardInterrupt:
+                        return
                     except:
                         print('Apenas números\n')
 
@@ -93,6 +99,8 @@ def tocar():
                         try:
                             escolha=int(raw_input('Escolha: '))
                             break
+                        except KeyboardInterrupt:
+                            return
                         except:
                             print('Apenas números\n')
 
@@ -126,6 +134,8 @@ def tocar():
             try:
                 escolha=int(raw_input('Escolha: '))
                 break
+            except KeyboardInterrupt:
+                return
             except:
                 print('Apenas números\n')
 
@@ -136,6 +146,8 @@ def tocar():
                 try:
                     escolha=int(raw_input('Escolha: '))
                     break
+                except KeyboardInterrupt:
+                    return
                 except:
                     print('Apenas números\n')
 
@@ -165,6 +177,8 @@ def tocar():
                 try:
                     escolha=int(raw_input('Escolha: '))
                     break
+                except KeyboardInterrupt:
+                    return
                 except:
                     print('Apenas números\n')
 
@@ -175,6 +189,8 @@ def tocar():
                     try:
                         escolha=int(raw_input('Escolha: '))
                         break
+                    except KeyboardInterrupt:
+                        return
                     except:
                         print('Apenas números\n')
 
