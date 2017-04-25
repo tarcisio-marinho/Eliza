@@ -2,13 +2,13 @@
 # coding=UTF-8
 # by Tarcisio marinho
 # github.com/tarcisio-marinho
-from socket import *
+import socket
 from RSA.criptografa import *
 
 def conecta(serverHost):
     porta=6064
 
-    socket_obj = socket(AF_INET, SOCK_STREAM)
+    socket_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     socket_obj.connect((serverHost, porta))
 
 
