@@ -39,13 +39,22 @@ def tocar():
                     print(i,'Dir ->', dicionario[i])
                 i=i+1
 
-            escolha=raw_input('Escolha: ')
-            escolha=int(escolha)
+            while True: # valida que o usuario não digite letras
+                try:
+                    escolha=int(raw_input('Escolha: '))
+                    break
+                except:
+                    print('Apenas números\n')
 
-            while(escolha<0 or escolha>len(dicionario)-1): # SE DIGITAR STRING ELE BUGA
+            while(escolha<0 or escolha>len(dicionario)-1):
                 print('Numero fora da lista')
-                escolha=input('Escolha: ')
-                escolha=int(escolha)
+                while True: # valida que o usuario não digite letras
+                    try:
+                        escolha=int(raw_input('Escolha: '))
+                        break
+                    except:
+                        print('Apenas números\n')
+
             os.system('clear')
 
             if(os.path.isfile(dicionario[escolha])): # arquivo - tocar musica
@@ -71,13 +80,22 @@ def tocar():
                         print(i,'Dir ->', dicionario2[i])
                     i=i+1
 
-                escolha=raw_input('Escolha: ')
-                escolha=int(escolha)
+                while True: # valida que o usuario não digite letras
+                    try:
+                        escolha=int(raw_input('Escolha: '))
+                        break
+                    except:
+                        print('Apenas números\n')
 
                 while(escolha<0 or escolha>len(dicionario2)-1): # SE DIGITAR STRING ELE BUGA
                     print('Numero fora da lista')
-                    escolha=input('Escolha: ')
-                    escolha=int(escolha)
+                    while True: # valida que o usuario não digite letras
+                        try:
+                            escolha=int(raw_input('Escolha: '))
+                            break
+                        except:
+                            print('Apenas números\n')
+
                 print(dicionario2[escolha])
                 musica=dicionario2[escolha].replace(" ", "\ ").replace(" (", " \("). replace(")", "\)")
                 os.system('xdg-open '+musica)
@@ -104,13 +122,23 @@ def tocar():
                 print(i,'Dir ->', dicionario[i])
             i=i+1
 
-        escolha=raw_input('Escolha: ')
-        escolha=int(escolha)
+        while True: # valida que o usuario não digite letras
+            try:
+                escolha=int(raw_input('Escolha: '))
+                break
+            except:
+                print('Apenas números\n')
+
 
         while(escolha<0 or escolha>len(dicionario)-1): # SE DIGITAR STRING ELE BUGA
             print('Numero fora da lista')
-            escolha=input('Escolha: ')
-            escolha=int(escolha)
+            while True: # valida que o usuario não digite letras
+                try:
+                    escolha=int(raw_input('Escolha: '))
+                    break
+                except:
+                    print('Apenas números\n')
+
         os.system('clear')
 
         if(os.path.isfile(dicionario[escolha])): # arquivo - tocar musica
@@ -133,13 +161,23 @@ def tocar():
                     print(i,'Dir ->', dicionario2[i])
                 i=i+1
 
-            escolha=raw_input('Escolha: ')
-            escolha=int(escolha)
+            while True: # valida que o usuario não digite letras
+                try:
+                    escolha=int(raw_input('Escolha: '))
+                    break
+                except:
+                    print('Apenas números\n')
+
 
             while(escolha<0 or escolha>len(dicionario2)-1): # SE DIGITAR STRING ELE BUGA
                 print('Numero fora da lista')
-                escolha=input('Escolha: ')
-                escolha=int(escolha)
+                while True: # valida que o usuario não digite letras
+                    try:
+                        escolha=int(raw_input('Escolha: '))
+                        break
+                    except:
+                        print('Apenas números\n')
+
 
             print(dicionario2[escolha])
             musica=dicionario2[escolha].replace(" ", "\ ").replace(" (", " \("). replace(")", "\)")
