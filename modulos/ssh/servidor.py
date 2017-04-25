@@ -11,6 +11,14 @@ from RSA.descriptografa import *
 from RSA.criptografa import *
 def conexao(meuIP):
     # servidor
+    try:
+        senha=open('senha.txt','r')
+        nova_senha=senha.readline() # nova senha -> senha ja escolhida
+    except:
+        senha=open('senha.txt','w')
+        nova_senha=raw_input('Digite sua senha: ') # criou nova senha para o servidor
+        senha.write(nova_senha)
+
     porta=6064
 
     socket_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -51,7 +59,35 @@ def conexao(meuIP):
         e=arquivo1.readline()
         e=int(e)
         conexao.send(b'' + str(n) +','+ str(e)) # envia pro cliente a chave publica
+        # RECEBE A SENHA PARA SE CONECTAR AO SERVDIRO
 
+        recebido=conexao.recv(1024)
+        recebido=recebido.split(',')
+        print(recebido)
+        # DESCRIPTOGRAFA
+        novo_descriptografado=[]
+        novo_recebido=[]
+        for caracter in recebido: # remove o L, que tem no fim dos caracteres
+            caracter=caracter.replace('L','')
+            novo_recebido.append(caracter) # adiciona na nova lista
+        descriptografado=descifra(novo_recebido,n)
+        descriptografado=str(descriptografado).replace(']','').replace('[','').replace("'","").replace(',','')
+        descriptografado=descriptografado.split('  ')
+        for palavra in descriptografado:
+            palavra=palavra.replace(' ','')
+            novo_descriptografado.append(palavra)
+        # FIM DESCRIPTOGRAFA
+        print(novo_descriptografado)
+        novo_descriptografado=str(novo_descriptografado).replace('[','').replace(']','').replace("'","")
+        print(novo_descriptografado)
+        if(novo_descriptografado==nova_senha):
+            conexao.send('1') # acertou a senha, pode entrar
+        else:
+            print('senhas diferentes, nao pode entrar')
+            conexao.send('-1') # errou a senha
+            conexao.close()
+            exit()      ## NAO TA FUNCIONANDO, A CONEXAO NAO ESTA FECHANDO, E NÃO DEVE SER FECHADO O SERVIDOR
+        # FIM DA VERIFICACAO DA SENHA
         try: # tenta abrir e escrever os clientes que foram conectados
             arq=open('conectados.txt','a')
         except:

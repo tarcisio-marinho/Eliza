@@ -15,7 +15,24 @@ def conecta(serverHost):
     # chave publica
     data = socket_obj.recv(1024) # recebeu do servidor a chave publica
     chave_publica=data.split(',') # separou a chave -> N e E
-    print('Conectado ao servidor\nConexão criptografada\n')
+
+    senha=raw_input('Digite a senha para conectar ao servidor: ')
+
+    criptografado=cipher(senha,int(chave_publica[0]),int(chave_publica[1])) # criptografou o texto
+    string=str(criptografado)
+    string=string.replace('[',' ').replace(']',' ').replace(' ','')
+    mensagem=b'%s' %(string) # enviou para o servidor em forma de string o texto
+    socket_obj.send(mensagem)
+
+    confirmacao=socket_obj.recv(1024)
+    if(confirmacao=='1'):
+        print('Conectado ao servidor\nConexão criptografada\n')
+    elif(confirmacao=='-1'):
+        print('Senha incorreta\nSaindo...')
+        exit()
+    else:
+        print('deu algum erro\nSaindo...')
+        exit()
 
     while True:
         frase=raw_input('client@'+serverHost+':~$ ') # texto a ser criptografado e enviado
