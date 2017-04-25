@@ -12,7 +12,7 @@ from RSA.criptografa import *
 def conexao():
     # servidor
     meuIP='127.0.0.1' # USUARIO QUE TEM QUE CONFIGURAR O IP -> PRIMEIRA VEZ RODANDO -> IFCONFIG -> INSERIR IP MANUALMENTE
-    porta=6066
+    porta=6064
 
     socket_obj = socket(AF_INET, SOCK_STREAM)
     socket_obj.bind((meuIP, porta))
@@ -90,6 +90,11 @@ def conexao():
 
            tam=len(novo_descriptografado)
            print(novo_descriptografado) # pega a pergunta e executa no servidor
+           if(str(novo_descriptografado).replace(']','').replace('[','').replace("'","").replace(',','')=='exit'):
+               print('saindo\n')
+               conexao.send('exit')
+               conexao.close()
+               exit()
            if(tam==1):
                a=os.system(novo_descriptografado[0])
            elif(tam==2):
