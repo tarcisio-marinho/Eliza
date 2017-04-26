@@ -177,5 +177,6 @@ def conexao(meuIP):
 
 
         conexao.close()
+        
 meuIP='127.0.0.1' # USUARIO QUE TEM QUE CONFIGURAR O IP -> PRIMEIRA VEZ RODANDO -> IFCONFIG -> INSERIR IP MANUALMENTE
 conexao(meuIP)
