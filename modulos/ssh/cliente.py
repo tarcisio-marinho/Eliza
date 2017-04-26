@@ -5,6 +5,9 @@
 import socket
 from RSA.criptografa import *
 
+
+# CLIENTE TAMBEM TEM QUE GERAR AS CHAVES PUBLICAS E PRIVADAS
+# AES para salvar as senhas privadas e publicas
 def conecta(serverHost):
     porta=6064
     try:
@@ -42,14 +45,11 @@ def conecta(serverHost):
         string=string.replace('[',' ').replace(']',' ').replace(' ','')
         mensagem=b'%s' %(string) # enviou para o servidor em forma de string o texto
         socket_obj.send(mensagem)
-        confirmacao=socket_obj.recv(1024)
-        if(confirmacao=='exit'):
+        retorno_servidor=socket_obj.recv(1024)
+        if(retorno_servidor=='exit'):
             print('saindo...')
             exit()
-        if(int(confirmacao)==0):
-            print('comando executado')
-        else:
-            print('Comando incorreto')
+        print(retorno_servidor)
 
 
 serverHost='127.0.0.1' # CLIENTE TEM QUE INSERIR O IP DO HOST QUE ELE QUER SE CONECTAR
