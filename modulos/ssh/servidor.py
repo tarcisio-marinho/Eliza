@@ -14,7 +14,7 @@ def conexao(meuIP):
     # servidor
     try:
         senha=open('senha.txt','r')
-        nova_senha=senha.readline() # nova senha -> senha ja escolhida
+        hash_senha=senha.readline() # nova senha -> senha ja escolhida
     except:
         senha=open('senha.txt','w')
         nova_senha=raw_input('Digite sua senha: ') # criou nova senha para o servidor
