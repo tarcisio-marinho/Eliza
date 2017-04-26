@@ -7,11 +7,12 @@ from RSA.criptografa import *
 
 def conecta(serverHost):
     porta=6064
-
-    socket_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    socket_obj.connect((serverHost, porta))
-
-
+    try:
+        socket_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        socket_obj.connect((serverHost, porta))
+    except socket.error as erro:
+        print('Erro ocorrido: '+str(erro))
+        exit()
     # chave publica
     data = socket_obj.recv(1024) # recebeu do servidor a chave publica
     chave_publica=data.split(',') # separou a chave -> N e E
@@ -35,7 +36,7 @@ def conecta(serverHost):
         exit()
 
     while True:
-        frase=raw_input('client@'+serverHost+':~$ ') # texto a ser criptografado e enviado
+        frase=raw_input('cliente@'+serverHost+':~$ ') # texto a ser criptografado e enviado
         criptografado=cipher(frase,int(chave_publica[0]),int(chave_publica[1])) # criptografou o texto
         string=str(criptografado)
         string=string.replace('[',' ').replace(']',' ').replace(' ','')

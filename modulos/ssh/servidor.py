@@ -6,6 +6,7 @@ import os
 import datetime
 import time
 import socket
+import sha
 from RSA.gera_chaves import *
 from RSA.descriptografa import *
 from RSA.criptografa import *
@@ -17,8 +18,9 @@ def conexao(meuIP):
     except:
         senha=open('senha.txt','w')
         nova_senha=raw_input('Digite sua senha: ') # criou nova senha para o servidor
-        senha.write(nova_senha)
-
+        hash_senha=sha.new(nova_senha).hexdigest()
+        senha.write(hash_senha)
+        os.system("clear")
     while True:
         porta=6064
 
@@ -32,7 +34,7 @@ def conexao(meuIP):
         b=0 # se o cara acertar a senha -> b=1
     	conexao,endereco=socket_obj.accept()
         hora=datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S') # hora de conexão -> unix timestamp
-    	print('servidor conectado por', endereco,hora)
+    	print('servidor conectado por', endereco[0],hora)
         print('gerando as chaves... ')
         while True: # TESTE PARA GERAR CHAVES CORRETAS
             try:
@@ -67,7 +69,7 @@ def conexao(meuIP):
         recebido=recebido.split(',')
         print(recebido)
         # DESCRIPTOGRAFA
-        novo_descriptografado=[]
+        senha_descriptografada=[]
         novo_recebido=[]
         for caracter in recebido: # remove o L, que tem no fim dos caracteres
             caracter=caracter.replace('L','')
@@ -77,26 +79,31 @@ def conexao(meuIP):
         descriptografado=descriptografado.split('  ')
         for palavra in descriptografado:
             palavra=palavra.replace(' ','')
-            novo_descriptografado.append(palavra)
+            senha_descriptografada.append(palavra)
         # FIM DESCRIPTOGRAFA
-        print(novo_descriptografado)
-        novo_descriptografado=str(novo_descriptografado).replace('[','').replace(']','').replace("'","")
-        print(novo_descriptografado)
-        if(novo_descriptografado==nova_senha):
+        print(senha_descriptografada)
+        senha_descriptografada=str(senha_descriptografada).replace('[','').replace(']','').replace("'","")
+        print(senha_descriptografada)
+        hash_senha_descriptografada=sha.new(senha_descriptografada).hexdigest()
+
+        if(hash_senha_descriptografada==hash_senha):
             conexao.send('1') # acertou a senha, pode entrar
             b=1
+
         else:
             print('senhas diferentes, nao pode entrar')
             conexao.send('-1') # errou a senha
             conexao.close()
-            #exit()      ## NAO TA FUNCIONANDO, A CONEXAO NAO ESTA FECHANDO, E NÃO DEVE SER FECHADO O SERVIDOR
 
-        if(b==1): # ACERTOU A SENHA -> ENTRA NO SERVIDOR
+
+        # ACERTOU A SENHA -> ENTRA NO SERVIDOR
+        if(b==1):
+            print('IP '+str(endereco[0])+' conectou ao servidor')
             try: # tenta abrir e escrever os clientes que foram conectados
                 arq=open('conectados.txt','a')
             except:
                 arq=open('conectados.txt','w') # cria arquivo
-            arq.write(str(endereco)+' - '+str(hora)+'\n') # escreve no arquivo dos hosts conectados
+            arq.write(str(endereco[0])+' - '+str(hora)+'\n') # escreve no arquivo dos hosts conectados
 
                 # recebe dados enviados pelo cliente
             while True:
