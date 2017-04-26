@@ -7,18 +7,22 @@ import datetime
 import time
 import socket
 import sha
+import subprocess
 from RSA.gera_chaves import *
 from RSA.descriptografa import *
 from RSA.criptografa import *
+
+
+# AES para criptografar a senha privada
 def conexao(meuIP):
     # servidor
     try:
         senha=open('senha.txt','r')
-        hash_senha=senha.readline() # nova senha -> senha ja escolhida
+        hash_senha=senha.readline() # nova senha -> senha ja escolhida -> SHA1
     except:
         senha=open('senha.txt','w')
         nova_senha=raw_input('Digite sua senha: ') # criou nova senha para o servidor
-        hash_senha=sha.new(nova_senha).hexdigest()
+        hash_senha=sha.new(nova_senha).hexdigest() # SHA1 da senha
         senha.write(hash_senha)
         os.system("clear")
     while True:
@@ -141,23 +145,36 @@ def conexao(meuIP):
                     conexao.close()
                     exit()
                 if(tam==1):
-                    a=os.system(novo_descriptografado[0])
-                elif(tam==2):
-                    a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1]))
-                elif(tam==3):
-                    a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2]))
-                elif(tam==4):
-                    a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3]))
-                elif(tam==5):
-                    a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4]))
-                elif(tam==6):
-                    a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4])+' '+str(novo_descriptografado[5]))
-                elif(tam==7):
-                    a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4])+' '+str(novo_descriptografado[5])+' '+str(novo_descriptografado[6]))
-                elif(tam==8):
-                    a=os.system(str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4])+' '+str(novo_descriptografado[5])+' '+str(novo_descriptografado[6])+' '+str(novo_descriptografado[7]))
+                    comando = novo_descriptografado[0]
 
-                conexao.send(str(a)) # envia o retorno -> 0 == comando correto
+                elif(tam==2):
+                    comando = str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])
+
+                elif(tam==3):
+                    comando = str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])
+
+                elif(tam==4):
+                    comando = str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])
+
+                elif(tam==5):
+                    comando = str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4])
+
+                elif(tam==6):
+                    comando = str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4])+' '+str(novo_descriptografado[5])
+
+                elif(tam==7):
+                    comando=str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4])+' '+str(novo_descriptografado[5])+' '+str(novo_descriptografado[6])
+
+                elif(tam==8):
+                    comando = str(novo_descriptografado[0])+' '+str(novo_descriptografado[1])+' '+str(novo_descriptografado[2])+' '+str(novo_descriptografado[3])+' '+str(novo_descriptografado[4])+' '+str(novo_descriptografado[5])+' '+str(novo_descriptografado[6])+' '+str(novo_descriptografado[7])
+
+                try:
+                    a = subprocess.check_output(comando, shell=True)
+                    conexao.send(str(a)) # envia o retorno -> 0 == comando correto
+                except subprocess.CalledProcessError as e:
+                    print(e)
+                    conexao.send(str(e))
+
 
         conexao.close()
 meuIP='127.0.0.1' # USUARIO QUE TEM QUE CONFIGURAR O IP -> PRIMEIRA VEZ RODANDO -> IFCONFIG -> INSERIR IP MANUALMENTE
