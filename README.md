@@ -16,26 +16,26 @@ em desenvolvimento....
 # Primeira vez rodando
 Para pular todos os passos abaixo, execute o arquivo compilador.sh:
 
- - ~$ chmod +x compilar.sh
+    - ~$ chmod +x compilar.sh
 
- - ~$ ./compilar.sh
+    - ~$ ./compilar.sh
 
 porém se desejar fazer manualmente, siga os passos abaixo:
 é necessário instalar o instalador de modulos do python, o pip para poder instalar a biblioteca requests.
 
 Você pode baixar manualmente seguindo os comandos :
 
-- ~$ sudo apt-get update 
+    - ~$ sudo apt-get update 
 
-- ~$ sudo apt-get install python-pip
+    - ~$ sudo apt-get install python-pip
 
-- ~$ sudo apt-get install espeak
+    - ~$ sudo apt-get install espeak
 
-- ~$ pip install requests
+    - ~$ pip install requests
 
-- depois você precisa tornar executável os scripts:
+    - depois você precisa tornar executável os scripts:
 
-- ~$ chmod +x esvaziar.sh tocar.sh teste.sh
+    - ~$ chmod +x esvaziar.sh tocar.sh teste.sh
 
 
 
