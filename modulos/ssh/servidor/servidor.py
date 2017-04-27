@@ -8,6 +8,9 @@ import time
 import socket
 import sha
 import subprocess
+import sys
+
+sys.path.append('../')
 from RSA.gera_chaves import *
 from RSA.descriptografa import *
 from RSA.criptografa import *
@@ -25,6 +28,7 @@ def conexao(meuIP):
         hash_senha=sha.new(nova_senha).hexdigest() # SHA1 da senha
         senha.write(hash_senha)
         os.system("clear")
+
     while True:
         porta=6064
 
@@ -72,6 +76,7 @@ def conexao(meuIP):
         recebido=conexao.recv(1024)
         recebido=recebido.split(',')
         print(recebido)
+
         # DESCRIPTOGRAFA
         senha_descriptografada=[]
         novo_recebido=[]
@@ -85,6 +90,7 @@ def conexao(meuIP):
             palavra=palavra.replace(' ','')
             senha_descriptografada.append(palavra)
         # FIM DESCRIPTOGRAFA
+
         print(senha_descriptografada)
         senha_descriptografada=str(senha_descriptografada).replace('[','').replace(']','').replace("'","")
         print(senha_descriptografada)
@@ -109,7 +115,7 @@ def conexao(meuIP):
                 arq=open('conectados.txt','w') # cria arquivo
             arq.write(str(endereco[0])+' - '+str(hora)+'\n') # escreve no arquivo dos hosts conectados
 
-                # recebe dados enviados pelo cliente
+            # recebe dados enviados pelo cliente
             while True:
                 # CRIA AS LISTAS QUE VÃO GUARDAR
                 novo_descriptografado=[] # O PEDIDO DO CLIENTE DESCRIPTOGRAFADO -> COM STRING CORRETA
@@ -118,6 +124,7 @@ def conexao(meuIP):
 
                 recebido = conexao.recv(1024) # recebe o que o cliente mandou
                 recebido=recebido.split(',') # separa em uma lista
+
                 # DESCRIPTOGRAFA
                 for caracter in recebido: # remove o L, que tem no fim dos caracteres
                     caracter=caracter.replace('L','')
@@ -129,21 +136,26 @@ def conexao(meuIP):
                     palavra=palavra.replace(' ','')
                     novo_descriptografado.append(palavra)
                 # FIM DESCRIPTOGRAFA
+
+                # tenta abrir e escrever os clientes que foram conectados
                 hora=datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S')
                 historico.append(str(descriptografado).replace(']','').replace('[','').replace("'","").replace(',',''))# HISTORICO DO QUE FOI ENVIADO PELO CLIENTE
-                try: # tenta abrir e escrever os clientes que foram conectados
+                try:
                     arq=open('historico.txt','a')
                 except:
                     arq=open('historico.txt','w') # cria arquivo
                 arq.write(str(historico)+' - ' + str(hora)+'\n')
 
+                # pega a pergunta e executa no servidor
                 tam=len(novo_descriptografado)
-                print(novo_descriptografado) # pega a pergunta e executa no servidor
+                print(novo_descriptografado)
+                # se o usuario digitar exit
                 if(str(novo_descriptografado).replace(']','').replace('[','').replace("'","").replace(',','')=='exit'):
                     print('saindo\n')
                     conexao.send('exit')
                     conexao.close()
                     exit()
+                    
                 if(tam==1):
                     comando = novo_descriptografado[0]
 
@@ -177,6 +189,6 @@ def conexao(meuIP):
 
 
         conexao.close()
-        
+
 meuIP='127.0.0.1' # USUARIO QUE TEM QUE CONFIGURAR O IP -> PRIMEIRA VEZ RODANDO -> IFCONFIG -> INSERIR IP MANUALMENTE
 conexao(meuIP)

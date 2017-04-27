@@ -3,6 +3,8 @@
 # by Tarcisio marinho
 # github.com/tarcisio-marinho
 import socket
+import sys
+sys.path.append('../')
 from RSA.criptografa import *
 
 
