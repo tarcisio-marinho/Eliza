@@ -40,8 +40,12 @@ def conecta(serverHost):
         print('deu algum erro\nSaindo...')
         exit()
 
+    # Recebe o nome de usuario conectado 
+    usuario_conectado=socket_obj.recv(1024)
+    usuario_conectado=usuario_conectado.replace('\n','')
+
     while True:
-        frase=raw_input('cliente@'+serverHost+':~$ ') # texto a ser criptografado e enviado
+        frase=raw_input(usuario_conectado+'@'+serverHost+':~$ ') # texto a ser criptografado e enviado
         criptografado=cipher(frase,int(chave_publica[0]),int(chave_publica[1])) # criptografou o texto
         string=str(criptografado)
         string=string.replace('[',' ').replace(']',' ').replace(' ','')

