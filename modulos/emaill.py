@@ -13,7 +13,7 @@ def envia_email(email):
         smtp = smtplib.SMTP('smtp.gmail.com', 587)
         smtp.starttls()
 
-        # Email e senha da Eliza
+        # Email e senha da Eliza, por favor não utilizar #
         smtp.login('elizabot123@gmail.com','boteliza123')
 
         de = 'elizabot123@gmail.com'
