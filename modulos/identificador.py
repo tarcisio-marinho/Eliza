@@ -552,13 +552,13 @@ def identifica(frase,lista):
             print(str(atual_mes)+' meses')
         else:
             naotem=naotem+1
-        print(str(atual_dia)+' dias')
+        print(str(-atual_dia)+' dias')
         if(atual_ano!=0):
-            a='Eu tenho '+str(atual_ano)+' anos '+str(atual_mes)+' meses e ' +str(atual_dia)+' dias de idade'
+            a='Eu tenho '+str(atual_ano)+' anos '+str(atual_mes)+' meses e ' +str(-atual_dia)+' dias de idade'
         if(atual_ano==0):
-            a='Eu tenho '+str(atual_mes)+' meses e ' +str(atual_dia)+' dias de idade'
+            a='Eu tenho '+str(atual_mes)+' meses e ' +str(-atual_dia)+' dias de idade'
         if(naotem==2):
-            a='Eu tenho '+str(atual_dia)+' dias de idade'
+            a='Eu tenho '+str(-atual_dia)+' dias de idade'
 
         os.system('espeak -v pt-br -g 4 -a 100 "'+a+'"')
 
