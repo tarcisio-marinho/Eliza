@@ -1,17 +1,28 @@
 # Eliza, uma simples assistente pessoal para linux 
-em desenvolvimento....
+Feita com propósito de auxiliar tarefas no meu dia a dia no uso do linux
 
-# Testado:
+# Ações que Eliza faz:
+    - salva e edita renomeia e exclui arquivos de texto e diretórios
+    - toca músicas
+    - localiza onde você está
+    - checa o seu IP externo
+    - checa o clima de uma cidade
+    - checa a cotação do Dolar, Euro e BTC
+    - Envia emails com as novidades e promoções de sites
+    
+# Testado nos sistemas:
 - ubuntu
 - kali linux
 - deepin linux
-- python 2.7
+
+# Versão do python
+- 2.7
 
 # Download
-~$ git clone https://github.com/tarcisio-marinho/Eliza.git
+    ~$ git clone https://github.com/tarcisio-marinho/Eliza.git
 
 # Execução normal
-~$ python main.py
+    ~$ python main.py
 
 # Primeira vez rodando
 Para pular todos os passos abaixo, execute o arquivo compilador.sh:
