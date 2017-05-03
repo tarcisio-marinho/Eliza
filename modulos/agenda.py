@@ -29,6 +29,7 @@ def Agenda(nome_arquivo):
         except KeyboardInterrupt:
             print('arquivo foi salvo na pasta arquivos')
             os.system('espeak -v pt-br -g 4 -a 100 "arquivo foi salvo na pasta arquivos"')
+        arquivo_novo.close()
 
     else:
         arquivo=open('agenda.txt','a')
@@ -39,3 +40,4 @@ def Agenda(nome_arquivo):
         except KeyboardInterrupt:
             print('Arquivo salvo como agenda.txt na pasta agendados')
             os.system('espeak -v pt-br -g 4 -a 100 "arquivo salvo como agenda.txt na pasta agendados"')
+        arquivo.close()
