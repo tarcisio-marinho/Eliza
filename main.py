@@ -48,6 +48,7 @@ def menu():
                 os.system('./compilar.sh')
                 arquivo.write('atualizado')
                 os.system('clear')
+            arquivo.close()
             inicio=0
 
 
