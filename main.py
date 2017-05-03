@@ -72,7 +72,7 @@ def menu():
                     exit()
                 else:
                     menu()
-            except:
+            except KeyboardInterrupt:
                 sair=raw_input('Sim ou não?')
                 if(sair=='sim' or sair=='1' or sair=='quit' or sair=='s' or sair=='exit'):
                     print('Saindo...')
@@ -80,7 +80,7 @@ def menu():
                 else:
                     menu()
 
-# MAIN
+# MAIN #
 if __name__=="__main__":
     os.system('clear')
     print(banner)
