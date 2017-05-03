@@ -651,6 +651,9 @@ def identifica(frase,lista):
         try:
             arquivo=open('.email','r')
             email=arquivo.readline()
+            if(email==''): # Se o cara interromper, ele salva como arquivo vazio
+                enviado=0
+                raise KeyboardInterrupt
             envia_email(email)
             enviado=1
         except:
@@ -668,6 +671,7 @@ def identifica(frase,lista):
                 arquivo=open('.email','a')
                 arquivo.write(teste)
                 envia_email(teste)
+                print('Seu email está configurado')
         arquivo.close()
 
 
