@@ -17,6 +17,7 @@ from modulos.agenda import *
 from modulos.mapa import *
 from modulos.musica import *
 from modulos.ajuda import *
+from modulos.emaill import *
 
 
 #Não, estou triste, zangado, nervoso
@@ -638,11 +639,38 @@ def identifica(frase,lista):
                 os.system('espeak -v pt-br -g 4 -a 100 "Moeda Indisponível ou não existe"')
 
     elif(palavras[0]==lista_perguntas[0] or palavras[0]==lista_perguntas[1]):
-        if(palavras[0]==lista_perguntas[0]):
-            qual(palavras)
+        onde(palavras)
 
-        else:
-            onde(palavras)
+
+
+
+    # ENVIO DE EMAILS COM NOTIFICAÇÕES DE NOVIDADES #
+    elif(palavras[0]=='email'):
+
+        enviado=0
+        try:
+            arquivo=open('.email','r')
+            email=arquivo.readline()
+            envia_email(email)
+            enviado=1
+        except:
+            arquivo=open('.email','w')
+
+        if(enviado==0):
+
+            teste=raw_input('Digite o seu email, para enviar notificações: ')
+            padrao=re.findall(r'[\w\.-]+@[\w-]+\.[\w\.-]+',teste)
+
+            if(padrao==[]):
+                print('O digitado não é válido como email')
+
+            else:
+                arquivo=open('.email','a')
+                arquivo.write(teste)
+                envia_email(teste)
+        arquivo.close()
+
+
 
     # ler arquivo agendar com -> abrir arquivo
     elif(palavras[0]=='agenda' or palavras[0]=='agendar' or palavras[0]=='salvar'):

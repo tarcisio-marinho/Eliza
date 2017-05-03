@@ -32,13 +32,3 @@ teste email""" % (de, ', '.join(para))
         print('Erro ao enviar, email inválido')
     except socket.gaierror:
         print('Erro ao enviar, sem conexão')
-
-
-teste='tarcisio_marinho09@hotmail.com'
-padrao=re.findall(r'[\w\.-]+@[\w-]+\.[\w\.-]+',teste)
-
-if(padrao==[]):
-    print('O digitado não é válido como email')
-
-else:
-    envia_email(teste)

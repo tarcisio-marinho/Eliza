@@ -6,8 +6,6 @@ import requests
 import json
 import os
 
-def qual(palavras):
-	a=1
 
 
 def onde(palavras):
