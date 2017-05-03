@@ -45,8 +45,5 @@ Você pode baixar manualmente seguindo os comandos :
 
      ~$ pip install requests
 
-     depois você precisa tornar executável os scripts:
-
-     ~$ chmod +x esvaziar.sh tocar.sh teste.sh
 
 # Digite ajuda para obter ajuda
