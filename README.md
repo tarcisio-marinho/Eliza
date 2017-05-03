@@ -5,6 +5,7 @@ Feita com propósito de auxiliar tarefas no meu dia a dia no uso do linux
     - salva e edita renomeia e exclui arquivos de texto e diretórios
     - toca músicas
     - localiza onde você está
+    - localiza País/Estado de cidades
     - checa o seu IP externo
     - checa o clima de uma cidade
     - checa a cotação do Dolar, Euro e BTC
@@ -47,7 +48,5 @@ Você pode baixar manualmente seguindo os comandos :
      depois você precisa tornar executável os scripts:
 
      ~$ chmod +x esvaziar.sh tocar.sh teste.sh
-
-
 
 # Digite ajuda para obter ajuda
