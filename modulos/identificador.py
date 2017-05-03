@@ -20,19 +20,6 @@ from modulos.ajuda import *
 from modulos.emaill import *
 
 
-#Não, estou triste, zangado, nervoso
-
-#Compromissos - dia , hora, descrição,
-#Dicionário
-
-#Erro
-# onde fica sp
-# requests is using, and change it, using the r.encoding property:
-
-#>>> r.encoding'utf-8'>>> r.encoding = 'ISO-8859-1'
-
-#If you change the encoding, Requests will use the new value of r.encodingwhenever you call r.text.
-
 
 sobre_eliza='''
 Opa! Sou eliza uma assistente pessoal para o linux!
@@ -52,37 +39,18 @@ nascimento_ano=2017
 lista_perguntas=['qual','onde']
 lista_de_comandos=['historico','clear','ajuda','hora','dia','renomear','ip','onde estou','pais','tocar','renomear','localizacao','cotacao','criar','remover','editar','calculadora','esvaziar','sair','onde fica','procurar','clima']
 
-versao=0.3
+versao=0.4
 
+# status do sistema #
 sistema=os.uname()
 
-
-
-
-# tradução de texto
-#API'S
-#youtube- recomendados - novos videos
-#twitch - principais streamers
-#
-#ler(livro)
-#youtube(nome_video)
-#busca(google_nome)
-#atividades(){
-#  print(atividades.txt)
-#}
-#ligarssh
-
-# o que é fecicidade, amor, sentimentos em geral
-
-#voce é feliz ?
-
-# atualizar o sistema -> sudo apt-get update && sudo apt-get upgrade
 
 def identifica(frase,lista):
     #Funcoes primarias
     palavras=frase.split(' ')
     tam=len(palavras)
 
+    # codigo do ajuda, imprime os comandos #
     if(palavras[0]=='ajuda'):
         tam=len(palavras)
         if(tam==1):
@@ -96,6 +64,7 @@ def identifica(frase,lista):
             comando=palavras[1]+' '+palavras[2]+' '+palavras[3]
             ajudar(comando,lista_de_comandos)
 
+    # sai do programa #
     elif(frase=='tchau' or frase=='adeus' or frase=='adeus eliza' or frase=='tchau eliza' or frase=='quit' or frase=='sair' or frase=='exit' or frase=='vazar'):
         x=random.randrange(1,4)
         if(x==1):
@@ -532,7 +501,6 @@ def identifica(frase,lista):
     elif(palavras[0]=='tocar'):
         tocar()
 
-    #elif(frase=='entrar na pasta')
 
     elif(frase=='qual sua idade' or frase=='qual sua idade?' or frase=='quantos anos você tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos você tem?' or frase=='quantos anos você tem'):
         now=datetime.now()
@@ -561,10 +529,6 @@ def identifica(frase,lista):
             a='Eu tenho '+str(-atual_dia)+' dias de idade'
 
         os.system('espeak -v pt-br -g 4 -a 100 "'+a+'"')
-
-#    elif(palavras[0]=='tocar' or palavras[0]=='musica'):
-
-
 
 
     elif(frase=='esvaziar lixeira' or frase=='esvaziar'):
@@ -640,9 +604,6 @@ def identifica(frase,lista):
 
     elif(palavras[0]==lista_perguntas[0] or palavras[0]==lista_perguntas[1]):
         onde(palavras)
-
-
-
 
     # ENVIO DE EMAILS COM NOTIFICAÇÕES DE NOVIDADES #
     elif(palavras[0]=='email'):
