@@ -19,3 +19,18 @@ def busca(string):
 
     for div in soup.find_all('div', class_='g'):
         print(div.text)
+
+        
+# YOUTUBE        
+#class_="yt-lockup-content"
+#<a.title>
+# a.data-ytid
+
+#receber sites como entrada, ex
+# olx -> procura todos os produtos escolhidos
+# mercado livre 
+# facebook
+# yt
+# google
+# steam
+# github
