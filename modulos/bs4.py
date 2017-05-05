@@ -35,3 +35,4 @@ def busca(string):
 # steam
 # github
 # https://www.youtube.com/watch?v=3xQTJi2tqgk
+# https://imasters.com.br/desenvolvimento/aprendendo-sobre-web-scraping-em-python-utilizando-beautifulsoup/?trace=1519021197&source=single
