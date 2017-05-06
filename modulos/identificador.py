@@ -37,7 +37,7 @@ nascimento_mes=3
 nascimento_ano=2017
 
 lista_perguntas=['qual','onde']
-lista_de_comandos=['historico','clear','ajuda','hora','dia','renomear','ip','onde estou','pais','tocar','renomear','localizacao','cotacao','criar','remover','editar','calculadora','esvaziar','sair','onde fica','procurar','clima']
+lista_de_comandos=['quem é','historico','clear','ajuda','hora','dia','renomear','ip','onde estou','pais','tocar','renomear','localizacao','cotacao','criar','remover','editar','calculadora','esvaziar','sair','onde fica','procurar','clima']
 
 versao=0.4
 

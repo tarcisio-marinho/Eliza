@@ -10,7 +10,10 @@ def ajudar(comando,lista_de_comandos):
     encontrou=0
     for com in lista_de_comandos:
         if(comando==com):
-            if(com=='hora'):
+            if(com=='quem é'):
+                print('O comando quem é, busca no wikipedia sobre uma pessoa\nEx: quem é barack obama')
+                
+            elif(com=='hora'):
                 print('O comando hora, mostra a hora atual\nNão precisa de nenhum argumento')
 
             elif(com=='dia'):
@@ -72,7 +75,7 @@ def ajudar(comando,lista_de_comandos):
 
             elif(com=='historico'):
                 print('O comando historico, mostra o historico digitado por você\nNão precisa de outros argumentos\n')
-                
+
             encontrou=1
 
     if(encontrou==0):

@@ -13,8 +13,9 @@ import random
 from modulos.identificador import *
 
 
+BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\033[0m'
 
-banner='''
+banner='''{0}
  _____  _  _
 |  ___|| |(_)
 | |__  | | _  ____ __ _
@@ -23,11 +24,11 @@ banner='''
 \____/ |_||_|/___|\__,_|
 
 
-Bem vindo a Eliza, sua assistente pessoal
+{1}Bem vindo a Eliza, sua assistente pessoal
 Digite ajuda para ver a documentação
-'''
+'''.format(BLUE,GREEN)
 
-mensagem_eliza='\nComo posso te ajudar?\n~$ '
+mensagem_eliza='\n{0}Como posso te ajudar?\n~$ {1}'.format(YELLOW,END)
 
 diretorio_atual=os.getcwd()
 
