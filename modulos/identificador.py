@@ -18,7 +18,7 @@ from modulos.mapa import *
 from modulos.musica import *
 from modulos.ajuda import *
 from modulos.emaill import *
-
+from modulos.web_scrapping import *
 
 
 sobre_eliza='''
@@ -604,6 +604,41 @@ def identifica(frase,lista):
 
     elif(palavras[0]==lista_perguntas[0] or palavras[0]==lista_perguntas[1]):
         onde(palavras)
+        tam=len(palavras)
+        if(tam==3):
+            busca(palavras[2])
+        elif(tam==4):
+            busca(palavras[2]+' '+palavras[3])
+        elif(tam==5):
+            busca(palavras[2]+' '+palavras[3]+' '+palavras[4])
+        elif(tam==6):
+            busca(palavras[2]+' '+palavras[3]+' '+palavras[4]+' '+palavras[5])
+        elif(tam==7):
+            busca(palavras[2]+' '+palavras[3]+' '+palavras[4]+' '+palavras[6]+' '+palavras[7])
+
+    elif(palavras[0]=='quem' or frase=='qm'):
+        tam=len(palavras)
+        if(tam==1):
+            print('Sintaxe incorreta')
+            os.system('espeak -v pt-br -g 4 -a 100 "Sintaxe incorreta"')
+        elif(palavras[1]=='é' or palavras[1]=='e' or palavras[1]=='eh' or palavras[1]=='foi' or palavras[1]=='era'):
+            if(tam==2):
+                print('Sintaxe incorreta')
+                os.system('espeak -v pt-br -g 4 -a 100 "Sintaxe incorreta"')
+            elif(tam==3):
+                busca(palavras[2])
+            elif(tam==4):
+                busca(palavras[2]+' '+palavras[3])
+            elif(tam==5):
+                busca(palavras[2]+' '+palavras[3]+' '+palavras[4])
+            elif(tam==6):
+                busca(palavras[2]+' '+palavras[3]+' '+palavras[4]+' '+palavras[5])
+            elif(tam==7):
+                busca(palavras[2]+' '+palavras[3]+' '+palavras[4]+' '+palavras[6]+' '+palavras[7])
+
+        else:
+            print('Sintaxe incorreta')
+            os.system('espeak -v pt-br -g 4 -a 100 "Sintaxe incorreta"')
 
     # ENVIO DE EMAILS COM NOTIFICAÇÕES DE NOVIDADES #
     elif(palavras[0]=='email'):
