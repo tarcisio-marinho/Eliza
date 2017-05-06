@@ -618,7 +618,7 @@ def identifica(frase,lista):
             envia_email(email)
             enviado=1
         except:
-            arquivo=open('.email','w')
+            arquivo=open('.email.txt','w')
 
         if(enviado==0):
 
@@ -629,7 +629,7 @@ def identifica(frase,lista):
                 print('O digitado não é válido como email')
 
             else:
-                arquivo=open('.email','a')
+                arquivo=open('.email.txt','a')
                 arquivo.write(teste)
                 envia_email(teste)
                 print('Seu email está configurado')
