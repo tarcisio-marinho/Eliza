@@ -1,5 +1,7 @@
 # Eliza, uma simples assistente pessoal para linux 
-Feita com propósito de auxiliar tarefas no meu dia a dia no uso do linux
+Feita com propósito de auxiliar tarefas do meu dia a dia no uso do linux
+É importante e relevante pois aproxima e melhora a relação entre homem/maquina
+facilitando e diminuido tempo de buscas e execução de tarefas.
 
 # Ações que Eliza faz:
     - salva e edita renomeia e exclui arquivos de texto e diretórios
@@ -43,7 +45,9 @@ Você pode baixar manualmente seguindo os comandos :
 
      ~$ sudo apt-get install espeak
 
-     ~$ pip install requests
+     ~$ sudo pip install requests
+     
+     ~$ sudo pip install beautifulsoup4
 
 
 # Digite ajuda para obter ajuda
