@@ -45,7 +45,9 @@ Você pode baixar manualmente seguindo os comandos :
 
      ~$ sudo apt-get install espeak
 
-     ~$ pip install requests
+     ~$ sudo pip install requests
+     
+     ~$ sudo pip install beautifulsoup4
 
 
 # Digite ajuda para obter ajuda
