@@ -10,9 +10,15 @@ def ajudar(comando,lista_de_comandos):
     encontrou=0
     for com in lista_de_comandos:
         if(comando==com):
-            if(com=='quem é'):
+            if(com=='busca'):
+                print('O comando busca, procura no wikipedia o que você quiser\nEx: busca barack obama\n')
+
+            elif(com=='email'):
+                print('O comando email, manda emails para o email digitado assim que chegar alguma atualização sua\nApenas digite o email para cadastrar')
+
+            elif(com=='quem é'):
                 print('O comando quem é, busca no wikipedia sobre uma pessoa\nEx: quem é barack obama')
-                
+
             elif(com=='hora'):
                 print('O comando hora, mostra a hora atual\nNão precisa de nenhum argumento')
 

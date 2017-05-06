@@ -37,7 +37,7 @@ nascimento_mes=3
 nascimento_ano=2017
 
 lista_perguntas=['qual','onde']
-lista_de_comandos=['quem é','historico','clear','ajuda','hora','dia','renomear','ip','onde estou','pais','tocar','renomear','localizacao','cotacao','criar','remover','editar','calculadora','esvaziar','sair','onde fica','procurar','clima']
+lista_de_comandos=['busca','email','quem é','historico','clear','ajuda','hora','dia','renomear','ip','onde estou','pais','tocar','renomear','localizacao','cotacao','criar','remover','editar','calculadora','esvaziar','sair','onde fica','procurar','clima']
 
 versao=0.4
 
@@ -616,7 +616,7 @@ def identifica(frase,lista):
         elif(tam==7):
             busca(palavras[2]+' '+palavras[3]+' '+palavras[4]+' '+palavras[6]+' '+palavras[7])
 
-    elif(palavras[0]=='quem' or frase=='qm'):
+    elif(palavras[0]=='quem' or palavras[0]=='qm'):
         tam=len(palavras)
         if(tam==1):
             print('Sintaxe incorreta')
@@ -639,6 +639,23 @@ def identifica(frase,lista):
         else:
             print('Sintaxe incorreta')
             os.system('espeak -v pt-br -g 4 -a 100 "Sintaxe incorreta"')
+
+    elif(palavras[0]=='busca' or palavras[0]=='buscar'):
+        tam=len(palavras)
+        if(tam==1):
+            print('Sintaxe incorreta')
+        elif(tam==2):
+            busca(palavras[1])
+        elif(tam==3):
+            busca(palavras[1]+' '+palavras[2])
+        elif(tam==4):
+            busca(palavras[1]+' '+palavras[2]+' '+palavras[3])
+        elif(tam==5):
+            busca(palavras[1]+' '+palavras[2]+' '+palavras[3]+' '+palavras[4])
+        elif(tam==6):
+            busca(palavras[1]+' '+palavras[2]+' '+palavras[3]+' '+palavras[4]+' '+palavras[5])
+
+
 
     # ENVIO DE EMAILS COM NOTIFICAÇÕES DE NOVIDADES #
     elif(palavras[0]=='email'):

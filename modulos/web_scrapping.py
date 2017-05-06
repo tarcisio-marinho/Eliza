@@ -14,11 +14,13 @@ def busca(string):
         bs_obj = bs.BeautifulSoup(texto_html.text, 'lxml') # continua em html porém como objeto bs4
     except requests.exceptions.ConnectionError:
         print('Sem conexão a internet')
+        os.system('espeak -v pt-br -g 4 -a 100 "Sem conexão com a internet"')
         return
 
     try:
         if(str(bs_obj.p.text[0])+ str(bs_obj.p.text[1])+str(bs_obj.p.text[2])=='A W'):
             print('nao achou')
+            os.system('espeak -v pt-br -g 4 -a 100 "Não achou"')
             return
     except:
         pass
