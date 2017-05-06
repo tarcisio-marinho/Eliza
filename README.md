@@ -1,6 +1,5 @@
 # Eliza, uma simples assistente pessoal para linux 
 Feita com propósito de auxiliar tarefas do meu dia a dia no uso do linux.
-
 É importante e relevante pois aproxima e melhora a relação entre homem/maquina
 facilitando e diminuido tempo de buscas e execução de tarefas.
 
