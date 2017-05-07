@@ -11,3 +11,6 @@ Neste diretório, contem os módulos que executam funções da Eliza.
     requisicao -> módulo para buscar a cotação da moeda e buscar filmes
     search -> busca a localização de uma cidade/estado/país 
     web_scrapping -> busca no wikipedia um determinado assunto
+
+# Ajuda
+Para obter ajuda sobre um dos módulos, digite **ajuda**
