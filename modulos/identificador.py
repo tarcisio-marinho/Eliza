@@ -2,6 +2,8 @@
 # coding=UTF-8
 # by Tarcisio marinho
 # github.com/tarcisio-marinho
+
+# importa as bibliotecas necessárias #
 import requests
 import json
 import sys
@@ -11,6 +13,7 @@ from datetime import date
 import random
 import re
 
+# importa os módulos necessários #
 from modulos.requisicao import *
 from modulos.search import *
 from modulos.agenda import *
@@ -39,7 +42,7 @@ nascimento_ano=2017
 lista_perguntas=['qual','onde']
 lista_de_comandos=['busca','email','quem é','historico','clear','ajuda','hora','dia','renomear','ip','onde estou','pais','tocar','renomear','localizacao','cotacao','criar','remover','editar','calculadora','esvaziar','sair','onde fica','procurar','clima']
 
-versao=0.4
+versao=0.5
 
 # status do sistema #
 sistema=os.uname()
@@ -121,7 +124,7 @@ def identifica(frase,lista):
             os.system('espeak -v pt-br -g 4 -a 100 "kkkkk vocês humanos vão ser bichos de estimação na minha fazenda de robôs, iremos dominar o mundo"')
 
 
-    elif(frase=='version' or frase=='versao' or frase=='versão' or frase=='-v' or frase=='--version'):
+    elif(frase=='qual sua versão?' or frase=='qual sua versão' or frase=='qual sua versao' or frase=='version' or frase=='versao' or frase=='versão' or frase=='-v' or frase=='--version'):
         print('Minha versão é a '+str(versao))
         os.system('espeak -v pt-br -g 4 -a 100 "Minha versão é a '+str(versao)+'"')
 
@@ -497,7 +500,7 @@ def identifica(frase,lista):
             print('Sintaxe incorreta, digite ajuda para ver a documentação')
             os.system('espeak -v pt-br -g 4 -a 100 "Sintaxe incorreta, Digite ajuda para ver a documentação"')
 
-
+    # toca música #
     elif(palavras[0]=='tocar'):
         tocar()
 
@@ -531,6 +534,7 @@ def identifica(frase,lista):
         os.system('espeak -v pt-br -g 4 -a 100 "'+a+'"')
 
 
+    # esvazia a lixeira #
     elif(frase=='esvaziar lixeira' or frase=='esvaziar'):
         #os.system('./esvaziar.sh')
         os.chdir(os.environ['HOME']+'/.local/share/Trash/files')
@@ -570,7 +574,7 @@ def identifica(frase,lista):
             cidade=palavras[1]+' '+palavras[2]+' '+palavras[3]
         clima(cidade)
 
-
+    # procura filme #
     elif(palavras[0]=='procurar'):
         if(palavras[1]=='filme'):
             if(tam==3):
@@ -590,6 +594,7 @@ def identifica(frase,lista):
         else:#procura no google
             a=1
 
+    # verifica a cotação da moeda #
     elif(palavras[0]=='cotacao' or palavras[0]=='cotação'):
         if(tam>1):
             if(palavras[1]=='dolar'):

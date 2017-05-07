@@ -21,11 +21,11 @@ banner='''{0}
 | |__  | | _  ____ __ _
 |  __| | || ||_  // _` |
 | |___ | || | / /| (_| |
-\____/ |_||_|/___|\__,_|            
+\____/ |_||_|/___|\__,_|
 
 
-{1}Bem vindo a Eliza, sua assistente pessoal
-Digite ajuda para ver a documentação
+{1}Bem vindo a Eliza, uma assistente pessoal. \nPosso te auxiliar nas suas tarefas
+Digite ajuda para ver o que eu faço!
 '''.format(BLUE,GREEN)
 
 mensagem_eliza='\n{0}Como posso te ajudar?\n~$ {1}'.format(YELLOW,WHITE)
