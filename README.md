@@ -13,6 +13,7 @@ facilitando e diminuido tempo de buscas e execução de tarefas.
     - checa o clima de uma cidade
     - checa a cotação do Dolar, Euro e BTC
     - Envia emails com as novidades e promoções de sites
+** ajuda dos módulos ** https://github.com/tarcisio-marinho/Eliza/blob/master/modulos/README.md
     
 # Testado nos sistemas:
 - ubuntu
