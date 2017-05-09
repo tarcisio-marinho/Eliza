@@ -1,0 +1,10 @@
+{
+  "config": {
+      "encoding":"FLAC",
+      "sampleRateHertz": 16000,
+      "languageCode": "en-US"
+  },
+  "audio": {
+      "uri":"gs://cloud-samples-tests/speech/brooklyn.flac"
+  }
+}
