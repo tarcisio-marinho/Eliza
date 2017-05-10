@@ -502,7 +502,13 @@ def identifica(frase,lista):
 
     # toca música #
     elif(palavras[0]=='tocar'):
-        tocar()
+        tam=len(palavras)
+        if(tam==1):
+            tocar()
+        elif(tam==2):
+            tocar(palavras[1])
+        elif(tam==3):
+            tocar(palavras[1]+' '+palavras[2])
 
 
     elif(frase=='qual sua idade' or frase=='qual sua idade?' or frase=='quantos anos você tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos voce tem?' or frase=='quantos anos você tem?' or frase=='quantos anos você tem'):

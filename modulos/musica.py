@@ -3,7 +3,7 @@
 # by Tarcisio marinho
 # github.com/tarcisio-marinho
 import os
-def tocar():
+def tocar(nome=None):
     dicionario={} # cria um dicionario para salvar as pastas e musicas digitadas pelo usuario
     retorno=''
     i=0
@@ -14,7 +14,15 @@ def tocar():
     except IOError:
         arquivo_config=open('.config.txt','w') # nao conseguiu ler -> cria arquivo vazio onde será as pastas das musicas
 
-    if(retorno==''):
+    # se o usuario digitar uma musica específica
+    if(nome!=None):
+        if(retorno==''):
+            print('execute o comando: tocar\nPara configurar a sua pasta de músicas.')
+        else:
+            print('configurado ja')
+
+    # senão escolhe a música para tocar
+    elif(retorno==''):
         pasta=raw_input('Onde está salvo suas músicas?\nEx: -> Desktop/Musicas/ ou /Musicas/ ou /Music/\n~$ ')
         caminho=os.environ['HOME'] +'/'+ pasta+'/'
         resp=os.path.isdir(caminho) # checa se o diretorio existe
@@ -115,7 +123,8 @@ def tocar():
         else:
             print('Diretório não existe')
 
-    else: # ja esta salvo no arquivo .config.txt, e ele so escolhe a musica
+    # ja esta salvo no arquivo .config.txt, e ele so escolhe a musica
+    else:
         arquivo_config=open('.config.txt','r')
         caminho=arquivo_config.readline()
         os.chdir(caminho)
