@@ -11,7 +11,7 @@ def listar(diretorio):
     musicas=[]
     for caminho, diretorio, arquivo in os.walk(diretorio):
         for musica in arquivo:
-            a=caminho+'/'+(musica.replace(" ", "\ ").replace(" (", " \("). replace(")", "\)"))
+            a=caminho+'/'+musica
             musicas.append(a)
 
     # retorna a lista com todas as musicas #

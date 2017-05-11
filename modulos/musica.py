@@ -3,12 +3,15 @@
 # by Tarcisio marinho
 # github.com/tarcisio-marinho
 import os
+import re
+import random
 from list_music import *
 '''
     Método que toca músicas que estão salvas em uma pasta no pc
 '''
 def tocar(nome=None):
     dicionario={} # cria um dicionario para salvar as pastas e musicas digitadas pelo usuario
+    tocar=[] # cria uma lista onde vai salvar as músicas encontradas e que serão tocadas
     retorno=''
     i=0
     try:
@@ -23,9 +26,28 @@ def tocar(nome=None):
         if(retorno==''):
             print('execute apenas o comando: tocar\nPara configurar a sua pasta de músicas.')
         else:
+            achou=0
             # retorna todas as musicas na pasta
             todas_as_musicas = listar(retorno)
-            # usar REGEx para achar a musica que o cara digitar no tocar aaa
+            for musica in todas_as_musicas:
+                padrao=re.search(nome,musica.lower())
+                if(padrao!=None):
+                    tocar.append(musica.replace(" ", "\ ").replace(" (", " \("). replace(")", "\)"))
+                    achou=achou+1
+            if(achou==0):
+                print('Nenhuma música encontrada')
+            elif(achou==1):
+                print('Música encontrada\nReproduzindo...')
+                os.system('sleep 1')
+                os.system('xdg-open '+tocar[0])
+            elif(achou>1):
+                print('Várias músicas encontradas\nVou escolher uma aleatória, espero que goste :)\n')
+                os.system('sleep 1')
+                tam=len(tocar)
+                x=random.randrange(0,tam)
+                os.system('xdg-open '+tocar[x])
+
+
 
     # senão escolhe a música para tocar
     elif(retorno==''):
