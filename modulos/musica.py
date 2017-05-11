@@ -25,8 +25,8 @@ def tocar(nome=None):
         else:
             # retorna todas as musicas na pasta
             todas_as_musicas = listar(retorno)
-            # usar REGEx para achar a musica que o cara digitar no tocar
-            
+            # usar REGEx para achar a musica que o cara digitar no tocar aaa
+
     # senão escolhe a música para tocar
     elif(retorno==''):
         pasta=raw_input('Onde está salvo suas músicas?\nEx: -> Desktop/Musicas/ ou /Musicas/ ou /Music/\n~$ ')
