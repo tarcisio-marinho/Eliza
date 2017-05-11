@@ -3,6 +3,10 @@
 # by Tarcisio marinho
 # github.com/tarcisio-marinho
 import os
+from list_music import *
+'''
+    Método que toca músicas que estão salvas em uma pasta no pc
+'''
 def tocar(nome=None):
     dicionario={} # cria um dicionario para salvar as pastas e musicas digitadas pelo usuario
     retorno=''
@@ -17,9 +21,10 @@ def tocar(nome=None):
     # se o usuario digitar uma musica específica
     if(nome!=None):
         if(retorno==''):
-            print('execute o comando: tocar\nPara configurar a sua pasta de músicas.')
+            print('execute apenas o comando: tocar\nPara configurar a sua pasta de músicas.')
         else:
-            print('configurado ja')
+            todas_as_musicas = listar(retorno)
+            print(todas_as_musicas[1])
 
     # senão escolhe a música para tocar
     elif(retorno==''):
