@@ -38,7 +38,7 @@ def ajudar(comando,lista_de_comandos):
                 print('O comando pais, mostra qual o país que você esta localizado\nNão precisa de nenhum argumento')
 
             elif(com=='tocar'):
-                print('O comando tocar, toca uma música com seu reprodutor de música favorito\nSe você nunca tiver usado ele, primeiramente ele pede para você escolher o diretorio onde suas músicas estão salvas\nEle entra no diretorio e lista as músicas e pastas, Você escolhe qual música vai querer\nDepois de executar a música, se quiser escolher denovo, não precisa mais informar o caminho de músicas\nSe ele salvou o caminho errado, entre na pasta do projeto, pressione CTRL + H e exclua o arquivo .config.txt\n')
+                print('O comando tocar pode tocar uma música informada ou escolher uma música\nPrimeira vez use o tocar sem argumentos: tocar.\nPara assim configurar o diretório de músicas.\nVocê pode executar o tocar sozinho, para escolher a pasta e a música\nVocê também pode executar o tocar e nome de música que você quer.\nEx: tocar almost easy\n')
 
             elif(com=='localizacao'):
                 print('O comando localizacao, localiza onde você está\nNão precisa de argumento extra')
