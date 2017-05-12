@@ -40,11 +40,12 @@ def menu():
         lista=[]
         if(inicio==1):
             try:
-                arquivo=open('.inicio.txt','r')
+                arquivo=open('config/inicio.txt','r')
                 resp=arquivo.readline()
             except:
-                arquivo=open('.inicio.txt','w')
-                arquivo=open('.inicio.txt','a')
+                os.mkdir('config')
+                arquivo=open('config/inicio.txt','w')
+                arquivo=open('config/inicio.txt','a')
                 print('checando todas as dependências\n')
                 os.system('./compilar.sh')
                 arquivo.write('atualizado')

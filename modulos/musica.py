@@ -16,11 +16,11 @@ def tocar(nome=None):
     retorno=''
     i=0
     try:
-        arquivo_config=open('.config.txt','r') # tenta ler o arquivo para ver se já foi escolhido o diretorio
+        arquivo_config=open('config/music.txt','r') # tenta ler o arquivo para ver se já foi escolhido o diretorio
         retorno=arquivo_config.readline()
 
     except IOError:
-        arquivo_config=open('.config.txt','w') # nao conseguiu ler -> cria arquivo vazio onde será as pastas das musicas
+        arquivo_config=open('config/music.txt','w') # nao conseguiu ler -> cria arquivo vazio onde será as pastas das musicas
 
     # se o usuario digitar uma musica específica
     if(nome!=None):
@@ -29,7 +29,7 @@ def tocar(nome=None):
             os.system('sleep 2')
             caminho = subprocess.check_output('zenity --title="Escolha a pasta de musicas" --file-selection --directory', shell=True)
             caminho=caminho.replace('\n','')
-            arquivo_config=open('.config.txt','a')
+            arquivo_config=open('config/music.txt','a')
             arquivo_config.write(caminho)
             os.system('clear')
             print('Configurado\nExecute o comando novamente para reproduzir música escolhida\n')
@@ -88,7 +88,7 @@ def tocar(nome=None):
         # e percorre todos os arquivos dentro do diretorio e salva no dicionario
         # escolhe a musica dentro do dicionario
 
-            arquivo_config=open('.config.txt','a')
+            arquivo_config=open('config/music.txt','a')
             print('Existe')
             os.chdir(caminho)
             arquivos=os.listdir(os.getcwd())
@@ -185,7 +185,7 @@ def tocar(nome=None):
 
     # ja esta salvo no arquivo .config.txt, e ele so escolhe a musica
     else:
-        arquivo_config=open('.config.txt','r')
+        arquivo_config=open('config/music.txt','r')
         caminho=arquivo_config.readline()
         os.chdir(caminho)
         arquivos=os.listdir(os.getcwd())

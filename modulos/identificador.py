@@ -679,7 +679,7 @@ def identifica(frase,lista):
 
         enviado=0
         try:
-            arquivo=open('.email','r')
+            arquivo=open('config/email','r')
             email=arquivo.readline()
             if(email == ''): # Se o cara interromper, ele salva como arquivo vazio
                 enviado=0
@@ -687,7 +687,7 @@ def identifica(frase,lista):
             envia_email(email)
             enviado=1
         except:
-            arquivo=open('.email.txt','w')
+            arquivo=open('config/email.txt','w')
 
         if(enviado == 0):
 
@@ -698,7 +698,7 @@ def identifica(frase,lista):
                 print('O digitado não é válido como email')
 
             else:
-                arquivo=open('.email.txt','a')
+                arquivo=open('config/email.txt','a')
                 arquivo.write(teste)
                 envia_email(teste)
                 print('Seu email está configurado')
