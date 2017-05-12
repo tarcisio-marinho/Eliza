@@ -25,7 +25,16 @@ def tocar(nome=None):
     # se o usuario digitar uma musica específica
     if(nome!=None):
         if(retorno==''):
-            print('execute apenas o comando: tocar\nPara configurar a sua pasta de músicas.')
+            print('Configure primeiro o caminho de músicas')
+            os.system('sleep 2')
+            caminho = subprocess.check_output('zenity --title="Escolha a pasta de musicas" --file-selection --directory', shell=True)
+            caminho=caminho.replace('\n','')
+            arquivo_config=open('.config.txt','a')
+            arquivo_config.write(caminho)
+            os.system('clear')
+            print('Configurado\nExecute o comando novamente para reproduzir música escolhida\n')
+            return
+
         else:
             achou=0
             # retorna todas as musicas na pasta
@@ -37,11 +46,15 @@ def tocar(nome=None):
                     achou=achou+1
             if(achou==0):
                 print('Nenhuma música encontrada')
-                
+
             elif(achou==1):
                 print('Música encontrada\nReproduzindo...')
                 os.system('sleep 2')
-                subprocess.check_output('xdg-open '+tocar[0], shell=True)
+                try:
+                    subprocess.check_output('xdg-open '+tocar[0], shell=True)
+                except:
+                    print('Erros ')
+
                 os.system('sleep 2')
                 os.system('clear')
 
@@ -50,7 +63,11 @@ def tocar(nome=None):
                 tam=len(tocar)
                 os.system('sleep 2')
                 x=random.randrange(0,tam)
-                subprocess.check_output('xdg-open '+tocar[x], shell=True)
+                try:
+                    print('tocando: '+tocar[x]+'\n\n')
+                    subprocess.check_output('xdg-open '+tocar[x], shell=True)
+                except:
+                    print('Erros')
                 os.system('sleep 2')
                 os.system('clear')
 
@@ -112,6 +129,7 @@ def tocar(nome=None):
                 musica=dicionario[escolha].replace(" ", "\ ").replace(" (", " \("). replace(")", "\)")
                 subprocess.check_output('xdg-open '+musica, shell=True)
                 arquivo_config.write(caminho)
+                arquivo_config.close()
                 os.system('sleep 2')
                 os.system('clear')
 
@@ -156,6 +174,7 @@ def tocar(nome=None):
                 musica=dicionario2[escolha].replace(" ", "\ ").replace(" (", " \("). replace(")", "\)")
                 subprocess.check_output('xdg-open '+musica, shell=True)
                 arquivo_config.write(caminho)
+                arquivo_config.close()
                 os.system('sleep 2')
                 os.system('clear')
 
