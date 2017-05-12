@@ -6,7 +6,7 @@ facilitando e diminuido tempo de buscas e execução de tarefas.
 # Ações que Eliza faz:
     - salva e edita renomeia e exclui arquivos de texto e diretórios
     - busca no wikipedia
-    - toca músicas
+    - toca músicas que você escolher
     - localiza onde você está
     - localiza País/Estado de cidades
     - checa o seu IP externo
