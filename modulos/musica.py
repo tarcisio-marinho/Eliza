@@ -5,6 +5,7 @@
 import os
 import re
 import random
+import subprocess
 from list_music import *
 '''
     Método que toca músicas que estão salvas em uma pasta no pc
@@ -36,23 +37,32 @@ def tocar(nome=None):
                     achou=achou+1
             if(achou==0):
                 print('Nenhuma música encontrada')
+                
             elif(achou==1):
                 print('Música encontrada\nReproduzindo...')
-                os.system('sleep 1')
-                os.system('xdg-open '+tocar[0])
+                os.system('sleep 2')
+                subprocess.check_output('xdg-open '+tocar[0], shell=True)
+                os.system('sleep 2')
+                os.system('clear')
+
             elif(achou>1):
                 print('Várias músicas encontradas\nVou escolher uma aleatória, espero que goste :)\n')
-                os.system('sleep 1')
                 tam=len(tocar)
+                os.system('sleep 2')
                 x=random.randrange(0,tam)
-                os.system('xdg-open '+tocar[x])
+                subprocess.check_output('xdg-open '+tocar[x], shell=True)
+                os.system('sleep 2')
+                os.system('clear')
 
 
 
     # senão escolhe a música para tocar
     elif(retorno==''):
-        pasta=raw_input('Onde está salvo suas músicas?\nEx: -> Desktop/Musicas/ ou /Musicas/ ou /Music/\n~$ ')
-        caminho=os.environ['HOME'] +'/'+ pasta+'/'
+        print('Escolha o caminho da sua pasta de músicas')
+        os.system('sleep 2')
+        os.system('clear')
+        caminho = subprocess.check_output('zenity --title="Escolha a pasta de musicas" --file-selection --directory', shell=True)
+        caminho=caminho.replace('\n','')
         resp=os.path.isdir(caminho) # checa se o diretorio existe
 
         if(resp==True): # existe
@@ -95,13 +105,15 @@ def tocar(nome=None):
                     except:
                         print('Apenas números\n')
 
+                        os.system('sleep 2')
             os.system('clear')
 
             if(os.path.isfile(dicionario[escolha])): # arquivo - tocar musica
                 musica=dicionario[escolha].replace(" ", "\ ").replace(" (", " \("). replace(")", "\)")
-                os.system('xdg-open '+musica)
+                subprocess.check_output('xdg-open '+musica, shell=True)
                 arquivo_config.write(caminho)
-                os.system('sleep 1')
+                os.system('sleep 2')
+                os.system('clear')
 
             elif(os.path.isdir(dicionario[escolha])): # diretorio - escolher musica primeiro para depois tocar
                 dicionario2={}
@@ -142,9 +154,10 @@ def tocar(nome=None):
 
                 print(dicionario2[escolha])
                 musica=dicionario2[escolha].replace(" ", "\ ").replace(" (", " \("). replace(")", "\)")
-                os.system('xdg-open '+musica)
+                subprocess.check_output('xdg-open '+musica, shell=True)
                 arquivo_config.write(caminho)
-                os.system('sleep 1')
+                os.system('sleep 2')
+                os.system('clear')
 
 
 
@@ -188,12 +201,14 @@ def tocar(nome=None):
                 except:
                     print('Apenas números\n')
 
+                    os.system('sleep 2')
         os.system('clear')
 
         if(os.path.isfile(dicionario[escolha])): # arquivo - tocar musica
             musica=dicionario[escolha].replace(" ", "\ ").replace(" (", " \("). replace(")", "\)")
-            os.system('xdg-open '+musica)
-            os.system('sleep 1')
+            subprocess.check_output('xdg-open '+musica, shell=True)
+            os.system('sleep 2')
+            os.system('clear')
 
         elif(os.path.isdir(dicionario[escolha])): # diretorio - escolher musica primeiro para depois tocar
             dicionario2={}
@@ -234,5 +249,6 @@ def tocar(nome=None):
 
             print(dicionario2[escolha])
             musica=dicionario2[escolha].replace(" ", "\ ").replace(" (", " \("). replace(")", "\)")
-            os.system('xdg-open '+musica)
-            os.system('sleep 1')
+            subprocess.check_output('xdg-open '+musica, shell=True)
+            os.system('sleep 2')
+            os.system('clear')
