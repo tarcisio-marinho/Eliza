@@ -9,17 +9,17 @@ def minha_localizacao(frase):
         requisicao=requests.get('http://freegeoip.net/json/')
         dicionario=json.loads(requisicao.text)
 
-        if(frase=='pais'):
+        if(frase== u'pais'):
             print('Você está no ')
             print(str(dicionario['country_name'])+', '+str(dicionario['country_code']))
             os.system('espeak -v pt-br -g 4 -a 100 "Você está no '+str(dicionario['country_name'])+'"')
 
-        elif(frase=='estado'):
+        elif(frase== u'estado'):
             print('Você está em ')
             print(str(dicionario['city'])+'-'+str(dicionario['region_code'])+', '+dicionario['region_name'])
             os.system('espeak -v pt-br -g 4 -a 100 "Você está em '+str(dicionario['city'])+'"')
 
-        elif(frase=='ip'):
+        elif(frase== u'ip'):
             print('Seu ip é: '+str(dicionario['ip']))
             os.system('espeak -v pt-br -g 4 -a 100 "Seu ipê é"')
 
@@ -49,4 +49,3 @@ def clima(cidade):
     except:
         print('Erro de conexão')
         os.system('espeak -v pt-br -g 4 -a 100 "Erro de conexão"')
-        

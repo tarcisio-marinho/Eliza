@@ -7,10 +7,12 @@ import requests
 import json
 import sys
 import os
+import speech_recognition as sr
 from datetime import datetime
 from datetime import date
 import random
 from modulos.identificador import *
+from modulos.reconhecimento import *
 
 # CORES #
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\033[0m'
@@ -55,15 +57,26 @@ def menu():
 
 
 
-
+        internet_off=False
         while True:
-            try:
-                os.chdir(diretorio_atual)
+            os.chdir(diretorio_atual)
+            if(internet_off==False):
+                try:
+                    print(mensagem_eliza)
+                    frase=reconhecer()
+                    frase=frase.lower()
+                    print(frase)
+                except sr.RequestError:
+                    internet_off=True
+                    print('Sem conexão com a internet')
+                    print('Se você se conectar a internet, saia e entre denovo para falar comigo')
+                    frase=raw_input(mensagem_eliza)
+                except sr.UnknownValueError:
+                    frase=reconhecer()
+                    frase=frase.lower()
+                    print(frase)
+            else:
                 frase=raw_input(mensagem_eliza)
-            except NameError:
-                os.chdir(diretorio_atual)
-                frase=input(mensagem_eliza)
-            frase=frase.lower()
             lista.append(frase)
             identifica(frase,lista)
     except KeyboardInterrupt:

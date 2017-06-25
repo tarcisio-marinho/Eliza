@@ -36,9 +36,9 @@ def filmes(titulo):
 ## cotacao do dolar
 
 def cotacao(moeda):
-    if(moeda=='USD'):
+    if(moeda== u'USD'):
         nome_moeda='dolar'
-    elif(moeda=='BTC'):
+    elif(moeda== u'BTC'):
         nome_moeda='bitcoin'
     else:
         nome_moeda='euro'

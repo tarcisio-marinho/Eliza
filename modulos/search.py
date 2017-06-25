@@ -10,7 +10,7 @@ import os
 
 def onde(palavras):
 	tam=len(palavras)
-	if(palavras[1]=='fica' or palavras[1]=='é' or palavras[1]=='e'):
+	if(palavras[1] == u'fica' or palavras[1] == u'é' or palavras[1] == u'e'):
 		try:
 			if(tam==3):
 				req=requests.get('http://maps.googleapis.com/maps/api/geocode/json?address='+palavras[2])
