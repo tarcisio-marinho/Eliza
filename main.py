@@ -75,6 +75,13 @@ def menu():
                     frase=reconhecer()
                     frase=frase.lower()
                     print(frase)
+                except speech_recognition.UnknownValueError:
+                    frase=reconhecer()
+                    frase=frase.lower()
+                    print(frase)
+                except:
+                    print('Erro desconhecido ocorreu')
+                    internet_off=True
             else:
                 frase=raw_input(mensagem_eliza)
             lista.append(frase)
