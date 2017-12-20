@@ -11,8 +11,8 @@ def listar(diretorio):
     musicas=[]
     for caminho, diretorio, arquivo in os.walk(diretorio):
         for musica in arquivo:
-            a=caminho+'/'+musica
-            musicas.append(a)
+            if(".mp3" in musica or ".wav" in musica):
+                musicas.append(os.path.join(caminho, musica))
 
     # retorna a lista com todas as musicas #
     return musicas
