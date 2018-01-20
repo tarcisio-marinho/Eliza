@@ -9,7 +9,7 @@
 def ajudar(comando,lista_de_comandos):
     encontrou=0
     for com in lista_de_comandos:
-        if(comando==com):
+        if(comando == com):
             if(com == u'busca'):
                 print('O comando busca, procura no wikipedia o que você quiser\nEx: busca barack obama\n')
 
@@ -84,7 +84,7 @@ def ajudar(comando,lista_de_comandos):
 
             encontrou=1
 
-    if(encontrou==0):
+    if(encontrou == 0):
         print('Os comandos existentes são: ')
         for com in lista_de_comandos:
             print(com)

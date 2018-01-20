@@ -8,7 +8,7 @@ import os
 def listar(diretorio):
 
     # cria uma lista onde será adicionado o nome da musica #
-    musicas=[]
+    musicas = []
     for caminho, diretorio, arquivo in os.walk(diretorio):
         for musica in arquivo:
             if(".mp3" in musica or ".wav" in musica):

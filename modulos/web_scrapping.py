@@ -27,7 +27,7 @@ def busca(string):
 
     i=0
     for paragraph in bs_obj.find_all('p'):
-        i=i+1
+        i+=1
         print(paragraph.text)
-        if(i==3):
+        if(i == 3):
             break
