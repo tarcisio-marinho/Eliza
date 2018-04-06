@@ -7,7 +7,6 @@ import requests
 import json
 import sys
 import os
-import speech_recognition as sr
 from datetime import datetime
 from datetime import date
 import random
@@ -57,46 +56,24 @@ def menu():
 
 
 
-        internet_off=False
-        while True:
+      
+        while True: 
             os.chdir(diretorio_atual)
-            if(internet_off==False):
-                try:
-                    print(mensagem_eliza)
-                    frase=reconhecer()
-                    frase=frase.lower()
-                    print(frase)
-                except sr.RequestError:
-                    internet_off=True
-                    print('Sem conexão com a internet')
-                    print('Se você se conectar a internet, saia e entre denovo para falar comigo')
-                    frase=raw_input(mensagem_eliza)
-                except sr.UnknownValueError:
-                    frase=reconhecer()
-                    frase=frase.lower()
-                    print(frase)
-                except sr.UnknownValueError:
-                    frase=reconhecer()
-                    frase=frase.lower()
-                    print(frase)
-                except:
-                    print('Erro desconhecido ocorreu')
-                    internet_off=True
-            else:
-                pass    
             frase=raw_input(mensagem_eliza)
 
             lista.append(frase)
             identifica(frase,lista)
+
     except KeyboardInterrupt:
         while True:
             try:
-                sair=raw_input('Deseja sair? ')
-                if(sair=='sim' or sair=='1' or sair=='quit' or sair=='s' or sair=='exit'):
-                    print('Saindo...')
-                    exit()
-                else:
-                    menu()
+                while True:
+                    sair=raw_input('Deseja sair? ')
+                    if(sair=='sim' or sair=='1' or sair=='quit' or sair=='s' or sair=='exit'):
+                        print('Saindo...')
+                        exit()
+                    else:
+                        menu()
             except KeyboardInterrupt:
                 sair=raw_input('Sim ou não?')
                 if(sair=='sim' or sair=='1' or sair=='quit' or sair=='s' or sair=='exit'):
