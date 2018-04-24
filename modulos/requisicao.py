@@ -49,7 +49,11 @@ def cotacao(moeda):
         b = str(a)
         b = b.split('.')
         print('R$ '+ str(a))
-        os.system('espeak -v pt-br -g 4 -a 100 " O valor do '+nome_moeda+' é '+b[0]+'reais e '+b[1]+' centavos"')
+        if(nome_moeda != "bitcoin"):
+            os.system('espeak -v pt-br -g 4 -a 100 " O valor do '+nome_moeda+' é '+b[0]+'reais e '+b[1]+' centavos"')
+        else:
+            os.system('espeak -v pt-br -g 4 -a 100 " O valor do '+nome_moeda+' é ' + str(a) + 'reais."')
+            
     except:
         print('Erro na conexão\n')
         os.system('espeak -v pt-br -g 4 -a 100 " Erro na conexão"')
